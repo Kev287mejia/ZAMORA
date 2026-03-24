@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html class="wide wow-animation" lang="es">
+  <head>
+    <title>Panel de Administración - Bienes Raíces Zamora</title>
+    <meta name="viewport" content="width=device-width height=device-height initial-scale=1.0 maximum-scale=1.0 user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <link rel="icon" href="images/favicon-zamora.png" type="image/png">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,700,800%7CPoppins:300,400,700">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/style.css" id="main-styles-link"><link rel="stylesheet" href="css/branding.css" id="main-styles-link">
+    <!-- Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">      // --- AUTH LOGIC ---
+      async function checkUser() {
+        const { data: { session }, error } = await window.supabaseClient.auth.getSession();
+        if (session) {
+          showAdmin();
+        } else {
+          document.getElementById('login-overlay').style.display = 'flex';
+        }
+      }
+
+      async function handleLogin() {
+        const email = document.getElementById('login-email').value;
+        const pass = document.getElementById('login-pass').value;
+        const btn = document.querySelector('.btn-login');
+        const err = document.getElementById('login-err');
+
+        if(!email || !pass) return;
+
+        btn.innerText = "Verificando...";
+        btn.disabled = true;
+        err.style.display = 'none';
+
+        const { data, error } = await window.supabaseClient.auth.signInWithPassword({
+          email: email,
+          password: pass,
+        });
+
+        if (error) {
+          err.innerText = "Acceso denegado: " + error.message;
+          err.style.display = 'block';
+          btn.innerText = "ACCEDER AL PANEL";
+          btn.disabled = false;
+        } else {
+          showAdmin();
+        }
+      }
+
+      function showAdmin() {
+        document.getElementById('login-overlay').style.display = 'none';
+        document.getElementById('admin-content').style.display = 'flex';
+        loadDashboard(); // Function to initialize data
+      }
+
+      async function handleLogout() {
+        await window.supabaseClient.auth.signOut();
+        location.reload();
+      }
+
+      window.addEventListener('load', checkUser);
+    </script>
+    <script src="js/supabase-db.js">      // --- AUTH LOGIC ---
+      async function checkUser() {
+        const { data: { session }, error } = await window.supabaseClient.auth.getSession();
+        if (session) {
+          showAdmin();
+        } else {
+          document.getElementById('login-overlay').style.display = 'flex';
+        }
+      }
+
+      async function handleLogin() {
+        const email = document.getElementById('login-email').value;
+        const pass = document.getElementById('login-pass').value;
+        const btn = document.querySelector('.btn-login');
+        const err = document.getElementById('login-err');
+
+        if(!email || !pass) return;
+
+        btn.innerText = "Verificando...";
+        btn.disabled = true;
+        err.style.display = 'none';
+
+        const { data, error } = await window.supabaseClient.auth.signInWithPassword({
+          email: email,
+          password: pass,
+        });
+
+        if (error) {
+          err.innerText = "Acceso denegado: " + error.message;
+          err.style.display = 'block';
+          btn.innerText = "ACCEDER AL PANEL";
+          btn.disabled = false;
+        } else {
+          showAdmin();
+        }
+      }
+
+      function showAdmin() {
+        document.getElementById('login-overlay').style.display = 'none';
+        document.getElementById('admin-content').style.display = 'flex';
+        loadDashboard(); // Function to initialize data
+      }
+
+      async function handleLogout() {
+        await window.supabaseClient.auth.signOut();
+        location.reload();
+      }
+
+      window.addEventListener('load', checkUser);
+    </script>
+    <style>
+      :root {
+        --admin-primary: #f7941d;
+        --admin-bg: #f4f7f6;
+        --admin-sidebar: #232426;
+      }
+      body { background: var(--admin-bg); font-family: 'Poppins', sans-serif; }
+      .admin-wrapper { display: flex; min-height: 100vh; }
+      
+      /* Sidebar */
+      .admin-sidebar {
+        width: 260px;
+        background: var(--admin-sidebar);
+        color: #fff;
+        padding: 30px 20px;
+        flex-shrink: 0;
+      }
+      .admin-sidebar .brand { margin-bottom: 40px; display: block; text-align: center; }
+      .admin-sidebar .nav-link {
+        color: #ffffff !important;
+        padding: 12px 15px;
+        border-radius: 8px;
+        margin-bottom: 5px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: 0.3s;
+        font-weight: 500;
+        text-decoration: none !important;
+      }
+      .admin-sidebar .nav-link:hover, .admin-sidebar .nav-link.active {
+        background: var(--admin-primary);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        font-weight: 700;
+      }
+
+      /* Main Content */
+      .admin-main { flex-grow: 1; padding: 40px; }
+      .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+      
+      .stat-card {
+        background: #fff;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+      .stat-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+      }
+
+      .card-form {
+        background: #fff;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        padding: 40px;
+        max-width: 1000px;
+      }
+      
+      .form-group-admin { margin-bottom: 25px; }
+      .form-label { font-weight: 700; color: #232426; font-size: 13px; text-transform: uppercase; margin-bottom: 10px; display: block; letter-spacing: 0.5px;}
+      .form-control-admin {
+        width: 100%;
+        padding: 12px 18px;
+        border: 2px solid #edf0f5;
+        border-radius: 10px;
+        background: #fdfdfe;
+        font-family: 'Poppins', sans-serif;
+        font-size: 14px;
+        color: #333;
+        transition: all 0.3s;
+      }
+      .form-control-admin:focus { outline: none; border-color: var(--admin-primary); background: #fff; box-shadow: 0 0 0 4px rgba(0,123,255,0.1); }
+
+      .btn-save {
+        background: var(--admin-primary);
+        background: #fff !important;
+        border-radius: 15px !important;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.08) !important;
+        padding: 40px !important;
+        max-width: 1100px !important;
+        margin: 0 auto;
+      }
+      
+      /* Brutal Reset for Admin Form to prevent theme interference */
+      .admin-main .form-group-admin { 
+        margin-bottom: 25px !important; 
+        position: relative !important;
+        display: block !important;
+        width: 100% !important;
+      }
+      
+      .admin-main .form-label { 
+        position: static !important;
+        display: block !important;
+        font-weight: 700 !important; 
+        color: #232426 !important; 
+        font-size: 13px !important; 
+        text-transform: uppercase !important; 
+        margin-bottom: 10px !important; 
+        letter-spacing: 0.5px !important;
+        transform: none !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+      }
+
+      .admin-main .form-control-admin {
+        position: static !important;
+        display: block !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 48px !important;
+        padding: 12px 18px !important;
+        border: 2px solid #edf0f5 !important;
+        border-radius: 10px !important;
+        background: #fdfdfe !important;
+        font-family: 'Poppins', sans-serif !important;
+        font-size: 14px !important;
+        color: #333 !important;
+        transition: all 0.3s !important;
+        box-sizing: border-box !important;
+      }
+
+      .admin-main select.form-control-admin {
+        appearance: auto !important;
+        -webkit-appearance: auto !important;
+      }
+
+      .admin-main .form-control-admin:focus { 
+        outline: none !important; 
+        border-color: var(--admin-primary) !important; 
+        background: #fff !important; 
+        box-shadow: 0 0 0 4px rgba(0,123,255,0.1) !important; 
+      }
+
+      .admin-main .btn-save {
+        background: var(--admin-primary) !important;
+        color: #fff !important;
+        padding: 18px 40px !important;
+        border: none !important;
+        border-radius: 10px !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 1px !important;
+        width: 100% !important;
+        margin-top: 20px !important;
+        cursor: pointer !important;
+        transition: 0.3s !important;
+        display: block !important;
+      }
+      .admin-main .btn-save:hover { background: #0056b3 !important; transform: translateY(-3px) !important; box-shadow: 0 8px 20px rgba(0,123,255,0.3) !important; }
+
+      /* Custom Grid fixing Bootstrap conflicts */
+      .admin-row {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        margin-right: -15px !important;
+        margin-left: -15px !important;
+      }
+      .admin-col-6 { flex: 0 0 50% !important; max-width: 50% !important; padding: 0 15px !important; }
+      .admin-col-4 { flex: 0 0 33.333% !important; max-width: 33.333% !important; padding: 0 15px !important; }
+      .admin-col-12 { flex: 0 0 100% !important; max-width: 100% !important; padding: 0 15px !important; }
+
+      /* Table Styles */
+      .prop-table { width: 100% !important; border-collapse: separate !important; border-spacing: 0 10px !important; }
+      .prop-table th { padding: 15px !important; color: #888 !important; font-weight: 600 !important; font-size: 13px !important; text-transform: uppercase !important; }
+      .prop-table tr { background: #fff !important; box-shadow: 0 2px 8px rgba(0,0,0,0.02) !important; transition: 0.2s !important; }
+      .prop-table td { padding: 15px !important; vertical-align: middle !important; }
+      .prop-table tr td:first-child { border-radius: 10px 0 0 10px !important; }
+      .prop-table tr td:last-child { border-radius: 0 10px 10px 0 !important; }
+      
+      .img-preview { width: 60px; height: 60px; border-radius: 8px; object-fit: cover; }
+      .status-badge { padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; }
+      .badge-success { background: #e8f9ef; color: #22c55e; }
+      .badge-warning { background: #fef3e7; color: #f97316; }
+
+      /* Login Overlay (Basic Protection) */
+      #login-overlay {
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: var(--admin-sidebar);
+        display: flex; align-items: center; justify-content: center;
+        z-index: 9999;
+      }
+      .login-box { background: #fff; padding: 40px; border-radius: 15px; width: 100%; max-width: 400px; text-align: center;}
+           /* Hidden by default */
+            /* Login Overlay & Admin Auth */
+      #login-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #232426; display: flex; align-items: center; justify-content: center; z-index: 10000; }
+      .login-card { background: #fff; padding: 50px 40px; border-radius: 25px; width: 100%; max-width: 420px; box-shadow: 0 30px 100px rgba(0,0,0,0.5); text-align: center; }
+      .btn-login { width: 100%; padding: 16px; border-radius: 12px; border: none; background: #f7941d; color: #fff; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 14px; letter-spacing: 1px; }
+      .btn-login:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(247,148,29,0.3); background: #e08316; }
+      </style>
+  </head>
+  <body>
+    <!-- Supabase Auth Login -->
+    <div id="login-overlay">
+      <div class="login-card">
+        <div style="background: #232426; padding: 20px; border-radius: 15px; margin-bottom: 25px; display: inline-block;">
+            <img src="images/favicon-zamora.png" alt="Logo" width="100">
+        </div>
+        <h3 style="margin-bottom: 10px; font-weight: 800;">Bienes Raíces Zamora</h3>
+        <p style="color: #666; margin-bottom: 30px; font-size: 14px;">Inicia sesión para gestionar el contenido.</p>
+        
+        <div style="text-align: left; margin-bottom: 15px;">
+          <label class="form-label">Correo Electrónico</label>
+          <input type="email" id="login-email" class="form-control-admin" placeholder="admin@ejemplo.com">
+        </div>
+        <div style="text-align: left; margin-bottom: 25px;">
+          <label class="form-label">Contraseña</label>
+          <input type="password" id="login-pass" class="form-control-admin" placeholder="********">
+        </div>
+        <button class="btn-login" onclick="handleLogin()">ACCEDER AL PANEL</button>
+        <div id="login-err" style="color: #ff4d4d; font-size: 13px; margin-top: 15px; display: none; background: #fff5f5; padding: 10px; border-radius: 8px; border: 1px solid #ffccd5;"></div>
+      </div>
+    </div>
+    
+    <div id="admin-content" class="admin-wrapper" style="display: none;">
+    <script>
+      // Force scroll to top on refresh
+      if ("scrollRestoration" in history) {
+        history.scrollRestoration = "manual";
+      }
+      window.scrollTo(0, 0);
+          // --- AUTH LOGIC ---
+      async function checkUser() {
+        const { data: { session }, error } = await window.supabaseClient.auth.getSession();
+        if (session) {
+          showAdmin();
+        } else {
+          document.getElementById('login-overlay').style.display = 'flex';
+        }
+      }
+
+      async function handleLogin() {
+        const email = document.getElementById('login-email').value;
+        const pass = document.getElementById('login-pass').value;
+        const btn = document.querySelector('.btn-login');
+        const err = document.getElementById('login-err');
+
+        if(!email || !pass) return;
+
+        btn.innerText = "Verificando...";
+        btn.disabled = true;
+        err.style.display = 'none';
+
+        const { data, error } = await window.supabaseClient.auth.signInWithPassword({
+          email: email,
+          password: pass,
+        });
+
+        if (error) {
+          err.innerText = "Acceso denegado: " + error.message;
+          err.style.display = 'block';
+          btn.innerText = "ACCEDER AL PANEL";
+          btn.disabled = false;
+        } else {
+          showAdmin();
+        }
+      }
+
+      function showAdmin() {
+        document.getElementById('login-overlay').style.display = 'none';
+        document.getElementById('admin-content').style.display = 'flex';
+        loadDashboard(); // Function to initialize data
+      }
+
+      async function handleLogout() {
+        await window.supabaseClient.auth.signOut();
+        location.reload();
+      }
+
+      window.addEventListener('load', checkUser);
+    </script>
+
+    <!-- Simple Login for Security -->
+    
+
+    
+      <!-- Sidebar -->
+      <aside class="admin-sidebar">
+        <div class="brand">
+          <div style="background: #fff; padding: 10px; border-radius: 10px; display: inline-block;">
+            <img src="images/logo-zamora-branding.png" alt="Zamora" width="140">
+          </div>
+        </div>
+        <nav>
+          <a href="#" class="nav-link active" id="link-new-prop" onclick="showSection('new-prop')"><span class="icon mdi mdi-plus-circle-outline"></span> Propiedades</a>
+          <a href="#" class="nav-link" id="link-list-prop" onclick="showSection('list-prop')"><span class="icon mdi mdi-view-list"></span> Ver Inventario</a>
+          <a href="#" class="nav-link" id="link-testimonials" onclick="showSection('sec-testimonials')"><span class="icon mdi mdi-comment-account-outline"></span> Testimonios</a>
+          <a href="#" class="nav-link" id="link-config" onclick="showSection('sec-config')"><span class="icon mdi mdi-cog"></span> Configuración Web</a>
+          <a href="index" class="nav-link"><span class="icon mdi mdi-web"></span> Ver Sitio Web</a>
+          <hr style="border-color: rgba(255,255,255,0.1);">
+          <a href="#" class="nav-link" onclick="handleLogout()"><span class="icon mdi mdi-logout"></span> Salir</a>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="admin-main">
+        
+        <!-- Section: New/Edit Property -->
+        <div id="sec-new-prop">
+          <div class="admin-header">
+            <div>
+              <h2 id="form-title" class="font-weight-bold">Nueva Propiedad</h2>
+              <p class="text-muted">Complete los datos para publicar en el sitio web.</p>
+            </div>
+          </div>
+
+          <div class="card-form">
+            <div class="admin-row">
+              <div class="admin-col-6 form-group-admin">
+                <label class="form-label">Título de la Propiedad (Español) *</label>
+                <input type="text" id="title_es" class="form-control-admin" placeholder="Ej: Hermosa Casa en Beholden">
+              </div>
+              <div class="admin-col-6 form-group-admin">
+                <label class="form-label">Title (English) - Optional</label>
+                <input type="text" id="title_en" class="form-control-admin" placeholder="Ej: Beautiful House in Beholden">
+              </div>
+
+              <div class="admin-col-4 form-group-admin">
+                <label class="form-label">Categoría *</label>
+                <select id="category" class="form-control-admin">
+                  <option value="Casa">Casa</option>
+                  <option value="Lote">Lote / Terreno</option>
+                  <option value="Local Comercial">Local Comercial</option>
+                  <option value="Apartamento">Apartamento</option>
+                </select>
+              </div>
+              <div class="admin-col-4 form-group-admin">
+                <label class="form-label">Barrio / Ubicación *</label>
+                <input type="text" id="neighborhood" class="form-control-admin" placeholder="Ej: Old Bank">
+              </div>
+              <div class="admin-col-4 form-group-admin">
+                <label class="form-label">Tipo de Transacción *</label>
+                <select id="transaction_type" class="form-control-admin">
+                  <option value="Venta">Venta</option>
+                  <option value="Renta">Renta</option>
+                  <option value="Ambos">Venta y Renta</option>
+                </select>
+              </div>
+
+              <div class="admin-col-6 form-group-admin">
+                <label class="form-label">Precio Venta (USD)</label>
+                <input type="number" id="price_sale" class="form-control-admin" placeholder="0.00">
+              </div>
+              <div class="admin-col-6 form-group-admin">
+                <label class="form-label">Precio Renta (USD / mes)</label>
+                <input type="number" id="price_rent" class="form-control-admin" placeholder="0.00">
+              </div>
+
+              <div class="admin-col-4 form-group-admin">
+                <label class="form-label">írea (m²)</label>
+                <input type="number" id="area_sqm" class="form-control-admin" placeholder="Ej: 150">
+              </div>
+              <div class="admin-col-4 form-group-admin">
+                <label class="form-label">Habitaciones</label>
+                <input type="number" id="bedrooms" class="form-control-admin" placeholder="0">
+              </div>
+              <div class="admin-col-4 form-group-admin">
+                <label class="form-label">Baños</label>
+                <input type="number" id="bathrooms" class="form-control-admin" placeholder="0">
+              </div>
+
+              <div class="admin-col-12 form-group-admin">
+                <label class="form-label">Fotos de la Propiedad (Puedes seleccionar varias)</label>
+                <div id="upload-status" class="alert alert-info py-2 mb-2" style="display:none; font-size:12px;"></div>
+                <input type="file" id="images_files" class="form-control-admin" multiple accept="image/*" style="padding: 10px;">
+                <p class="text-muted" style="font-size:11px; margin-top:5px; color: #888 !important;">Tip: Deja vacío si no deseas cambiar las fotos actuales (en modo edición).</p>
+              </div>
+
+              <div class="admin-col-6 form-group-admin">
+                <label class="form-label">Descripción (Español)</label>
+                <textarea id="description_es" class="form-control-admin" rows="3"></textarea>
+              </div>
+              <div class="admin-col-6 form-group-admin">
+                <label class="form-label">Description (English)</label>
+                <textarea id="description_en" class="form-control-admin" rows="3"></textarea>
+              </div>
+            </div>
+
+            <button class="btn-save" id="btn-save-prop" onclick="saveProperty()">
+              <span class="mdi mdi-check-circle-outline"></span> PUBLICAR PROPIEDAD
+            </button>
+          </div>
+        </div>
+
+        <!-- Section: Inventory List -->
+        <div id="sec-list-prop" style="display:none;">
+          <div class="admin-header">
+            <div>
+              <h2 class="font-weight-bold">Inventario Actual</h2>
+              <p class="text-muted">Gestiona tus propiedades publicadas.</p>
+            </div>
+            <button class="btn btn-primary" onclick="resetForm(); showSection('new-prop')">+ Nueva</button>
+          </div>
+
+          <table class="prop-table">
+            <thead>
+              <tr>
+                <th>Imagen</th>
+                <th>Propiedad</th>
+                <th>Ubicación</th>
+                <th>Precio</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="inventory-table-body">
+              <!-- Load dynamically -->
+            </tbody>
+          </table>
+        </div>
+        
+        <!-- Section: Testimonials -->
+        <div id="sec-testimonials" style="display:none;">
+          <div class="admin-header">
+            <div>
+              <h2 class="font-weight-bold">Testimonios de Clientes</h2>
+              <p class="text-muted">Gestiona las reseñas que aparecen en el sitio web.</p>
+            </div>
+          </div>
+
+          <!-- New Testimonial Form -->
+          <div class="card-form mb-5">
+            <h5 id="test-form-title">Añadir Nuevo Testimonio</h5>
+            <div class="admin-row">
+              <div class="admin-col-6 form-group-admin">
+                <label class="form-label">Nombre del Cliente *</label>
+                <input type="text" id="test_name" class="form-control-admin" placeholder="Ej: Juan Pérez">
+              </div>
+              <div class="admin-col-6 form-group-admin">
+                <label class="form-label">Cargo / Ciudad (ES) *</label>
+                <input type="text" id="test_role_es" class="form-control-admin" placeholder="Ej: Cliente Regular">
+              </div>
+              <div class="admin-col-6 form-group-admin">
+                <label class="form-label">Cargo / Town (EN)</label>
+                <input type="text" id="test_role_en" class="form-control-admin" placeholder="Ej: Regular Client">
+              </div>
+              <div class="admin-col-6 form-group-admin">
+                <label class="form-label">Calificación (Estrellas)</label>
+                <select id="test_stars" class="form-control-admin">
+                  <option value="5">Ã¢Â­ÂÃ¢Â­ÂÃ¢Â­ÂÃ¢Â­ÂÃ¢Â­Â (5 Estrellas)</option>
+                  <option value="4">Ã¢Â­ÂÃ¢Â­ÂÃ¢Â­ÂÃ¢Â­Â (4 Estrellas)</option>
+                  <option value="3">Ã¢Â­ÂÃ¢Â­ÂÃ¢Â­Â (3 Estrellas)</option>
+                </select>
+              </div>
+              <div class="admin-col-6 form-group-admin">
+                <label class="form-label">Comentario (ES) *</label>
+                <textarea id="test_content_es" class="form-control-admin" rows="3"></textarea>
+              </div>
+              <div class="admin-col-6 form-group-admin">
+                <label class="form-label">Testimonial content (EN)</label>
+                <textarea id="test_content_en" class="form-control-admin" rows="3"></textarea>
+              </div>
+            </div>
+            <button class="btn-save" id="btn-save-test" onclick="saveTestimonial()">
+              <span class="mdi mdi-check-circle-outline"></span> GUARDAR TESTIMONIO
+            </button>
+            <button class="btn btn-sm btn-link mt-2" onclick="resetTestForm()" id="btn-cancel-test" style="display:none;">Cancelar Edición</button>
+          </div>
+
+          <!-- Current Testimonials List -->
+          <h5 class="mb-3">Reseñas Publicadas</h5>
+          <table class="prop-table">
+            <thead>
+              <tr>
+                <th>Cliente</th>
+                <th>Resumen</th>
+                <th>Fecha</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="test-table-body">
+              <!-- Load dynamically -->
+            </tbody>
+          </table>
+        </div>
+        <div id="sec-config" style="display:none;">
+          <div class="admin-header">
+            <div>
+              <h2 class="font-weight-bold">Configuración del Sitio</h2>
+              <p class="text-muted">Personaliza textos clave del Inicio (Mejores Ofertas).</p>
+            </div>
+          </div>
+
+          <div class="card-form">
+            <h5 class="mb-4">Sección "Mejores Ofertas"</h5>
+            <div class="admin-row">
+              <div class="admin-col-6 form-group-admin">
+                <label class="form-label">Título Ofertas (ES)</label>
+                <input type="text" id="conf_offers_title_es" class="form-control-admin" placeholder="Ej: Mejores Ofertas">
+              </div>
+              <div class="admin-col-6 form-group-admin">
+                <label class="form-label">Offers Title (EN)</label>
+                <input type="text" id="conf_offers_title_en" class="form-control-admin" placeholder="Ej: Best Offers">
+              </div>
+
+              <div class="admin-col-6 form-group-admin">
+                <label class="form-label">Subtítulo (ES)</label>
+                <input type="text" id="conf_offers_sub_es" class="form-control-admin" placeholder="Ej: de Diciembre">
+              </div>
+              <div class="admin-col-6 form-group-admin">
+                <label class="form-label">Subtitle (EN)</label>
+                <input type="text" id="conf_offers_sub_en" class="form-control-admin" placeholder="Ej: of December">
+              </div>
+
+              <div class="admin-col-12 form-group-admin">
+                <label class="form-label">Descripción Larga (ES)</label>
+                <textarea id="conf_offers_desc_es" class="form-control-admin" rows="3"></textarea>
+              </div>
+              <div class="admin-col-12 form-group-admin">
+                <label class="form-label">Description (EN)</label>
+                <textarea id="conf_offers_desc_en" class="form-control-admin" rows="3"></textarea>
+              </div>
+            </div>
+
+            <button class="btn-save" onclick="saveConfig()">
+              <span class="mdi mdi-content-save-outline"></span> GUARDAR CONFIGURACIÃƒâ€œN
+            </button>
+            <div id="config-status" class="alert alert-info py-2 mt-2" style="display:none;"></div>
+          </div>
+        </div>
+
+      </main>
+    </div>
+
+          <script>
+      let editMode = false;
+      let currentEditId = null;
+      let currentImages = [];
+
+      // Auth Check
+      function checkAuth() {
+        const pass = document.getElementById('master-pass').value;
+        if(pass === 'Zamora2024' || pass === 'zamora2024') {
+          document.getElementById('login-overlay').style.display = 'none';
+          document.getElementById('main-admin').style.display = 'flex';
+          loadInventory();
+        } else {
+          alert('Clave incorrecta. Contacte al administrador.');
+        }
+      }
+
+      // Switch Sections
+      function showSection(sec) {
+        document.getElementById('sec-new-prop').style.display = sec === 'new-prop' ? 'block' : 'none';
+        document.getElementById('sec-list-prop').style.display = sec === 'list-prop' ? 'block' : 'none';
+        document.getElementById('sec-config').style.display = sec === 'sec-config' ? 'block' : 'none';
+        document.getElementById('sec-testimonials').style.display = sec === 'sec-testimonials' ? 'block' : 'none';
+        
+        // Update Sidebar Active Class
+        const links = document.querySelectorAll('.nav-link');
+        links.forEach(l => l.classList.remove('active'));
+        if(sec === 'new-prop') document.getElementById('link-new-prop').classList.add('active');
+        if(sec === 'list-prop') document.getElementById('link-list-prop').classList.add('active');
+        if(sec === 'sec-config') {
+          document.getElementById('link-config').classList.add('active');
+          loadConfig();
+        }
+        if(sec === 'sec-testimonials') {
+          document.getElementById('link-testimonials').classList.add('active');
+          loadTestimonials();
+        }
+
+        if(sec === 'list-prop') loadInventory();
+        if(sec === 'new-prop' && !editMode) resetForm();
+      }
+
+      function resetForm() {
+        editMode = false;
+        currentEditId = null;
+        currentImages = [];
+        document.getElementById('form-title').innerText = 'Nueva Propiedad';
+        document.getElementById('btn-save-prop').innerHTML = '<span class="mdi mdi-check-circle-outline"></span> PUBLICAR PROPIEDAD';
+        
+        const fields = ['title_es', 'title_en', 'category', 'neighborhood', 'transaction_type', 'price_sale', 'price_rent', 'area_sqm', 'bedrooms', 'bathrooms', 'description_es', 'description_en'];
+        fields.forEach(f => {
+            const el = document.getElementById(f);
+            if(el) el.value = '';
+        });
+        document.getElementById('category').value = 'Casa';
+        document.getElementById('transaction_type').value = 'Venta';
+        document.getElementById('images_files').value = '';
+        document.getElementById('upload-status').style.display = 'none';
+      }
+
+      // --- TESTIMONIALS LOGIC ---
+      let testMode = false;
+      let currentTestId = null;
+
+      function resetTestForm() {
+        testMode = false;
+        currentTestId = null;
+        document.getElementById('test-form-title').innerText = "Añadir Nuevo Testimonio";
+        document.getElementById('btn-save-test').innerHTML = '<span class="mdi mdi-check-circle-outline"></span> GUARDAR TESTIMONIO';
+        document.getElementById('btn-cancel-test').style.display = "none";
+        
+        ['test_name', 'test_role_es', 'test_role_en', 'test_content_es', 'test_content_en'].forEach(id => {
+          document.getElementById(id).value = "";
+        });
+        document.getElementById('test_stars').value = "5";
+      }
+
+      async function loadTestimonials() {
+        const body = document.getElementById('test-table-body');
+        body.innerHTML = '<tr><td colspan="4" class="text-center">Cargando testimonios...</td></tr>';
+        try {
+          const { data, error } = await window.supabaseClient.from('testimonials').select('*').order('created_at', { ascending: false });
+          if(error) return;
+          body.innerHTML = "";
+          data.forEach(t => {
+            body.innerHTML += `
+              <tr>
+                <td><strong>${t.name}</strong><br><small>${t.role_es}</small></td>
+                <td><small>${t.content_es ? t.content_es.substring(0, 50) + '...' : ''}</small></td>
+                <td><small>${new Date(t.created_at).toLocaleDateString()}</small></td>
+                <td>
+                  <button class="btn btn-sm btn-outline-primary" style="margin-right:5px;" onclick="prepareTestEdit('${t.id}')">Editar</button>
+                  <button class="btn btn-sm btn-outline-danger" onclick="deleteTestimonial('${t.id}')">Eliminar</button>
+                </td>
+              </tr>
+            `;
+          });
+        } catch(e) {}
+      }
+
+      async function saveTestimonial() {
+        const data = {
+          name: document.getElementById('test_name').value,
+          role_es: document.getElementById('test_role_es').value,
+          role_en: document.getElementById('test_role_en').value,
+          content_es: document.getElementById('test_content_es').value,
+          content_en: document.getElementById('test_content_en').value,
+          stars: parseInt(document.getElementById('test_stars').value)
+        };
+
+        if(!data.name || !data.content_es) { alert("Nombre y comentario son obligatorios."); return; }
+
+        try {
+          if(testMode) {
+              const { error } = await window.supabaseClient.from('testimonials').update(data).eq('id', currentTestId);
+              if(error) throw error;
+              alert("Testimonio actualizado.");
+          } else {
+              const { error } = await window.supabaseClient.from('testimonials').insert([data]);
+              if(error) throw error;
+              alert("Testimonio publicado.");
+          }
+          resetTestForm();
+          loadTestimonials();
+        } catch(e) { alert("Error: " + e.message + ". Ã‚¿Creaste la tabla testimonials?"); }
+      }
+
+      async function prepareTestEdit(id) {
+        try {
+          const { data, error } = await window.supabaseClient.from('testimonials').select('*').eq('id', id).single();
+          if(error) throw error;
+          
+          testMode = true;
+          currentTestId = id;
+          document.getElementById('test-form-title').innerText = "Editar Testimonio de " + data.name;
+          document.getElementById('btn-save-test').innerHTML = "ACTUALIZAR TESTIMONIO";
+          document.getElementById('btn-cancel-test').style.display = "inline-block";
+          
+          document.getElementById('test_name').value = data.name;
+          document.getElementById('test_role_es').value = data.role_es;
+          document.getElementById('test_role_en').value = data.role_en;
+          document.getElementById('test_content_es').value = data.content_es;
+          document.getElementById('test_content_en').value = data.content_en;
+          document.getElementById('test_stars').value = data.stars;
+        } catch(e) { alert(e.message); }
+      }
+
+      async function deleteTestimonial(id) {
+        if(confirm("Ã‚¿Borrar este testimonio?")) {
+          const { error } = await window.supabaseClient.from('testimonials').delete().eq('id', id);
+          if(!error) loadTestimonials();
+        }
+      }
+
+      // --- SITE CONFIG LOGIC ---
+      async function loadConfig() {
+        try {
+          const { data, error } = await window.supabaseClient.from('site_config').select('*');
+          if(error) {
+            console.warn("Table site_config missing or error:", error.message);
+            return;
+          }
+          data.forEach(c => {
+            if(c.key === 'best_offers_title') {
+                document.getElementById('conf_offers_title_es').value = c.value_es || '';
+                document.getElementById('conf_offers_title_en').value = c.value_en || '';
+            }
+            if(c.key === 'best_offers_subtitle') {
+                document.getElementById('conf_offers_sub_es').value = c.value_es || '';
+                document.getElementById('conf_offers_sub_en').value = c.value_en || '';
+            }
+            if(c.key === 'best_offers_desc') {
+                document.getElementById('conf_offers_desc_es').value = c.value_es || '';
+                document.getElementById('conf_offers_desc_en').value = c.value_en || '';
+            }
+          });
+        } catch(e) {}
+      }
+
+      async function saveConfig() {
+        const btn = document.querySelector('#sec-config .btn-save');
+        btn.disabled = true;
+        btn.innerHTML = "Guardando...";
+
+        const configs = [
+          { key: 'best_offers_title', es: document.getElementById('conf_offers_title_es').value, en: document.getElementById('conf_offers_title_en').value },
+          { key: 'best_offers_subtitle', es: document.getElementById('conf_offers_sub_es').value, en: document.getElementById('conf_offers_sub_en').value },
+          { key: 'best_offers_desc', es: document.getElementById('conf_offers_desc_es').value, en: document.getElementById('conf_offers_desc_en').value }
+        ];
+
+        try {
+          for (const c of configs) {
+            const { error } = await window.supabaseClient.from('site_config').upsert({ key: c.key, value_es: c.es, value_en: c.en }, { onConflict: 'key' });
+            if(error) throw error;
+          }
+          alert("Ã‚Â¡Configuración guardada con éxito!");
+        } catch(e) {
+          alert("Error al guardar: " + e.message + ". Asegúrate de crear la tabla 'site_config' en Supabase.");
+        } finally {
+          btn.disabled = false;
+          btn.innerHTML = '<span class="mdi mdi-content-save-outline"></span> GUARDAR CONFIGURACIÃƒâ€œN';
+        }
+      }
+
+      // --- PROPERTY LOGIC ---
+      async function uploadImages(files) {
+        const uploadedUrls = [];
+        const status = document.getElementById('upload-status');
+        status.style.display = 'block';
+
+        for (let i = 0; i < files.length; i++) {
+          const file = files[i];
+          const fileExt = file.name.split('.').pop();
+          const fileName = `${Math.random().toString(36).substring(2)}-${Date.now()}.${fileExt}`;
+          const filePath = fileName;
+
+          status.innerHTML = `Subiendo foto ${i + 1} de ${files.length}...`;
+
+          const { data, error } = await window.supabaseClient.storage
+            .from('property-images')
+            .upload(filePath, file);
+
+          if (error) {
+            console.error('Error subiendo foto:', error);
+            throw new Error(`Error al subir la imagen ${i+1}`);
+          }
+
+          // Get Public URL
+          const { data: { publicUrl } } = window.supabaseClient.storage
+            .from('property-images')
+            .getPublicUrl(filePath);
+
+          uploadedUrls.push(publicUrl);
+        }
+        
+        status.innerHTML = "Ã‚Â¡Fotos subidas con éxito!";
+        return uploadedUrls;
+      }
+
+      async function saveProperty() {
+        const btn = document.getElementById('btn-save-prop');
+        const fileInput = document.getElementById('images_files');
+        const status = document.getElementById('upload-status');
+        
+        if(!document.getElementById('title_es').value || !document.getElementById('neighborhood').value) {
+          alert("Título y Barrio son obligatorios.");
+          return;
+        }
+
+        if(!editMode && fileInput.files.length === 0) {
+          alert("Debes seleccionar al menos una foto para una nueva propiedad.");
+          return;
+        }
+
+        btn.disabled = true;
+        btn.innerHTML = editMode ? "Actualizando..." : "Publicando...";
+
+        try {
+          let imageUrls = currentImages;
+          if (fileInput.files.length > 0) {
+            imageUrls = await uploadImages(fileInput.files);
+          }
+
+          const data = {
+            title_es: document.getElementById('title_es').value,
+            title_en: document.getElementById('title_en').value,
+            category: document.getElementById('category').value,
+            neighborhood: document.getElementById('neighborhood').value,
+            transaction_type: document.getElementById('transaction_type').value,
+            price_sale: parseFloat(document.getElementById('price_sale').value) || null,
+            price_rent: parseFloat(document.getElementById('price_rent').value) || null,
+            area_sqm: parseFloat(document.getElementById('area_sqm').value) || null,
+            bedrooms: parseInt(document.getElementById('bedrooms').value) || 0,
+            bathrooms: parseInt(document.getElementById('bathrooms').value) || 0,
+            description_es: document.getElementById('description_es').value,
+            description_en: document.getElementById('description_en').value,
+            images: imageUrls,
+            status: 'Disponible'
+          };
+
+          if (editMode) {
+              const { error } = await window.supabaseClient.from('properties').update(data).eq('id', currentEditId);
+              if(error) throw error;
+              alert("Ã‚Â¡Propiedad actualizada con éxito!");
+          } else {
+              const { error } = await window.supabaseClient.from('properties').insert([data]);
+              if(error) throw error;
+              alert("Ã‚Â¡Propiedad y fotos publicadas con éxito!");
+          }
+          location.reload(); 
+        } catch (err) {
+          alert("Error: " + err.message);
+          btn.disabled = false;
+          btn.innerHTML = editMode ? 'ACTUALIZAR PROPIEDAD' : 'PUBLICAR PROPIEDAD';
+          status.innerHTML = "Error detallado: " + err.message;
+        }
+      }
+
+      async function prepareEdit(id) {
+        try {
+          const { data, error } = await window.supabaseClient.from('properties').select('*').eq('id', id).single();
+          if(error) throw error;
+
+          editMode = true;
+          currentEditId = id;
+          currentImages = data.images || [];
+
+          document.getElementById('title_es').value = data.title_es || '';
+          document.getElementById('title_en').value = data.title_en || '';
+          document.getElementById('category').value = data.category || 'Casa';
+          document.getElementById('neighborhood').value = data.neighborhood || '';
+          document.getElementById('transaction_type').value = data.transaction_type || 'Venta';
+          document.getElementById('price_sale').value = data.price_sale || '';
+          document.getElementById('price_rent').value = data.price_rent || '';
+          document.getElementById('area_sqm').value = data.area_sqm || '';
+          document.getElementById('bedrooms').value = data.bedrooms || 0;
+          document.getElementById('bathrooms').value = data.bathrooms || 0;
+          document.getElementById('description_es').value = data.description_es || '';
+          document.getElementById('description_en').value = data.description_en || '';
+
+          document.getElementById('form-title').innerText = 'Editar Propiedad';
+          document.getElementById('btn-save-prop').innerHTML = 'ACTUALIZAR PROPIEDAD';
+          showSection('new-prop');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } catch (err) {
+          alert("Error al cargar datos: " + err.message);
+        }
+      }
+
+      async function loadInventory() {
+        const body = document.getElementById('inventory-table-body');
+        body.innerHTML = '<tr><td colspan="6" class="text-center">Cargando inventario...</td></tr>';
+        try {
+          const { data, error } = await window.supabaseClient.from('properties').select('*').order('created_at', { ascending: false });
+          if(error) throw error;
+          body.innerHTML = '';
+          data.forEach(p => {
+            const price = p.price_sale ? `$${p.price_sale}` : `$${p.price_rent} (Renta)`;
+            const img = (p.images && p.images.length > 0) ? p.images[0] : 'images/propiedad-placeholder.png';
+            body.innerHTML += `
+              <tr>
+                <td><img src="${img}" class="img-preview" onerror="this.src='images/propiedad-placeholder.png'"></td>
+                <td><strong>${p.title_es}</strong><br><small class="text-muted">${p.category}</small></td>
+                <td>Ã°Å¸â€œÂ ${p.neighborhood}</td>
+                <td><span class="text-primary font-weight-bold">${price}</span></td>
+                <td><span class="status-badge badge-success">${p.status}</span></td>
+                <td>
+                  <button class="btn btn-sm btn-outline-primary" style="margin-right:5px;" onclick="prepareEdit('${p.id}')">Editar</button>
+                  <button class="btn btn-sm btn-outline-danger" onclick="deleteProp('${p.id}')">Eliminar</button>
+                </td>
+              </tr>
+            `;
+          });
+        } catch (err) {
+          body.innerHTML = `<tr><td colspan="6" class="text-center text-danger">Error: ${err.message}</td></tr>`;
+        }
+      }
+
+      async function deleteProp(id) {
+        if(confirm("Ã‚¿Estás seguro de eliminar esta propiedad?")) {
+          try {
+            const { error } = await window.supabaseClient.from('properties').delete().eq('id', id);
+            if(error) throw error;
+            loadInventory();
+          } catch (err) {
+            alert("Error al eliminar: " + err.message);
+          }
+        }
+      }
+          // --- AUTH LOGIC ---
+      async function checkUser() {
+        const { data: { session }, error } = await window.supabaseClient.auth.getSession();
+        if (session) {
+          showAdmin();
+        } else {
+          document.getElementById('login-overlay').style.display = 'flex';
+        }
+      }
+
+      async function handleLogin() {
+        const email = document.getElementById('login-email').value;
+        const pass = document.getElementById('login-pass').value;
+        const btn = document.querySelector('.btn-login');
+        const err = document.getElementById('login-err');
+
+        if(!email || !pass) return;
+
+        btn.innerText = "Verificando...";
+        btn.disabled = true;
+        err.style.display = 'none';
+
+        const { data, error } = await window.supabaseClient.auth.signInWithPassword({
+          email: email,
+          password: pass,
+        });
+
+        if (error) {
+          err.innerText = "Acceso denegado: " + error.message;
+          err.style.display = 'block';
+          btn.innerText = "ACCEDER AL PANEL";
+          btn.disabled = false;
+        } else {
+          showAdmin();
+        }
+      }
+
+      function showAdmin() {
+        document.getElementById('login-overlay').style.display = 'none';
+        document.getElementById('admin-content').style.display = 'flex';
+        loadDashboard(); // Function to initialize data
+      }
+
+      async function handleLogout() {
+        await window.supabaseClient.auth.signOut();
+        location.reload();
+      }
+
+      window.addEventListener('load', checkUser);
+    </script>
+      
+    </div>
+  </body>
+</html>
+
+

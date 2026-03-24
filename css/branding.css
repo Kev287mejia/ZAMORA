@@ -1,0 +1,456 @@
+/*
+ * Branding overrides for Bienes Raíces Zamora
+ * Based on the new official logo colors and gradients
+ */
+
+:root {
+  --primary-yellow: #fba124;
+  --primary-orange: #f7941d;
+  --primary-red: #e31e24;
+  --deep-burgundy: #a31e22;
+  --dark-maroon: #412a1f;
+  --accent-red: #ed1c24;
+  --gray-bg: #f8faff;
+  --white: #ffffff;
+
+  /* Fuentes Personalizadas */
+  --font-heading: 'Modernoir', sans-serif;
+  --font-body: 'Komet', sans-serif;
+
+  --primary-gradient: linear-gradient(90deg, #ffcb2d 0%, #f7941d 50%, #e31e24 100%);
+  --red-gradient: linear-gradient(135deg, #e31e24 0%, #a31e22 100%);
+}
+
+/* --- Instalación de Fuentes Locales --- */
+
+@font-face {
+    font-family: 'Modernoir';
+    src: url('../fonts/tt_modernoir/TT_Modernoir_Trial_Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Komet';
+    src: url('../fonts/fonnts.com-234118/fonts/fonnts.com-Komet_Regular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Komet';
+    src: url('../fonts/fonnts.com-234118/fonts/fonnts.com-Komet_Bold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+/* --- Aplicación Global --- */
+body {
+    font-family: var(--font-body) !important;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #444;
+}
+
+h1, h2, h3, h4, h5, h6,
+.heading-1, .heading-2, .heading-3,
+.rd-navbar-brand, .button-winona {
+    font-family: var(--font-heading) !important;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.rd-nav-link, .link-default, .button {
+    font-family: var(--font-heading) !important;
+    letter-spacing: 0.02em;
+}
+
+p, .big, .footer-advanced-text, ul, li {
+    font-family: var(--font-body) !important;
+}
+
+/* Ajustes específicos para los títulos Premium */
+h1, .heading-1 {
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+}
+
+/* Headers with Gradient */
+h1, .heading-1, h2, .heading-2 {
+    color: var(--dark-maroon);
+}
+
+.context-dark h1, .context-dark h2,
+.bg-primary-darker h1, .bg-primary-darker h2 {
+    color: #fff !important;
+}
+
+@supports (-webkit-background-clip: text) {
+    .text-gradient {
+        background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        display: inline-block;
+    }
+}
+
+/* Primary Color Overrides */
+html .page .text-primary, 
+a, a:focus, a:active,
+.box-minimal-icon .box-chloe__icon,
+.box-light-icon,
+.box-creative-icon,
+.divider-small::after,
+.post-light-title,
+.post-tiny-title,
+.page-link,
+.snackbars,
+.footer-standard .unit-left span,
+.comment-classic-name,
+.list-inline-comma > li,
+.pricing-modern-rating,
+.profile-classic-title,
+.profile-creative-contacts .icon,
+.profile-thin-contact-button,
+.counter-minimal-icon,
+.timeline-classic-item-divider::before,
+.mdi-home-outline, .mdi-key-outline, .mdi-file-document-outline, .mdi-wrench-outline, .mdi-map-marker-outline {
+  color: var(--primary-orange) !important;
+}
+
+/* Primary Background Overrides */
+.mark, .mark,
+.button.button-primary,
+.button.button-primary:focus,
+.button-accent-outline:hover,
+.button-accent-outline:active,
+.button-primary-outline:hover,
+.button-primary-outline:active,
+.button-gray-bordered:hover,
+.button-gray-bordered:active,
+.button-primary-white:hover,
+.button-primary-white:active,
+.page-link,
+.pricing-minimal:hover,
+.profile-classic-caption,
+.profile-modern-button,
+.profile-thin-contact-button,
+.snackbars {
+  background: var(--primary-gradient) !important;
+  border-color: transparent !important;
+  color: #fff !important;
+}
+
+/* Links Hover */
+a:hover {
+  color: var(--primary-red) !important;
+}
+
+/* Specific Element Tuning */
+.rd-navbar-corporate .rd-navbar-aside-outer,
+.rd-navbar-corporate .rd-navbar-main-outer {
+    border-bottom: 2px solid var(--primary-orange);
+}
+
+.button-winona::after {
+    background: var(--red-gradient);
+}
+
+.button-primary {
+    background: var(--primary-gradient) !important;
+    border: none !important;
+    transition: all 0.3s ease;
+}
+
+.button-primary:hover {
+    background: var(--red-gradient) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(227, 30, 36, 0.3);
+}
+
+/* Preloader & Loading */
+.loadingProgressG {
+    background-color: var(--primary-orange) !important;
+}
+
+/* Swiper Bullet Active */
+.swiper-pagination-bullet-active {
+    background: var(--primary-gradient) !important;
+}
+
+/* Section Title Decoration */
+.title-decorated::before {
+    border-color: var(--primary-orange) !important;
+}
+
+/* Category Icons */
+.thumbnail-light-title a:hover {
+    color: var(--primary-orange) !important;
+}
+
+/* WhatsApp Theme sync (optional but looks nice) */
+#wa-welcome-bubble a {
+    background: var(--primary-gradient) !important;
+}
+
+/* Footer Adjustments */
+.footer-advanced {
+    background-color: var(--dark-maroon) !important;
+}
+
+.footer-advanced-text {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.footer-advanced-aside {
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.footer-advanced h5 {
+    color: var(--primary-yellow) !important;
+}
+
+.list-nav a:hover {
+    color: var(--primary-yellow) !important;
+}
+
+/* --- Mejoras Críticas de Visibilidad del Menú --- */
+
+/* Overlay más oscuro en la parte superior para que el texto blanco resalte */
+.swiper-slide::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 20%, rgba(0, 0, 0, 0.1) 100%);
+    z-index: 1;
+}
+
+/* Forzar color BLANCO para los enlaces del menú sobre el slider */
+.rd-navbar-corporate .rd-nav-link {
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8) !important;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+/* Color NARANJA solo para el ítem activo o al pasar el mouse */
+.rd-navbar-corporate .rd-nav-item.active .rd-nav-link,
+.rd-navbar-corporate .rd-nav-item:hover .rd-nav-link {
+    color: var(--primary-yellow) !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9) !important;
+}
+
+/* Cuando el menú se vuelve blanco al hacer scroll (sticky), volvemos a texto oscuro/naranja */
+.rd-navbar-corporate.rd-navbar-stick-up .rd-nav-link {
+    color: var(--dark-maroon) !important;
+    text-shadow: none !important;
+}
+
+.rd-navbar-corporate.rd-navbar-stick-up .rd-nav-item.active .rd-nav-link,
+.rd-navbar-corporate.rd-navbar-stick-up .rd-nav-item:hover .rd-nav-link {
+    color: var(--primary-orange) !important;
+}
+
+/* Ajuste de la barra naranja inferior para que no choque con el texto */
+.rd-navbar-corporate .rd-navbar-main-outer {
+    border-bottom: 3px solid var(--primary-orange);
+    background: rgba(0, 0, 0, 0.1); /* Ligero fondo para ayudar al contraste */
+}
+
+/* --- Mejoras de Legibilidad en Banners (Breadcrumbs) --- */
+
+.breadcrumbs-custom {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    background-color: var(--dark-maroon); /* Color de respaldo */
+}
+
+/* Overlay oscuro universal para TODOS los banners de encabezado */
+.breadcrumbs-custom::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4));
+    z-index: -1;
+}
+
+.breadcrumbs-custom-inner {
+    position: relative;
+    z-index: 2;
+}
+
+/* Resaltar subtítulos decorados con el color de marca */
+.breadcrumbs-custom-subtitle.title-decorated::before {
+    border-top: 2px solid var(--primary-orange) !important;
+}
+
+/* Asegurar que el path de breadcrumbs sea legible */
+.breadcrumbs-custom-path li, .breadcrumbs-custom-path li a {
+    color: rgba(255, 255, 255, 0.8) !important;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+.breadcrumbs-custom-path li a:hover {
+    color: var(--primary-yellow) !important;
+}
+
+/* --- Botón de WhatsApp Flotante "Activo" --- */
+.wa-float-container {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 100001;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-end;
+}
+
+.wa-float-btn {
+    width: 65px;
+    height: 65px;
+    background: #25d366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 36px;
+    box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+    transition: transform 0.3s;
+    position: relative;
+    cursor: pointer;
+    text-decoration: none !important;
+}
+
+.wa-float-btn:hover {
+    transform: scale(1.1);
+    background: #1ebe5a;
+    color: #fff;
+}
+
+/* Animación de Pulso */
+.wa-float-btn::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    background: #25d366;
+    border-radius: 50%;
+    z-index: -1;
+    animation: wa-pulse 2s infinite;
+}
+
+@keyframes wa-pulse {
+    0% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+    100% { transform: translate(-50%, -50%) scale(1.8); opacity: 0; }
+}
+
+/* Burbuja de Mensaje Activa */
+.wa-chat-bubble {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    padding: 16px;
+    margin-bottom: 20px;
+    width: 250px;
+    position: relative;
+    display: none; /* Se activa por JS */
+    animation: wa-slide-in 0.6s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+    border-top: 4px solid var(--primary-orange);
+}
+
+@keyframes wa-slide-in {
+    from { transform: translateY(30px) scale(0.8); opacity: 0; }
+    to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.wa-chat-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    right: 25px;
+    border-top: 10px solid #fff;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+}
+
+.wa-chat-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.wa-avatar {
+    width: 40px;
+    height: 40px;
+    background: var(--primary-orange);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.wa-chat-content h6 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--dark-maroon);
+}
+
+.wa-chat-content p {
+    margin: 5px 0 0;
+    font-size: 13px;
+    line-height: 1.4;
+    color: #555;
+}
+
+.wa-chat-close {
+    position: absolute;
+    top: 5px;
+    right: 8px;
+    font-size: 18px;
+    color: #ccc;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.wa-chat-close:hover { color: #f44336; }
+
+.wa-chat-action {
+    display: block;
+    margin-top: 12px;
+    background: var(--primary-gradient);
+    color: #fff !important;
+    text-align: center;
+    padding: 8px 15px;
+    border-radius: 25px;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none !important;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(247, 148, 29, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.wa-chat-action:hover {
+    background: var(--red-gradient) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(227, 30, 36, 0.4);
+}

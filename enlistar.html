@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html class="wide wow-animation" lang="es">
+  <head>
+    <title>Enlista tu Propiedad - Bienes Raíces Zamora</title>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width height=device-height initial-scale=1.0 maximum-scale=1.0 user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <link rel="icon" href="images/favicon-zamora.png" type="image/png">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,700,800%7CPoppins:300,400,700">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/style.css" id="main-styles-link"><link rel="stylesheet" href="css/branding.css" id="main-styles-link">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-db.js"></script>
+    <style>.ie-panel{display: none;background: #212121;padding: 10px 0;box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);clear: both;text-align:center;position: relative;z-index: 1;} html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {display: block;}</style>
+  </head>
+  <body>
+    <script>
+      // Force scroll to top on refresh
+      if ("scrollRestoration" in history) {
+        history.scrollRestoration = "manual";
+      }
+      window.scrollTo(0, 0);
+    </script>
+    <div class="preloader">
+      <div class="preloader-logo"><img src="images/logo-zamora-branding.png" alt="Bienes Raíces Zamora" width="200"/></div>
+      <div class="preloader-body">
+        <div id="loadingProgressG">
+          <div class="loadingProgressG" id="loadingProgressG_1"></div>
+        </div>
+      </div>
+    </div>
+    <div class="page">
+      <!-- Page Header-->
+      <header class="section novi-background page-header">
+        <div class="rd-navbar-wrap">
+          <nav class="rd-navbar rd-navbar-corporate" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed" data-md-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static" data-lg-device-layout="rd-navbar-static" data-lg-stick-up="true" data-lg-stick-up-offset="118px" data-xl-layout="rd-navbar-static" data-xl-device-layout="rd-navbar-static" data-xl-stick-up="true" data-xl-stick-up-offset="118px" data-xxl-layout="rd-navbar-static" data-xxl-device-layout="rd-navbar-static" data-xxl-stick-up-offset="118px" data-xxl-stick-up="true">
+            <div class="rd-navbar-aside-outer">
+              <div class="rd-navbar-aside">
+                <div class="rd-navbar-panel">
+                  <button class="rd-navbar-toggle" data-rd-navbar-toggle="#rd-navbar-nav-wrap-1"><span></span></button>
+                  <a class="rd-navbar-brand" href="index"><img src="images/logo-zamora-branding.png" alt="Bienes Raíces Zamora" width="180"/></a>
+                </div>
+                <div class="rd-navbar-collapse">
+                  <button class="rd-navbar-collapse-toggle rd-navbar-fixed-element-1" data-rd-navbar-toggle="#rd-navbar-collapse-content-1"><span></span></button>
+                  <div class="rd-navbar-collapse-content" id="rd-navbar-collapse-content-1">
+                    <article class="unit align-items-center">
+                      <div class="unit-left"><span class="icon novi-icon icon-md icon-modern mdi mdi-phone"></span></div>
+                      <div class="unit-body">
+                        <ul class="list-0">
+                          <li><a class="link-default" href="tel:50557649920">+505 5764 9920</a></li>
+                        </ul>
+                      </div>
+                    </article>
+                    <article class="unit align-items-center">
+                      <div class="unit-left"><span class="icon novi-icon icon-md icon-modern mdi mdi-map-marker"></span></div>
+                      <div class="unit-body"><a class="link-default" href="#">Bluefields, Nicaragua <br> RACCS</a></div>
+                    </article><a class="button button-primary button-winona button-icon button-icon-left" href="https://wa.me/50557649920?text=Hola,%20me%20gustaría%20enlistar%20mi%20propiedad." target="_blank"><span class="icon mdi mdi-whatsapp"></span>Enlista tu Propiedad</a>
+                    <div class="lang-switcher">
+                      <a href="enlistar" class="active">ES</a>
+                      <span class="lang-lang-divider">|</span>
+                      <a href="en/enlistar">EN</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="rd-navbar-main-outer">
+              <div class="rd-navbar-main">
+                <div class="rd-navbar-nav-wrap" id="rd-navbar-nav-wrap-1">
+                  <ul class="rd-navbar-nav">
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="index">Inicio</a></li>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="about-us">Nosotros</a></li>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="propiedades">Propiedades</a></li>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="calculadora">Calculadora</a></li>
+                    <li class="rd-nav-item active"><a class="rd-nav-link" href="enlistar">Vender</a></li>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="contacts">Contacto</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </header>
+      <!-- Breadcrumbs -->
+      <section class="section novi-background breadcrumbs-custom bg-image context-dark" style="background-image: url(images/enlistar-banner.png); min-height: 520px; display: flex; align-items: center;">
+        <div class="breadcrumbs-custom-inner">
+          <div class="container breadcrumbs-custom-container">
+            <div class="breadcrumbs-custom-main">
+              <h6 class="breadcrumbs-custom-subtitle title-decorated">Vende o Renta con nosotros</h6>
+              <h2 class="text-uppercase breadcrumbs-custom-title">Enlista tu Propiedad</h2>
+            </div>
+            <ul class="breadcrumbs-custom-path">
+              <li><a href="index">Inicio</a></li>
+              <li class="active">Enlistar</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section novi-background section-md bg-gray-100">
+        <div class="container">
+          <div class="row row-50 justify-content-center">
+            <!-- Sidebar / Authority Section -->
+            <div class="col-lg-4 wow-outer">
+              <div class="listing-authority-box wow slideInLeft">
+                <h4 class="text-uppercase font-weight-bold">¿Por qué vender con nosotros?</h4>
+                <div class="listing-feature">
+                  <span class="icon mdi mdi-check-circle"></span>
+                  <div>
+                    <h6>Alcance Regional</h6>
+                    <p>Su propiedad será vista por cientos de compradores en Bluefields y toda Nicaragua.</p>
+                  </div>
+                </div>
+                <div class="listing-feature">
+                  <span class="icon mdi mdi-check-circle"></span>
+                  <div>
+                    <h6>Seguridad Legal</h6>
+                    <p>Nos encargamos de verificar toda la documentación para una venta sin riesgos.</p>
+                  </div>
+                </div>
+                <div class="listing-feature">
+                  <span class="icon mdi mdi-check-circle"></span>
+                  <div>
+                    <h6>Fotografía Profesional</h6>
+                    <p>Enviamos a nuestro equipo para capturar las mejores imágenes de su hogar.</p>
+                  </div>
+                </div>
+                <div class="listing-feature">
+                  <span class="icon mdi mdi-check-circle"></span>
+                  <div>
+                    <h6>Asesoría en Precio</h6>
+                    <p>Le ayudamos a determinar el valor real de mercado para vender más rápido.</p>
+                  </div>
+                </div>
+                <hr>
+                <div class="listing-contact-info">
+                  <p class="small">¿Tiene dudas? Llámenos directamente:</p>
+                  <a href="tel:50557649920" class="phone-link">+505 5764 9920</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Form Section -->
+            <div class="col-lg-8 wow-outer">
+              <div class="listing-form-container wow slideInRight">
+                <div class="listing-form-header">
+                  <h3 class="text-uppercase">Formulario de Solicitud</h3>
+                  <p>Ingrese los detalles técnicos de su propiedad para iniciar el proceso oficial.</p>
+                </div>
+
+                <form class="rd-form-corporate" id="enlistar-form">
+                  <div class="form-section-title">Información del Propietario</div>
+                  <div class="row row-20">
+                    <div class="col-md-6">
+                      <div class="form-group-corporate">
+                        <label for="owner-name">Nombre y Apellidos</label>
+                        <input type="text" id="owner-name" placeholder="Nombre completo" required>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group-corporate">
+                        <label for="owner-id">Cédula de Identidad</label>
+                        <input type="text" id="owner-id" placeholder="000-000000-0000X" required>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group-corporate">
+                        <label for="owner-email">Correo de Contacto</label>
+                        <input type="email" id="owner-email" placeholder="correo@ejemplo.com" required>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group-corporate">
+                        <label for="owner-phone">WhatsApp / Celular</label>
+                        <input type="text" id="owner-phone" placeholder="+505 8888 8888" required>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-section-title mt-4">Detalles del Inmueble</div>
+                  <div class="row row-20">
+                    <div class="col-12">
+                      <div class="form-group-corporate">
+                        <label for="prop-address">Ubicación / Dirección</label>
+                        <input type="text" id="prop-address" placeholder="Barrio y puntos de referencia" required>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group-corporate">
+                        <label for="prop-trans-type">Transacción</label>
+                        <select id="prop-trans-type">
+                          <option value="Venta">Venta</option>
+                          <option value="Renta">Renta</option>
+                          <option value="Ambos">Venta o Renta</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group-corporate">
+                        <label for="prop-price-sale">Precio Venta (USD)</label>
+                        <input type="text" id="prop-price-sale" placeholder="Ej: 50000">
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group-corporate">
+                        <label for="prop-price-rent">Precio Renta (USD)</label>
+                        <input type="text" id="prop-price-rent" placeholder="Ej: 400">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="listing-form-footer mt-5">
+                    <button class="button-corporate" type="button" onclick="sendListingToWA()">
+                      PROCESAR SOLICITUD DE ENLISTADO
+                    </button>
+                    <p class="terms-text mt-3">Al presionar el botón, un asesor de <strong>Bienes Raíces Zamora</strong> recibirá sus datos de forma segura para iniciar la gestión.</p>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <style>
+          /* Corporate Style Override */
+          .listing-authority-box {
+            background: #ffffff;
+            color: #151515;
+            padding: 40px;
+            border-radius: 4px;
+            height: 100%;
+            border: 1px solid #e1e1e1;
+            border-top: 5px solid #f7941d;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+          }
+          .listing-authority-box h4 { margin-bottom: 30px; line-height: 1.2; font-size: 22px; color: #151515; }
+          .listing-feature { display: flex; gap: 15px; margin-bottom: 25px; }
+          .listing-feature .icon { color: #f7941d; font-size: 20px; flex-shrink: 0; }
+          .listing-feature h6 { margin: 0 0 5px 0; color: #151515; font-weight: 700; text-transform: uppercase; font-size: 14px; }
+          .listing-feature p { margin: 0; font-size: 13px; color: #777; line-height: 1.5; }
+          
+          .listing-contact-info .phone-link { font-size: 20px; font-weight: 700; color: #f7941d; text-decoration: none; }
+          
+          .listing-form-container {
+            background: #fff;
+            padding: 50px;
+            border: 1px solid #e1e1e1;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-radius: 4px;
+          }
+          .listing-form-header { margin-bottom: 40px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
+          .listing-form-header h3 { margin: 0 0 10px 0; color: #151515; font-weight: 800; }
+          
+          .form-section-title {
+            font-size: 13px;
+            font-weight: 800;
+            color: #f7941d;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+          }
+          .form-section-title::after { content: ''; flex-grow: 1; height: 1px; background: #eee; margin-left: 15px; }
+          
+          .form-group-corporate { margin-bottom: 15px; }
+          .form-group-corporate label { display: block; font-size: 12px; font-weight: 700; text-transform: uppercase; color: #777; margin-bottom: 5px; }
+          .form-group-corporate input, .form-group-corporate select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 2px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+          }
+          .form-group-corporate input:focus { border-color: #f7941d; outline: none; background: #fcfdfe; }
+          
+          .button-corporate {
+            width: 100%;
+            background: #f7941d;
+            color: #fff;
+            border: none;
+            padding: 18px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            border-radius: 2px;
+          }
+          .button-corporate:hover { background: #0056b3; }
+          
+          .terms-text { font-size: 12px; color: #999; line-height: 1.6; text-align: center; }
+
+          @media (max-width: 991px) {
+            .listing-form-container { padding: 30px; }
+          }
+        </style>
+
+        <script>
+          async function sendListingToWA() {
+            const fields = {
+              owner_name: document.getElementById('owner-name').value,
+              owner_id: document.getElementById('owner-id').value,
+              email: document.getElementById('owner-email').value,
+              phone: document.getElementById('owner-phone').value,
+              property_address: document.getElementById('prop-address').value,
+              transaction_type: document.getElementById('prop-trans-type').value,
+              sale_price: document.getElementById('prop-price-sale').value,
+              rent_price: document.getElementById('prop-price-rent').value
+            };
+
+            if(!fields.owner_name || !fields.phone || !fields.property_address) {
+              alert("Por favor, complete los campos obligatorios.");
+              return;
+            }
+
+            // Intentar guardar en Supabase (Silenciosamente o con aviso)
+            try {
+              if (window.supabaseClient) {
+                const { error } = await window.supabaseClient
+                  .from('listing_requests')
+                  .insert([fields]);
+                
+                if (error) console.error("Error al guardar en base de datos:", error);
+                else console.log("Solicitud guardada en Supabase correctamente.");
+              }
+            } catch (err) {
+              console.error("Error de conexión con Supabase:", err);
+            }
+
+            const msg = `SOLICITUD DE ENLISTADO OFICIAL\n--------------------\n👤 PROPIETARIO:\n- Nombre: ${fields.owner_name}\n- Cédula: ${fields.owner_id}\n- Email: ${fields.email}\n- WhatsApp: ${fields.phone}\n\n🏠 PROPIEDAD:\n- Ubicación: ${fields.property_address}\n- Operación: ${fields.transaction_type}\n- Precio Venta: ${fields.sale_price || 'N/A'}\n- Precio Renta: ${fields.rent_price || 'N/A'}`;
+
+            const waUrl = "https://wa.me/50557649920?text=" + encodeURIComponent(msg);
+            window.open(waUrl, '_blank');
+          }
+        </script>
+      </section>
+
+      <!-- Page Footer-->
+      <footer class="section novi-background footer-advanced bg-gray-700">
+        <div class="footer-advanced-main">
+          <div class="container">
+            <div class="row row-50">
+              <div class="col-lg-4">
+                <h5 class="font-weight-bold text-uppercase text-white">Sobre Nosotros</h5>
+                <p class="footer-advanced-text">Somos una empresa orgullosamente Bluefileña. Nos especializamos en proporcionar asesoramiento confiable para la venta de su propiedad, ofreciendo asistencia integral en la compra, venta, alquiler y remodelación de inmuebles en toda la región.</p>
+              </div>
+              <div class="col-sm-7 col-md-5 col-lg-4">
+                <h5 class="font-weight-bold text-uppercase text-white">Nuestros Servicios</h5>
+                <ul style="list-style:none; padding:0; margin:0;">
+                  <li style="margin-bottom:10px;"><span class="mdi mdi-home-outline" style="color:#f7941d; margin-right:8px;"></span><a href="propiedades" style="color:#aeb1be; text-decoration:none;">Venta de Propiedades</a></li>
+                  <li style="margin-bottom:10px;"><span class="mdi mdi-key-outline" style="color:#f7941d; margin-right:8px;"></span><a href="propiedades" style="color:#aeb1be; text-decoration:none;">Alquiler de Inmuebles</a></li>
+                  <li style="margin-bottom:10px;"><span class="mdi mdi-file-document-outline" style="color:#f7941d; margin-right:8px;"></span><a href="about-us" style="color:#aeb1be; text-decoration:none;">Asesoría Legal y Escrituras</a></li>
+                  <li style="margin-bottom:10px;"><span class="mdi mdi-wrench-outline" style="color:#f7941d; margin-right:8px;"></span><a href="about-us" style="color:#aeb1be; text-decoration:none;">Remodelaciones</a></li>
+                  <li style="margin-bottom:10px;"><span class="mdi mdi-map-marker-outline" style="color:#f7941d; margin-right:8px;"></span><a href="propiedades" style="color:#aeb1be; text-decoration:none;">Lotes y Terrenos</a></li>
+                </ul>
+              </div>
+              <div class="col-sm-5 col-md-7 col-lg-4">
+                <h5 class="font-weight-bold text-uppercase text-white">Galería</h5>
+                <div class="row row-x-10" data-lightgallery="group">
+                  <div class="col-3 col-sm-4 col-md-3"><a class="thumbnail-minimal" href="images/footer-gallery-1.png" data-lightgallery="item"><img class="thumbnail-minimal-image" src="images/footer-gallery-1.png" alt=""/></a></div>
+                  <div class="col-3 col-sm-4 col-md-3"><a class="thumbnail-minimal" href="images/footer-gallery-2.png" data-lightgallery="item"><img class="thumbnail-minimal-image" src="images/footer-gallery-2.png" alt=""/></a></div>
+                  <div class="col-3 col-sm-4 col-md-3"><a class="thumbnail-minimal" href="images/footer-gallery-3.png" data-lightgallery="item"><img class="thumbnail-minimal-image" src="images/footer-gallery-3.png" alt=""/></a></div>
+                  <div class="col-3 col-sm-4 col-md-3"><a class="thumbnail-minimal" href="images/footer-gallery-4.png" data-lightgallery="item"><img class="thumbnail-minimal-image" src="images/footer-gallery-4.png" alt=""/></a></div>
+                  <div class="col-3 col-sm-4 col-md-3"><a class="thumbnail-minimal" href="images/footer-gallery-5.png" data-lightgallery="item"><img class="thumbnail-minimal-image" src="images/footer-gallery-5.png" alt=""/></a></div>
+                  <div class="col-3 col-sm-4 col-md-3"><a class="thumbnail-minimal" href="images/footer-gallery-6.png" data-lightgallery="item"><img class="thumbnail-minimal-image" src="images/footer-gallery-6.png" alt=""/></a></div>
+                  <div class="col-3 col-sm-4 col-md-3"><a class="thumbnail-minimal" href="images/footer-gallery-7.png" data-lightgallery="item"><img class="thumbnail-minimal-image" src="images/footer-gallery-7.png" alt=""/></a></div>
+                  <div class="col-3 col-sm-4 col-md-3"><a class="thumbnail-minimal" href="images/footer-gallery-8.png" data-lightgallery="item"><img class="thumbnail-minimal-image" src="images/footer-gallery-8.png" alt=""/></a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer-advanced-aside">
+          <div class="container">
+            <div class="footer-advanced-layout">
+              <div>
+                <ul class="list-nav"> 
+                  <li><a href="index">Inicio</a></li>
+                  <li><a href="about-us">Nosotros</a></li>
+                  <li><a href="propiedades">Propiedades</a></li>
+                  <li><a href="calculadora">Calculadora</a></li>
+                  <li><a href="guia-inversion" style="color: #25d366; font-weight: bold;">Guía de Inversión 2026</a></li>
+                  <li><a href="contacts">Contacto</a></li>
+                </ul>
+              </div>
+              <div>
+                <ul class="foter-social-links list-inline list-inline-md">
+                  <li><a class="icon novi-icon icon-sm link-default mdi mdi-facebook" href="#"></a></li>
+                  <li><a class="icon novi-icon icon-sm link-default mdi mdi-twitter" href="#"></a></li>
+                  <li><a class="icon novi-icon icon-sm link-default mdi mdi-instagram" href="#"></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container"><hr/></div>
+        <div class="footer-advanced-aside">
+          <div class="container text-center">
+            <p class="rights"><span>&copy;&nbsp;</span><span class="copyright-year"></span> Bienes Raíces Zamora.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <div class="snackbars" id="form-output-global"></div>
+    <script src="js/core.min.js"></script>
+    <script src="js/script.js"></script>
+      
+    
+    <!-- Active WhatsApp Button -->
+    <div class="wa-float-container">
+      <a href="https://wa.me/50557649920?text=Hola, tengo una consulta sobre una propiedad." class="wa-float-btn" target="_blank">
+        <span class="mdi mdi-whatsapp"></span>
+      </a>
+      <div id="wa-chat-bubble" class="wa-chat-bubble">
+        <span class="wa-chat-close" onclick="closeWAChat()">&times;</span>
+        <div class="wa-chat-header">
+          <div class="wa-avatar">
+            <span class="mdi mdi-account"></span>
+          </div>
+          <div class="wa-chat-content">
+            <h6>Bienes Ra&iacute;ces Zamora</h6>
+            <p>&iexcl;Hola! &iquest;Buscas casa o lote en Bluefields? Escr&iacute;benos.</p>
+            <a href="https://wa.me/50557649920?text=Hola, tengo una consulta sobre una propiedad." class="wa-chat-action" target="_blank">Chatear ahora</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function closeWAChat() {
+        document.getElementById('wa-chat-bubble').style.display = 'none';
+      }
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          const bubble = document.getElementById('wa-chat-bubble');
+          if(bubble) bubble.style.display = 'block';
+        }, 5000);
+      });
+    </script>
+</body>
+</html>
+

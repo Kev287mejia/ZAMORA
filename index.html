@@ -1,0 +1,750 @@
+﻿<!DOCTYPE html>
+<html class="wide wow-animation" lang="es">
+  <head>
+    <meta name="description" content="Expertos inmobiliarios en Bluefields. Encuentra casas, lotes y terrenos en venta o alquiler con la mejor asesoría legal y técnica para tu inversión.">
+    <title>Bienes Raíces Zamora | Inmobiliaria en Bluefields, Nicaragua</title>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width height=device-height initial-scale=1.0 maximum-scale=1.0 user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <link rel="icon" href="images/favicon-zamora.png" type="image/png">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,700,800%7CPoppins:300,400,700">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/style.css" id="main-styles-link">
+    <link rel="stylesheet" href="css/branding.css">
+    <link rel="stylesheet" href="css/style.css" id="main-styles-link"><link rel="stylesheet" href="css/branding.css" id="main-styles-link">
+    <style>.ie-panel{display: none;background: #212121;padding: 10px 0;box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);clear: both;text-align:center;position: relative;z-index: 1;} html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {display: block;}</style>
+    <style>.ie-panel{display: none;background: #212121;padding: 10px 0;box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);clear: both;text-align:center;position: relative;z-index: 1;} html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {display: block;}
+      
+      /* WhatsApp Bubble Style */
+      .wa-message-bubble {
+        position: fixed;
+        bottom: 100px;
+        right: 30px;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        padding: 16px;
+        max-width: 250px;
+        z-index: 1000;
+        display: none;
+        animation: slideInWA 0.5s ease-out;
+      }
+      .wa-message-bubble::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        right: 20px;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 10px solid #fff;
+      }
+      .wa-close-btn {
+        position: absolute;
+        top: 4px;
+        right: 6px;
+        background: none;
+        border: none;
+        color: #74757f;
+        cursor: pointer;
+        font-size: 18px;
+        line-height: 1;
+      }
+      @keyframes slideInWA {
+        from { transform: translateY(20px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+      }
+    </style>
+  
+    <!-- Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-db.js"></script>
+  
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://zamora-inmobiliaria.vercel.app">
+    <meta property="og:title" content="Bienes Raíces Zamora | Inmobiliaria en Bluefields, Nicaragua">
+    <meta property="og:description" content="Expertos inmobiliarios en Bluefields. Encuentra casas, lotes y terrenos en venta o alquiler con la mejor asesoría legal y técnica para tu inversión.">
+    <meta property="og:image" content="https://zamora-inmobiliaria.vercel.app/images/logo-zamora-branding.png">
+    
+  </head>
+  <body>
+    <script>
+      // Force scroll to top on refresh
+      if ("scrollRestoration" in history) {
+        history.scrollRestoration = "manual";
+      }
+      window.scrollTo(0, 0);
+    </script>
+
+    <div class="preloader">
+      <div class="preloader-logo"><img src="images/logo-zamora-branding.png" alt="Bienes Ra&iacute;ces Zamora" width="180"/></div>
+      <div class="preloader-body">
+        <div id="loadingProgressG">
+          <div class="loadingProgressG" id="loadingProgressG_1"></div>
+        </div>
+      </div>
+    </div>
+    <div class="page">
+      <!-- Page Header-->
+      <header class="section novi-background page-header">
+        <!-- RD Navbar-->
+        <div class="rd-navbar-wrap">
+          <nav class="rd-navbar rd-navbar-corporate" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed" data-md-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static" data-lg-device-layout="rd-navbar-static" data-lg-stick-up="true" data-lg-stick-up-offset="118px" data-xl-layout="rd-navbar-static" data-xl-device-layout="rd-navbar-static" data-xl-stick-up="true" data-xl-stick-up-offset="118px" data-xxl-layout="rd-navbar-static" data-xxl-device-layout="rd-navbar-static" data-xxl-stick-up-offset="118px" data-xxl-stick-up="true">
+            <div class="rd-navbar-aside-outer">
+              <div class="rd-navbar-aside">
+                <!-- RD Navbar Panel-->
+                <div class="rd-navbar-panel">
+                  <!-- RD Navbar Toggle-->
+                  <button class="rd-navbar-toggle" data-rd-navbar-toggle="#rd-navbar-nav-wrap-1"><span></span></button>
+                  <!-- RD Navbar Brand--><a class="rd-navbar-brand" href="index"><img src="images/logo-zamora-branding.png" alt="Bienes Ra&iacute;ces Zamora" width="180"/></a>
+                </div>
+                <div class="rd-navbar-collapse">
+                  <button class="rd-navbar-collapse-toggle rd-navbar-fixed-element-1" data-rd-navbar-toggle="#rd-navbar-collapse-content-1"><span></span></button>
+                  <div class="rd-navbar-collapse-content" id="rd-navbar-collapse-content-1">
+                    <article class="unit align-items-center">
+                      <div class="unit-left"><span class="icon novi-icon icon-md icon-modern mdi mdi-phone"></span></div>
+                      <div class="unit-body">
+                        <ul class="list-0">
+                          <li><a class="link-default" href="tel:50557649920">+505 5764 9920</a></li>
+                        </ul>
+                      </div>
+                    </article>
+                    <article class="unit align-items-center">
+                      <div class="unit-left"><span class="icon novi-icon icon-md icon-modern mdi mdi-map-marker"></span></div>
+                      <div class="unit-body"><a class="link-default" href="#">Bluefields, Nicaragua <br> RACCS</a></div>
+                    </article><a class="button button-primary button-winona button-icon button-icon-left" href="https://wa.me/50557649920?text=Hola,%20estoy%20interesado%20en%20obtener%20m%C3%A1s%20informaci%C3%B3n%20sobre%20una%20propiedad." target="_blank"><span class="icon mdi mdi-whatsapp"></span>Cont&aacute;ctanos al WhatsApp</a>
+                    <div class="lang-switcher">
+                      <a href="index" class="active">ES</a>
+                      <span class="lang-lang-divider">|</span>
+                      <a href="en/index">EN</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="rd-navbar-main-outer">
+              <div class="rd-navbar-main">
+                <div class="rd-navbar-nav-wrap" id="rd-navbar-nav-wrap-1">
+                  <!-- RD Navbar Nav-->
+                  <ul class="rd-navbar-nav">
+                    <li class="rd-nav-item active"><a class="rd-nav-link" href="index">Inicio</a></li>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="about-us">Nosotros</a></li>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="propiedades">Propiedades</a></li>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="calculadora">Calculadora</a></li>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="enlistar">Vender</a></li>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="contacts">Contacto</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </header>
+      <section class="section swiper-container swiper-slider swiper-slider-minimal" data-loop="true" data-slide-effect="fade" data-autoplay="4759" data-simulate-touch="true">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide swiper-slide_video" data-slide-bg="images/slider-1.png">
+            <div class="container">
+              <div class="jumbotron-classic-content">
+                <div class="wow-outer">
+                  <div class="title-docor-text font-weight-bold title-decorated text-uppercase wow slideInLeft text-white">Expertos en</div>
+                </div>
+                <h1 class="text-uppercase text-white font-weight-bold wow-outer"><span class="wow slideInDown" data-wow-delay=".2s">Propiedades</span></h1>
+                <p class="text-white wow-outer"><span class="wow slideInDown" data-wow-delay=".35s">Somos <strong>Bienes Ra&iacute;ces Zamora</strong>, especializados en asesoramiento confiable para la venta, compra y alquiler de su propiedad en Bluefields.</span></p>
+                <div class="wow-outer button-outer"><a class="button button-md button-primary button-winona wow slideInDown" href="propiedades" data-wow-delay=".4s">Ver Propiedades</a></div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide" data-slide-bg="images/slider-2.png">
+            <div class="container">
+              <div class="jumbotron-classic-content">
+                <div class="wow-outer">
+                  <div class="title-docor-text font-weight-bold title-decorated text-uppercase wow slideInLeft text-white">Servicio</div>
+                </div>
+                <h1 class="text-uppercase text-white font-weight-bold wow-outer"><span class="wow slideInDown" data-wow-delay=".2s">Integral</span></h1>
+                <p class="text-white wow-outer"><span class="wow slideInDown" data-wow-delay=".35s">Ofrecemos asistencia profesional en remodelaci&oacute;n y gesti&oacute;n de propiedades para maximizar su valor en Bluefields.</span></p>
+                <div class="wow-outer button-outer"><a class="button button-md button-primary button-winona wow slideInDown" href="about-us" data-wow-delay=".4s">Nuestros Servicios</a></div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide" data-slide-bg="images/slider-3.png">
+            <div class="container">
+              <div class="jumbotron-classic-content">
+                <div class="wow-outer">
+                  <div class="title-docor-text font-weight-bold title-decorated text-uppercase wow slideInLeft text-white">M&aacute;s de 20 a&ntilde;os de</div>
+                </div>
+                <h1 class="text-uppercase text-white font-weight-bold wow-outer"><span class="wow slideInDown" data-wow-delay=".2s">Experiencia</span></h1>
+                <p class="text-white wow-outer"><span class="wow slideInDown" data-wow-delay=".35s">Somos un equipo de expertos reconocidos en gesti&oacute;n inmobiliaria y bienes ra&iacute;ces, siempre listos para asesorarle con profesionalismo.</span></p>
+                <div class="wow-outer button-outer"><a class="button button-md button-primary button-winona wow slideInDown" href="propiedades" data-wow-delay=".4s">Ver propiedades</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-pagination-outer container">
+          <div class="swiper-pagination swiper-pagination-modern swiper-pagination-marked" data-index-bullet="true"></div>
+        </div>
+      </section>
+      <section class="section novi-background section-md text-center">
+        <div class="container">
+          <h3 class="text-uppercase font-weight-bold wow-outer"><span class="wow slideInDown">Propiedades Populares</span></h3>
+          
+          <!-- Filtro de Propiedades -->
+          <div class="row row-20 justify-content-center offset-top-2">
+            <div class="col-md-4">
+              <div class="form-wrap">
+                <select class="form-input" id="filter-location">
+                  <option value="all">Filtro por Barrio: Todos</option>
+                  <option value="beholden">Barrio Beholden</option>
+                  <option value="fatima">Barrio F&aacute;tima</option>
+                  <option value="santarosa">Barrio Santa Rosa</option>
+                  <option value="lomafresca">Loma Fresca</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-wrap">
+                <select class="form-input" id="filter-type">
+                  <option value="all">Tipo: Todos</option>
+                  <option value="casa">Casas</option>
+                  <option value="lote">Lotes</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="row row-lg-50 row-35 offset-top-2" id="property-container">
+            <div class="col-md-6 wow-outer">
+              <!-- Post Modern-->
+              <article class="post-modern wow slideInLeft property-item" data-location="beholden" data-type="casa"><a class="post-modern-media" href="propiedades"><img src="images/propiedad-beholden.png" alt="" width="571" height="353"/></a>
+                <h4 class="post-modern-title"><a class="post-modern-title" href="propiedades">Barrio Beholden, Bluefields</a></h4>
+                <ul class="post-modern-meta">
+                  <li><a class="button-winona" href="#">$350/mes</a></li>
+                  <li>100 mÃƒâ€šÂ²</li>
+                  <li>3 Habitaciones</li>
+                </ul>
+                <p>Una c&oacute;moda propiedad residencial ubicada en una zona tranquila y acogedora.</p>
+              </article>
+            </div>
+            <div class="col-md-6 wow-outer">
+              <!-- Post Modern-->
+              <article class="post-modern wow slideInLeft property-item" data-location="fatima" data-type="casa"><a class="post-modern-media" href="propiedades"><img src="images/propiedad-fatima.png" alt="" width="571" height="353"/></a>
+                <h4 class="post-modern-title"><a class="post-modern-title" href="propiedades">Barrio F&aacute;tima, Bluefields</a></h4>
+                <ul class="post-modern-meta">
+                  <li><a class="button-winona" href="#">$400/mes</a></li>
+                  <li>110 mÃƒâ€šÂ²</li>
+                  <li>2 Habitaciones</li>
+                </ul>
+                <p>Perfecta para quienes buscan cercan&iacute;a al comercio local y seguridad.</p>
+              </article>
+            </div>
+            <div class="col-md-6 wow-outer">
+              <!-- Post Modern-->
+              <article class="post-modern wow slideInLeft property-item" data-location="santarosa" data-type="casa"><a class="post-modern-media" href="propiedades"><img src="images/propiedad-santarosa.png" alt="" width="571" height="353"/></a>
+                <h4 class="post-modern-title"><a class="post-modern-title" href="propiedades">Barrio Santa Rosa, Bluefields</a></h4>
+                <ul class="post-modern-meta">
+                  <li><a class="button-winona" href="#">$450/mes</a></li>
+                  <li>120 mÃƒâ€šÂ²</li>
+                  <li>3 Habitaciones</li>
+                </ul>
+                <p>Ubicada a solo 5 minutos del centro, esta propiedad es ideal para cualquier familia.</p>
+              </article>
+            </div>
+            <div class="col-md-6 wow-outer">
+              <!-- Post Modern-->
+              <article class="post-modern wow slideInLeft property-item" data-location="lomafresca" data-type="casa"><a class="post-modern-media" href="propiedades"><img src="images/propiedad-lomafresca.png" alt="" width="571" height="353"/></a>
+                <h4 class="post-modern-title"><a class="post-modern-title" href="propiedades">Sector Loma Fresca, Bluefields</a></h4>
+                <ul class="post-modern-meta">
+                  <li><a class="button-winona" href="#">$600/mes</a></li>
+                  <li>150 mÃƒâ€šÂ²</li>
+                  <li>4 Habitaciones</li>
+                </ul>
+                <p>Una casa espaciosa para quienes disfrutan de la comodidad y el aire fresco.</p>
+              </article>
+            </div>
+            <div class="col-md-12 wow-outer"><a class="button button-primary button-winona button-md" href="#">Ver m&aacute;s propiedades</a></div>
+          </div>
+        </div>
+      </section>
+      <section class="section novi-background section-lg bg-gray-100">
+        <div class="container">
+          <div class="row row-30">
+            <div class="col-sm-6 col-lg-4 wow-outer">
+              <!-- Box Minimal-->
+              <article class="box-minimal">
+                <div class="box-chloe__icon novi-icon linearicons-user wow fadeIn"></div>
+                <div class="box-minimal-main wow-outer">
+                  <h4 class="box-minimal-title wow slideInDown">Asesores Calificados</h4>
+                  <p class="wow fadeInUpSmall">Contamos con una s&oacute;lida estructura de gesti&oacute;n inmobiliaria lista para apoyarle en cada tr&aacute;mite.</p>
+                </div>
+              </article>
+            </div>
+            <div class="col-sm-6 col-lg-4 wow-outer">
+              <!-- Box Minimal-->
+              <article class="box-minimal">
+                <div class="box-chloe__icon novi-icon linearicons-bubble-text wow fadeIn" data-wow-delay=".1s"></div>
+                <div class="box-minimal-main wow-outer">
+                  <h4 class="box-minimal-title wow slideInDown" data-wow-delay=".1s">Consultas Gratuitas</h4>
+                  <p class="wow fadeInUpSmall" data-wow-delay=".1s">Nuestra relaci&oacute;n con el cliente siempre inicia con una asesor&iacute;a gratuita para entender qu&eacute; tipo de propiedad est&aacute; buscando.</p>
+                </div>
+              </article>
+            </div>
+            <div class="col-sm-6 col-lg-4 wow-outer">
+              <!-- Box Minimal-->
+              <article class="box-minimal">
+                <div class="box-chloe__icon novi-icon linearicons-star wow fadeIn" data-wow-delay=".2s"></div>
+                <div class="box-minimal-main wow-outer">
+                  <h4 class="box-minimal-title wow slideInDown" data-wow-delay=".2s">Garant&iacute;a Total</h4>
+                  <p class="wow fadeInUpSmall" data-wow-delay=".2s">Todos los resultados que obtendr&aacute; de nuestros agentes est&aacute;n garantizados para ofrecerle la mejor opci&oacute;n en Bluefields.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Services-->
+      <section class="section novi-background section-lg text-center">
+        <div class="container">
+          <h3 class="text-uppercase">Categor&iacute;as de Propiedades</h3>
+          <p><span class="text-width-1">Brindamos asesoramiento experto en diversos tipos de inmuebles, desde hogares familiares hasta proyectos de remodelaci&oacute;n.</span></p>
+          <div class="row row-35 row-xxl-70 offset-top-2">
+            <div class="col-sm-6 col-lg-3">
+              <!-- Thumbnail Light-->
+              <article class="thumbnail-light"><a class="thumbnail-light-media" href="#"><img class="thumbnail-light-image" src="images/cat-compraventa.png" alt="" width="270" height="300"/></a>
+                <h4 class="thumbnail-light-title"><a href="#">Compra y Venta</a></h4>
+              </article>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+              <!-- Thumbnail Light-->
+              <article class="thumbnail-light"><a class="thumbnail-light-media" href="#"><img class="thumbnail-light-image" src="images/cat-alquileres.png" alt="" width="270" height="300"/></a>
+                <h4 class="thumbnail-light-title"><a href="#">Alquileres</a></h4>
+              </article>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+              <!-- Thumbnail Light-->
+              <article class="thumbnail-light"><a class="thumbnail-light-media" href="#"><img class="thumbnail-light-image" src="images/cat-remodelaciones.png" alt="" width="270" height="300"/></a>
+                <h4 class="thumbnail-light-title"><a href="#">Remodelaciones</a></h4>
+              </article>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+              <!-- Thumbnail Light-->
+              <article class="thumbnail-light"><a class="thumbnail-light-media" href="#"><img class="thumbnail-light-image" src="images/cat-legal.png" alt="" width="270" height="300"/></a>
+                <h4 class="thumbnail-light-title"><a href="#">Asesor&iacute;a Legal</a></h4>
+              </article>
+            </div>
+            <div class="col-md-12 wow-outer"><a class="button button-primary button-winona button-md" href="#">Ver todas las propiedades</a></div>
+          </div>
+        </div>
+      </section>
+      <!-- How it works-->
+      <section class="section novi-background section-md text-center bg-gray-100">
+        <div class="container">
+          <h3 class="text-uppercase wow-outer"><span class="wow slideInUp">&iquest;C&oacute;mo Funciona?</span></h3>
+          <div class="row row-50 offset-top-2">
+            <div class="col-sm-6 col-lg-4 wow-outer">
+              <!-- Step Box -->
+              <article class="box-minimal">
+                <div class="box-chloe__icon novi-icon mdi mdi-whatsapp wow fadeIn" style="font-size: 50px; color: #f7941d; height: auto;"></div>
+                <div class="box-minimal-main wow-outer">
+                  <h4 class="box-minimal-title wow slideInDown">1. Cont&aacute;ctanos</h4>
+                  <p class="wow fadeInUpSmall">Env&iacute;anos un mensaje por WhatsApp o llena el formulario. Ind&iacute;canos qu&eacute; tipo de propiedad buscas y cu&aacute;l es tu presupuesto.</p>
+                </div>
+              </article>
+            </div>
+            <div class="col-sm-6 col-lg-4 wow-outer">
+              <!-- Step Box -->
+              <article class="box-minimal">
+                <div class="box-chloe__icon novi-icon mdi mdi-account-search wow fadeIn" data-wow-delay=".1s" style="font-size: 50px; color: #f7941d; height: auto;"></div>
+                <div class="box-minimal-main wow-outer">
+                  <h4 class="box-minimal-title wow slideInDown" data-wow-delay=".1s">2. Te Asesoramos</h4>
+                  <p class="wow fadeInUpSmall" data-wow-delay=".1s">Filtramos las mejores opciones para ti en Bluefields y organizamos una visita guiada para que conozcas tu futuro hogar.</p>
+                </div>
+              </article>
+            </div>
+            <div class="col-sm-6 col-lg-4 wow-outer">
+              <!-- Step Box -->
+              <article class="box-minimal">
+                <div class="box-chloe__icon novi-icon mdi mdi-key-variant wow fadeIn" data-wow-delay=".2s" style="font-size: 50px; color: #f7941d; height: auto;"></div>
+                <div class="box-minimal-main wow-outer">
+                  <h4 class="box-minimal-title wow slideInDown" data-wow-delay=".2s">3. Adquieres tu Propiedad</h4>
+                  <p class="wow fadeInUpSmall" data-wow-delay=".2s">Nos encargamos de toda la gesti&oacute;n legal y escrituraci&oacute;n para que recibas tu llave con total seguridad y confianza.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Blog News Section -->
+      <section class="section novi-background section-lg bg-default text-center">
+        <div class="container">
+          <h3 class="text-uppercase font-weight-bold wow-outer"><span class="wow slideInDown">Noticias & Inversi&oacute;n</span></h3>
+          <p class="big wow-outer"><span class="wow slideInUp">Mant&eacute;ngase al d&iacute;a con las oportunidades y el crecimiento del Caribe NicaragÃƒÆ’Â¼ense.</span></p>
+          <div class="row row-50 offset-top-2">
+            <div class="col-md-6 wow-outer">
+              <!-- Post Modern-->
+              <article class="post-modern wow slideInLeft"><a class="post-modern-media" href="blog"><img src="images/blog-1.png" alt="" width="571" height="353"/></a>
+                <h4 class="post-modern-title"><a class="post-modern-title" href="blog-bluefields-hub-inversion">Bluefields: El Nuevo Hub de Inversi&oacute;n</a></h4>
+                <ul class="post-modern-meta">
+                  <li><a class="button-winona" href="blog-bluefields-hub-inversion">Inversi&oacute;n</a></li>
+                  <li>Marzo 2026</li>
+                </ul>
+                <p>Descubra por qu&eacute; los inversionistas extranjeros est&aacute;n poniendo su mirada en Bluefields este a&ntilde;o.</p>
+              </article>
+            </div>
+            <div class="col-md-6 wow-outer">
+              <!-- Post Modern-->
+              <article class="post-modern wow slideInRight"><a class="post-modern-media" href="blog"><img src="images/blog-2.png" alt="" width="571" height="353"/></a>
+                <h4 class="post-modern-title"><a class="post-modern-title" href="blog">Impacto de la Conectividad Vial</a></h4>
+                <ul class="post-modern-meta">
+                  <li><a class="button-winona" href="blog">Plusval&iacute;a</a></li>
+                  <li>Marzo 2026</li>
+                </ul>
+                <p>La nueva infraestructura est&aacute; redefiniendo el valor de las propiedades en toda la costa.</p>
+              </article>
+            </div>
+          </div>
+          <div class="wow-outer offset-top-2">
+            <a class="button button-primary button-winona button-md" href="blog">Ver todo el Blog</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Best offer-->
+      <section class="section novi-background section-1 bg-primary-darker text-center" style="background-image: url(images/promo-septiembre.png);">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-sm-10 col-lg-7 col-xl-6">
+              <h3 class="wow-outer"><span id="best-offers-title" class="wow slideInDown text-uppercase">Mejores Ofertas</span></h3>
+              <p id="best-offers-subtitle" class="heading-subtitle"></p>
+              <p class="wow-outer offset-top-4"><span id="best-offers-desc" class="wow slideInDown" data-wow-delay=".05s"></span></p>
+              <div class="wow-outer button-outer"><a class="button button-primary-white button-winona wow slideInDown" href="#" data-wow-delay=".1s">Saber m&aacute;s</a></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section novi-background section-lg text-center">
+        <div class="container">
+          <h3 class="wow-outer"><span class="wow slideInDown text-uppercase">Testimonios</span></h3>
+          <!-- Owl Carousel-->
+          <div id="testimonials-container" class="owl-carousel wow fadeIn" data-items="1" data-md-items="2" data-lg-items="3" data-dots="true" data-nav="false" data-loop="true" data-autoplay="true" data-autoplay-speed="731" data-autoplay-timeout="4268" data-margin="30" data-stage-padding="0" data-mouse-drag="false">
+            <blockquote class="quote-classic">
+              <div class="quote-classic-meta">
+                <div class="quote-classic-avatar"><img src="images/testimonials-person-6-96x96.jpg" alt="" width="96" height="96"/>
+                </div>
+                <div class="quote-classic-info">
+                  <cite class="quote-classic-cite">Alberto Webb</cite>
+                  <p class="quote-classic-caption">Cliente Regular</p>
+                </div>
+              </div>
+              <div class="quote-classic-text">
+                <p>Acabo de comprar un apartamento en Bluefields gracias a ustedes y sus agentes. Todo fue fluido y sencillo, el precio fue bastante accesible y estoy seguro de que volver&eacute; a usar sus servicios en el futuro.</p>
+              </div>
+            </blockquote>
+            <blockquote class="quote-classic">
+              <div class="quote-classic-meta">
+                <div class="quote-classic-avatar"><img src="images/avatar-1.png" alt="" width="96" height="96"/>
+                </div>
+                <div class="quote-classic-info">
+                  <cite class="quote-classic-cite">Kelly McMillan</cite>
+                  <p class="quote-classic-caption">Clienta Regular</p>
+                </div>
+              </div>
+              <div class="quote-classic-text">
+                <p>Hace poco vend&iacute; mi propiedad de alquiler en Bluefields a trav&eacute;s de <strong>Bienes Ra&iacute;ces Zamora</strong>. Todo el proceso fue impecable gracias a su equipo. Me brindaron excelentes consejos sobre lo necesario para agilizar la venta.</p>
+              </div>
+            </blockquote>
+            <blockquote class="quote-classic">
+              <div class="quote-classic-meta">
+                <div class="quote-classic-avatar"><img src="images/avatar-2.png" alt="" width="96" height="96"/>
+                </div>
+                <div class="quote-classic-info">
+                  <cite class="quote-classic-cite">Haroldo Barnett</cite>
+                  <p class="quote-classic-caption">Cliente Regular</p>
+                </div>
+              </div>
+              <div class="quote-classic-text">
+                <p>Realmente aprecio su tiempo y experiencia al ayudarme a encontrar y comprar mi hogar actual en el Barrio Old Bank. Espero que podamos volver a hacer negocios en el futuro y los recomendar&eacute; a familiares y amigos.</p>
+              </div>
+            </blockquote>
+            <blockquote class="quote-classic">
+              <div class="quote-classic-meta">
+                <div class="quote-classic-avatar"><img src="images/avatar-1.png" alt="" width="96" height="96"/>
+                </div>
+                <div class="quote-classic-info">
+                  <cite class="quote-classic-cite">Bill Warner</cite>
+                  <p class="quote-classic-caption">Cliente Regular</p>
+                </div>
+              </div>
+              <div class="quote-classic-text">
+                <p>Acabo de vender una propiedad con <strong>Bienes Ra&iacute;ces Zamora</strong> y no puedo agradecerles lo suficiente. Su equipo tiene excelentes habilidades de comunicaci&oacute;n y se mantuvieron en contacto regularmente durante todo el proceso.</p>
+              </div>
+            </blockquote>
+            <blockquote class="quote-classic">
+              <div class="quote-classic-meta">
+                <div class="quote-classic-avatar"><img src="images/avatar-2.png" alt="" width="96" height="96"/>
+                </div>
+                <div class="quote-classic-info">
+                  <cite class="quote-classic-cite">Ana Lee</cite>
+                  <p class="quote-classic-caption">Cliente Regular</p>
+                </div>
+              </div>
+              <div class="quote-classic-text">
+                <p>Su equipo calificado me ayud&oacute; a hacer realidad el sue&ntilde;o de vender mi antigua propiedad. La venta se realiz&oacute; sin problemas y acabo de cerrar el trato para un nuevo lugar ideal que me emociona llamar hogar. &iexcl;Gracias por sus excelentes servicios!</p>
+              </div>
+            </blockquote>
+            <blockquote class="quote-classic">
+              <div class="quote-classic-meta">
+                <div class="quote-classic-avatar"><img src="images/avatar-1.png" alt="" width="96" height="96"/>
+                </div>
+                <div class="quote-classic-info">
+                  <cite class="quote-classic-cite">Peter Clarkson</cite>
+                  <p class="quote-classic-caption">Cliente Regular</p>
+                </div>
+              </div>
+              <div class="quote-classic-text">
+                <p>Debo decir que <strong>Bienes Ra&iacute;ces Zamora</strong> tiene los mejores corredores con los que hemos trabajado. &iexcl;Su profesionalismo, personalidad, atenci&oacute;n al detalle y capacidad para cerrar el trato son sobresalientes!</p>
+              </div>
+            </blockquote>
+          </div>
+        </div>
+      </section>
+      <footer class="section novi-background footer-advanced bg-gray-700">
+        <div class="footer-advanced-main">
+          <div class="container">
+            <div class="row row-50">
+              <div class="col-lg-4">
+                <h5 class="font-weight-bold text-uppercase text-white">Sobre Nosotros</h5>
+                <p class="footer-advanced-text">Somos una empresa orgullosamente Bluefile&ntilde;a. Nos especializamos en proporcionar asesoramiento confiable para la venta de su propiedad, ofreciendo asistencia integral en la compra, venta, alquiler y remodelaci&oacute;n de inmuebles en toda la regi&oacute;n.</p>
+              </div>
+              <div class="col-sm-7 col-md-5 col-lg-4">
+                <h5 class="font-weight-bold text-uppercase text-white">Nuestros Servicios</h5>
+                <ul style="list-style:none; padding:0; margin:0;">
+                  <li style="margin-bottom:10px;"><span class="mdi mdi-home-outline" style="color:#f7941d; margin-right:8px;"></span><a href="propiedades" style="color:#aeb1be; text-decoration:none;">Venta de Propiedades</a></li>
+                  <li style="margin-bottom:10px;"><span class="mdi mdi-key-outline" style="color:#f7941d; margin-right:8px;"></span><a href="propiedades" style="color:#aeb1be; text-decoration:none;">Alquiler de Inmuebles</a></li>
+                  <li style="margin-bottom:10px;"><span class="mdi mdi-file-document-outline" style="color:#f7941d; margin-right:8px;"></span><a href="about-us" style="color:#aeb1be; text-decoration:none;">Asesor&iacute;a Legal y Escrituras</a></li>
+                  <li style="margin-bottom:10px;"><span class="mdi mdi-wrench-outline" style="color:#f7941d; margin-right:8px;"></span><a href="about-us" style="color:#aeb1be; text-decoration:none;">Remodelaciones</a></li>
+                  <li style="margin-bottom:10px;"><span class="mdi mdi-map-marker-outline" style="color:#f7941d; margin-right:8px;"></span><a href="propiedades" style="color:#aeb1be; text-decoration:none;">Lotes y Terrenos</a></li>
+                </ul>
+              </div>
+              <div class="col-sm-5 col-md-7 col-lg-4">
+                <h5 class="font-weight-bold text-uppercase text-white">Gallery</h5>
+                <div class="row row-x-10" data-lightgallery="group">
+                  <div class="col-3 col-sm-4 col-md-3"><a class="thumbnail-minimal" href="images/footer-gallery-1.png" data-lightgallery="item"><img class="thumbnail-minimal-image" src="images/footer-gallery-1.png" alt=""/>
+                      <div class="thumbnail-minimal-caption"></div></a></div>
+                  <div class="col-3 col-sm-4 col-md-3"><a class="thumbnail-minimal" href="images/footer-gallery-2.png" data-lightgallery="item"><img class="thumbnail-minimal-image" src="images/footer-gallery-2.png" alt=""/>
+                      <div class="thumbnail-minimal-caption"></div></a></div>
+                  <div class="col-3 col-sm-4 col-md-3"><a class="thumbnail-minimal" href="images/footer-gallery-3.png" data-lightgallery="item"><img class="thumbnail-minimal-image" src="images/footer-gallery-3.png" alt=""/>
+                      <div class="thumbnail-minimal-caption"></div></a></div>
+                  <div class="col-3 col-sm-4 col-md-3"><a class="thumbnail-minimal" href="images/footer-gallery-4.png" data-lightgallery="item"><img class="thumbnail-minimal-image" src="images/footer-gallery-4.png" alt=""/>
+                      <div class="thumbnail-minimal-caption"></div></a></div>
+                  <div class="col-3 col-sm-4 col-md-3"><a class="thumbnail-minimal" href="images/footer-gallery-5.png" data-lightgallery="item"><img class="thumbnail-minimal-image" src="images/footer-gallery-5.png" alt=""/>
+                      <div class="thumbnail-minimal-caption"></div></a></div>
+                  <div class="col-3 col-sm-4 col-md-3"><a class="thumbnail-minimal" href="images/footer-gallery-6.png" data-lightgallery="item"><img class="thumbnail-minimal-image" src="images/footer-gallery-6.png" alt=""/>
+                      <div class="thumbnail-minimal-caption"> </div></a></div>
+                  <div class="col-3 col-sm-4 col-md-3"><a class="thumbnail-minimal" href="images/footer-gallery-7.png" data-lightgallery="item"><img class="thumbnail-minimal-image" src="images/footer-gallery-7.png" alt=""/>
+                      <div class="thumbnail-minimal-caption"></div></a></div>
+                  <div class="col-3 col-sm-4 col-md-3"><a class="thumbnail-minimal" href="images/footer-gallery-8.png" data-lightgallery="item"><img class="thumbnail-minimal-image" src="images/footer-gallery-8.png" alt=""/>
+                      <div class="thumbnail-minimal-caption"></div></a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer-advanced-aside">
+          <div class="container">
+            <div class="footer-advanced-layout">
+              <div>
+                  <ul class="list-nav"> 
+                    <li><a href="index">Inicio</a></li>
+                    <li><a href="about-us">Nosotros</a></li>
+                    <li><a href="propiedades">Propiedades</a></li>
+                    <li><a href="calculadora">Calculadora</a></li>
+                    <li><a href="guia-inversion" style="color: #25d366; font-weight: bold;">Gu&iacute;a de Inversi&oacute;n 2026</a></li>
+                    <li><a href="contacts">Contacto</a></li>
+                  </ul>
+              </div>
+              </div>
+              <div>
+                                                <ul class="footer-social-list list-inline list-inline-sm" style="margin-top: 30px;">
+                    <li><a class="icon novi-icon icon-sm link-default fa fa-facebook-official" href="#" style="color: #f7941d; font-size: 26px; margin-right: 10px;"></a></li>
+                    <li><a class="icon novi-icon icon-sm link-default fa fa-whatsapp" href="#" style="color: #f7941d; font-size: 26px; margin-right: 10px;"></a></li>
+                    <li><a class="icon novi-icon icon-sm link-default fa fa-instagram" href="#" style="color: #f7941d; font-size: 26px; margin-right: 10px;"></a></li>
+                    <li><a class="icon novi-icon icon-sm link-default fa fa-youtube-play" href="#" style="color: #f7941d; font-size: 26px;"></a></li>
+                  </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <hr/>
+        </div>
+        <div class="footer-advanced-aside">
+          <div class="container">
+            <div class="footer-advanced-layout"><a class="brand" href="index"><img src="images/logo-zamora-branding.png" alt="Bienes Ra&iacute;ces Zamora" width="180"/></a>
+              <!-- Rights-->
+              <p class="rights"><span>&copy;&nbsp;</span><span class="copyright-year"></span>. Todos los derechos reservados.</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+
+    <!-- Global Mailform Output-->
+    <div class="snackbars" id="form-output-global"></div>
+    <!-- Javascript-->
+    <script src="js/core.min.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+      // L&oacute;gica de Filtro de Propiedades
+      const locationFilter = document.getElementById('filter-location');
+      const typeFilter = document.getElementById('filter-type');
+      const properties = document.querySelectorAll('.property-item');
+
+      function filterProperties() {
+        const locValue = locationFilter.value;
+        const typeValue = typeFilter.value;
+
+        properties.forEach(item => {
+          const itemLoc = item.getAttribute('data-location');
+          const itemType = item.getAttribute('data-type');
+          
+          const locMatch = (locValue === 'all' || locValue === itemLoc);
+          const typeMatch = (typeValue === 'all' || typeValue === itemType);
+
+          if (locMatch && typeMatch) {
+            item.parentElement.style.display = 'block';
+          } else {
+            item.parentElement.style.display = 'none';
+          }
+        });
+      }
+
+      if(locationFilter && typeFilter) {
+        locationFilter.addEventListener('change', filterProperties);
+        typeFilter.addEventListener('change', filterProperties);
+      }
+
+      
+    </script>
+      
+    
+    <!-- Active WhatsApp Button -->
+    <div class="wa-float-container">
+      <a href="https://wa.me/50557649920?text=Hola, tengo una consulta sobre una propiedad." class="wa-float-btn" target="_blank">
+        <span class="mdi mdi-whatsapp"></span>
+      </a>
+      <div id="wa-chat-bubble" class="wa-chat-bubble">
+        <span class="wa-chat-close" onclick="closeWAChat()">&times;</span>
+        <div class="wa-chat-header">
+          <div class="wa-avatar">
+            <span class="mdi mdi-account"></span>
+          </div>
+          <div class="wa-chat-content">
+            <h6>Bienes Ra&iacute;ces Zamora</h6>
+            <p>&iexcl;Hola! &iquest;Buscas casa o lote en Bluefields? Escr&iacute;benos.</p>
+            <a href="https://wa.me/50557649920?text=Hola, tengo una consulta sobre una propiedad." class="wa-chat-action" target="_blank">Chatear ahora</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function closeWAChat() {
+        document.getElementById('wa-chat-bubble').style.display = 'none';
+      }
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          const bubble = document.getElementById('wa-chat-bubble');
+          if(bubble) bubble.style.display = 'block';
+        }, 5000);
+      });
+    </script>
+    <script>
+        async function hydrateSiteData() {
+        try {
+          console.log("Starting hydration v4 (Detailed)...");
+          if (!window.supabaseClient) { 
+             console.error("Supabase Client NOT initialized Check supabase-db.js!");
+             return; 
+          }
+          console.log("Supabase Client Found Ready.");
+
+          // 1. Best Offers Config
+          const { data: config, error: confError } = await window.supabaseClient.from('site_config').select('*');
+          console.log("Config Result (SiteConfig):", config, confError);
+          
+          if (confError) console.error("Database Fetch ERROR (site_config):", confError);
+
+          if (config && config.length > 0) {
+            config.forEach(c => {
+               console.log("Hydrating key:", c.key, "Value ES:", c.value_es);
+               let elId = "";
+               if (c.key === 'best_offers_title') elId = 'best-offers-title';
+               if (c.key === 'best_offers_subtitle') elId = 'best-offers-subtitle';
+               if (c.key === 'best_offers_desc') elId = 'best-offers-desc';
+               
+               if (elId) {
+                  const items = document.querySelectorAll('#' + elId);
+                  console.log("Found " + items.length + " elements for " + elId);
+                  items.forEach(el => {
+                     el.innerText = c.value_es || "";
+                     console.log("Updated element text to:", c.value_es);
+                  });
+               }
+            });
+          } else {
+             console.warn("Table site_config is EMPTY or inaccessible.");
+          }
+
+          // 2. Testimonials
+          console.log("Fetching Testimonials...");
+          const { data: tests, error: testError } = await window.supabaseClient.from('testimonials').select('*').order('created_at', { ascending: false });
+          console.log("Testimonials Result:", tests ? tests.length : 0, testError);
+          
+          if (!testError && tests && tests.length > 0) {
+            const container = document.getElementById('testimonials-container');
+            if (container) {
+              let html = "";
+              tests.forEach(t => {
+                const photo = t.photo_url || 'images/testimonials-person-6-96x96.jpg';
+                const role = t.role_es || 'Cliente';
+                const txt = t.content_es || '';
+                html += `
+                  <blockquote class="quote-classic">
+                    <div class="quote-classic-meta">
+                      <div class="quote-classic-avatar"><img src="${photo}" alt="" width="96" height="96"/></div>
+                      <div class="quote-classic-info">
+                        <cite class="quote-classic-cite">${t.name}</cite>
+                        <p class="quote-classic-caption">${role}</p>
+                      </div>
+                    </div>
+                    <div class="quote-classic-text"><p>${txt}</p></div>
+                  </blockquote>
+                `;
+              });
+              container.innerHTML = html;
+
+              // Force layout update for Wow and Owl
+              if (typeof $ !== 'undefined' && $.fn.owlCarousel) {
+                const $owl = $(container);
+                if ($owl.data('owl.carousel')) $owl.trigger('destroy.owl.carousel');
+                $owl.owlCarousel({
+                    items: 1, margin: 30, dots: true, loop: tests.length > 2, autoplay: true,
+                    responsive: { 0: { items: 1 }, 768: { items: 2 }, 992: { items: 3 } }
+                });
+              }
+            }
+          }
+        } catch (e) { console.error("CRITICAL Hydration Fault:", e); }
+      }
+      window.addEventListener('load', hydrateSiteData);
+      // Run once more after 2 seconds to beat any post-load template script
+      setTimeout(hydrateSiteData, 2000);
+    </script>
+</body>
+</html>
+
+
+
