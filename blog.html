@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html class="wide wow-animation" lang="es">
+  <head>
+    <title>Blog de Inversión - Zamora Real Estate</title>
+    <meta name="viewport" content="width=device-width height=device-height initial-scale=1.0 maximum-scale=1.0 user-scalable=0">
+    <meta charset="utf-8">
+    <link rel="icon" href="images/favicon-zamora.png" type="image/png">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Outfit:300,400,600,700,800%7CPlayfair+Display:700,900">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/style.css" id="main-styles-link"><link rel="stylesheet" href="css/branding.css" id="main-styles-link">
+    <style>
+      :root {
+        --premium-blue: #412a1f;
+        --accent-gold: #c5a059;
+        --soft-bg: #f8f9fa;
+      }
+      body { font-family: 'Outfit', sans-serif; background: #fff; color: #2c3e50; }
+      
+      .blog-hero {
+        background: var(--premium-blue);
+        padding: 120px 0 100px;
+        text-align: center;
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+      }
+      .blog-hero h1 { 
+        font-family: 'Playfair Display', serif; 
+        font-size: 64px; 
+        line-height: 1.2; 
+        margin-bottom: 20px;
+      }
+      
+      .post-card { 
+        background: #fff; 
+        border: none; 
+        border-radius: 0; 
+        overflow: hidden; 
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+      .post-card:hover { transform: translateY(-10px); }
+      
+      .post-img-container {
+        position: relative;
+        overflow: hidden;
+        height: 300px;
+      }
+      .post-img-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.8s ease;
+      }
+      .post-card:hover .post-img-container img { transform: scale(1.05); }
+      
+      .post-info {
+        padding: 40px 0;
+        flex-grow: 1;
+      }
+      .post-tag {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: var(--accent-gold);
+        font-weight: 700;
+        margin-bottom: 15px;
+        display: block;
+      }
+      .post-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 28px;
+        line-height: 1.3;
+        margin-bottom: 20px;
+        color: var(--premium-blue);
+        transition: color 0.3s;
+      }
+      .post-card:hover .post-title { color: var(--accent-gold); }
+      
+      .post-excerpt {
+        font-size: 16px;
+        line-height: 1.7;
+        color: #718096;
+        margin-bottom: 25px;
+      }
+      
+      .read-more-btn {
+        font-weight: 700;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--premium-blue);
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+      }
+      .read-more-btn::after {
+        content: '';
+        width: 30px;
+        height: 1px;
+        background: var(--premium-blue);
+        transition: width 0.3s;
+      }
+      .post-card:hover .read-more-btn::after { width: 50px; background: var(--accent-gold); }
+    </style>
+  </head>
+  <body>
+    <script>
+      // Force scroll to top on refresh
+      if ("scrollRestoration" in history) {
+        history.scrollRestoration = "manual";
+      }
+      window.scrollTo(0, 0);
+    </script>
+    <div class="preloader">
+      <div class="preloader-logo"><img src="images/logo-zamora-branding.png" alt="Logo" width="200"/></div>
+      <div class="preloader-body">
+        <div id="loadingProgressG"><div class="loadingProgressG" id="loadingProgressG_1"></div></div>
+      </div>
+    </div>
+
+    <div class="page">
+      <!-- Navbar -->
+      <header class="section page-header">
+        <div class="rd-navbar-wrap">
+          <nav class="rd-navbar rd-navbar-corporate" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed" data-md-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static" data-lg-device-layout="rd-navbar-static" data-lg-stick-up="true">
+            <div class="rd-navbar-aside-outer">
+              <div class="rd-navbar-aside">
+                <div class="rd-navbar-panel">
+                  <button class="rd-navbar-toggle" data-rd-navbar-toggle="#rd-navbar-nav-wrap-1"><span></span></button>
+                  <a class="rd-navbar-brand" href="index.html"><img src="images/logo-zamora-branding.png" alt="Zamora" width="160"/></a>
+                </div>
+                <div class="rd-navbar-nav-wrap" id="rd-navbar-nav-wrap-1">
+                  <ul class="rd-navbar-nav">
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="index.html">Inicio</a></li>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="about-us.html">Nosotros</a></li>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="propiedades.html">Propiedades</a></li>
+                    <li class="rd-nav-item active"><a class="rd-nav-link" href="blog.html">Blog</a></li>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="enlistar.html">Vender</a></li>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="contacts.html">Contacto</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </header>
+
+      <section class="blog-hero">
+        <div class="container">
+          <h1 class="wow slideInDown">Guía del Inversionista</h1>
+          <p class="big wow slideInUp" style="max-width: 700px; margin: 0 auto; opacity: 0.8;">Perspectivas exclusivas sobre el mercado inmobiliario del Caribe Nicaragüense.</p>
+        </div>
+      </section>
+
+      <section class="section section-xl bg-default">
+        <div class="container">
+          <div class="row row-80">
+            <!-- Featured Post -->
+            <div class="col-md-6 col-lg-4 wow-outer">
+              <article class="post-card wow slideInUp">
+                <a href="blog-bluefields-hub-inversion.html" class="post-img-container">
+                  <img src="images/blog-1.png" alt="Inversión Bluefields">
+                </a>
+                <div class="post-info">
+                  <span class="post-tag">Inversión • 2026</span>
+                  <h3 class="post-title"><a href="blog-bluefields-hub-inversion.html">Bluefields: El Nuevo Hub de Inversión en el Caribe</a></h3>
+                  <p class="post-excerpt">La transformación de Bluefields está atrayendo capital global. Descubra los sectores con mayor potencial de crecimiento para este año.</p>
+                  <a href="blog-bluefields-hub-inversion.html" class="read-more-btn">Leer Artículo</a>
+                </div>
+              </article>
+            </div>
+            
+            <!-- Post 2 -->
+            <div class="col-md-6 col-lg-4 wow-outer">
+              <article class="post-card wow slideInUp" data-wow-delay=".1s">
+                <div class="post-img-container">
+                  <img src="images/blog-2.png" alt="Plusvalía Caribe">
+                </div>
+                <div class="post-info">
+                  <span class="post-tag">Desarrollo • Vialidad</span>
+                  <h3 class="post-title">El Impacto de la Carretera en la Plusvalía</h3>
+                  <p class="post-excerpt">Analizamos cómo la nueva conectividad vial ha redefinido el valor de la tierra en toda la región autónoma.</p>
+                  <a href="#" class="read-more-btn">Próximamente</a>
+                </div>
+              </article>
+            </div>
+
+            <!-- Post 3 -->
+            <div class="col-md-6 col-lg-4 wow-outer">
+              <article class="post-card wow slideInUp" data-wow-delay=".2s">
+                <div class="post-img-container">
+                  <img src="images/virtual-tour.png" alt="Seguridad Jurídica">
+                </div>
+                <div class="post-info">
+                  <span class="post-tag">Consejos • Legal</span>
+                  <h3 class="post-title">Guía de Seguridad Jurídica Inmobiliaria</h3>
+                  <p class="post-excerpt">Todo lo que necesita saber sobre títulos y procesos legales para invertir con total seguridad en Nicaragua.</p>
+                  <a href="#" class="read-more-btn">Próximamente</a>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="section novi-background footer-advanced bg-gray-700">
+        <div class="footer-advanced-aside">
+          <div class="container text-center">
+            <p class="rights"><span>&copy;&nbsp;</span><span class="copyright-year"></span> Bienes Raíces Zamora.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script src="js/core.min.js"></script>
+    <script src="js/script.js"></script>
+      
+    
+    <!-- Active WhatsApp Button -->
+    <div class="wa-float-container">
+      <a href="https://wa.me/50557649920?text=Hola, tengo una consulta sobre una propiedad." class="wa-float-btn" target="_blank">
+        <span class="mdi mdi-whatsapp"></span>
+      </a>
+      <div id="wa-chat-bubble" class="wa-chat-bubble">
+        <span class="wa-chat-close" onclick="closeWAChat()">&times;</span>
+        <div class="wa-chat-header">
+          <div class="wa-avatar">
+            <span class="mdi mdi-account"></span>
+          </div>
+          <div class="wa-chat-content">
+            <h6>Bienes Ra&iacute;ces Zamora</h6>
+            <p>&iexcl;Hola! &iquest;Buscas casa o lote en Bluefields? Escr&iacute;benos.</p>
+            <a href="https://wa.me/50557649920?text=Hola, tengo una consulta sobre una propiedad." class="wa-chat-action" target="_blank">Chatear ahora</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function closeWAChat() {
+        document.getElementById('wa-chat-bubble').style.display = 'none';
+      }
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          const bubble = document.getElementById('wa-chat-bubble');
+          if(bubble) bubble.style.display = 'block';
+        }, 5000);
+      });
+    </script>
+</body>
+</html>
+

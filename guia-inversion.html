@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html class="wide wow-animation" lang="es">
   <head>
-    <title>Calculadora Hipotecaria | Bienes Raíces Zamora</title>
-    <meta name="description" content="Calcula la cuota mensual de tu préstamo hipotecario para comprar tu casa en Bluefields con nuestra herramienta fácil de usar.">
+    <title>Guía de Inversión en Bluefields - Bienes Raíces Zamora</title>
+    <meta name="description" content="Descubre por qué invertir en la costa de Bluefields, Nicaragua. Oportunidades en bienes raíces, crecimiento económico y turismo.">
     <meta name="viewport" content="width=device-width height=device-height initial-scale=1.0 maximum-scale=1.0 user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -12,26 +12,13 @@
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/style.css" id="main-styles-link"><link rel="stylesheet" href="css/branding.css" id="main-styles-link">
     <style>
-      .calc-container { background: #fff; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); padding: 40px; margin-top: -60px; position: relative; z-index: 10; }
-      .calc-input-group { margin-bottom: 25px; }
-      .calc-label { font-weight: 700; color: #412a1f; font-size: 14px; text-transform: uppercase; margin-bottom: 10px; display: block; }
-      .calc-input { width: 100%; padding: 15px; border: 2px solid #edf0f5; border-radius: 12px; font-size: 16px; transition: 0.3s; }
-      .calc-input:focus { outline: none; border-color: #f7941d; box-shadow: 0 0 0 4px rgba(0,123,255,0.1); }
-      .result-card { background: #f8faff; border-radius: 15px; padding: 30px; text-align: center; height: 100%; display: flex; flex-direction: column; justify-content: center; border: 1px solid #e1e8f0; }
-      .result-value { font-size: 42px; font-weight: 800; color: #f7941d; margin: 10px 0; }
-      .result-label { color: #555; font-size: 16px; font-weight: 500; }
-      .calc-header { background: #412a1f; padding: 120px 0 100px; color: #fff; text-align: center; }
-      .btn-wa-calc { background: #25d366; color: #fff; padding: 15px 30px; border-radius: 10px; font-weight: 700; display: inline-flex; align-items: center; gap: 10px; text-decoration: none; margin-top: 20px; transition: 0.3s; }
-      .btn-wa-calc:hover { background: #1ebe5a; color: #fff; transform: translateY(-2px); }
+      .blog-article-image { border-radius: 20px; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.1); margin-bottom: 40px; }
+      .blog-content { line-height: 1.8; color: #555; font-size: 17px; }
+      .blog-content h2 { color: #412a1f; font-weight: 700; margin-top: 40px; margin-bottom: 20px; text-transform: uppercase; font-size: 26px;}
+      .blog-content p { margin-bottom: 25px; }
+      .investment-card { background: #f8faff; border-left: 5px solid #412a1f; padding: 30px; border-radius: 0 15px 15px 0; margin: 40px 0; }
+      .sidebar-blog { background: #fff; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); position: sticky; top: 100px; }
     </style>
-  
-    <!-- Open Graph / Social Media -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://zamora-inmobiliaria.vercel.app">
-    <meta property="og:title" content="Calculadora Hipotecaria | Bienes Raíces Zamora">
-    <meta property="og:description" content="Calcula la cuota mensual de tu préstamo hipotecario para comprar tu casa en Bluefields con nuestra herramienta fácil de usar.">
-    <meta property="og:image" content="https://zamora-inmobiliaria.vercel.app/images/logo-zamora-branding.png">
-    
   </head>
   <body>
     <script>
@@ -75,9 +62,9 @@
                       <div class="unit-body"><a class="link-default" href="#">Bluefields, Nicaragua <br> RACCS</a></div>
                     </article><a class="button button-primary button-winona button-icon button-icon-left" href="https://wa.me/50557649920?text=Hola,%20me%20gustaría%20obtener%20información%20sobre%20una%20propiedad." target="_blank"><span class="icon mdi mdi-whatsapp"></span>WhatsApp</a>
                     <div class="lang-switcher">
-                      <a href="calculadora.html" class="active">ES</a>
+                      <a href="guia-inversion.html" class="active">ES</a>
                       <span class="lang-lang-divider">|</span>
-                      <a href="en/calculator">EN</a>
+                      <a href="en/investment-guide">EN</a>
                     </div>
                   </div>
                 </div>
@@ -90,7 +77,7 @@
                     <li class="rd-nav-item"><a class="rd-nav-link" href="index.html">Inicio</a></li>
                     <li class="rd-nav-item"><a class="rd-nav-link" href="about-us.html">Nosotros</a></li>
                     <li class="rd-nav-item"><a class="rd-nav-link" href="propiedades.html">Propiedades</a></li>
-                    <li class="rd-nav-item active"><a class="rd-nav-link" href="calculadora.html">Calculadora</a></li>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="calculadora.html">Calculadora</a></li>
                     <li class="rd-nav-item"><a class="rd-nav-link" href="enlistar.html">Vender</a></li>
                     <li class="rd-nav-item"><a class="rd-nav-link" href="contacts.html">Contacto</a></li>
                   </ul>
@@ -101,72 +88,79 @@
         </div>
       </header>
 
-      <section class="calc-header novi-background bg-image" style="background-image: url(images/virtual_tour_bg_1773722039627.png);">
-        <div class="container">
-          <h2 class="text-uppercase font-weight-bold">Calculadora de Préstamo</h2>
-          <p class="big">Planifica tu futuro y mira cuán fácil es obtener tu casa propia en Bluefields.</p>
-        </div>
-      </section>
-
-      <section class="section section-lg bg-default">
-        <div class="container">
-          <div class="calc-container">
-            <div class="row row-50 align-items-stretch">
-              <div class="col-lg-7 text-left">
-                <div class="calc-input-group">
-                  <label class="calc-label">Precio de la Propiedad (USD)</label>
-                  <input type="number" id="prop-price" class="calc-input" value="50000" oninput="calculateMortgage()">
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="calc-input-group">
-                      <label class="calc-label">Prima / Enganche (20%)</label>
-                      <input type="number" id="down-payment" class="calc-input" value="10000" oninput="calculateMortgage()">
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="calc-input-group">
-                      <label class="calc-label">Plazo (Años)</label>
-                      <select id="plazo" class="calc-input" onchange="calculateMortgage()">
-                        <option value="5">5 años</option>
-                        <option value="10">10 años</option>
-                        <option value="15" selected>15 años</option>
-                        <option value="20">20 años</option>
-                        <option value="25">25 años</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                <div class="calc-input-group">
-                  <label class="calc-label">Tasa de Interés Anual (%)</label>
-                  <input type="number" id="interest-rate" class="calc-input" value="9.5" step="0.1" oninput="calculateMortgage()">
-                </div>
-              </div>
-              
-              <div class="col-lg-5">
-                <div class="result-card">
-                  <div class="result-label">Tu pago mensual estimado:</div>
-                  <div class="result-value" id="monthly-payment">$0.00</div>
-                  <p class="small text-muted mb-4">Monto del préstamo: <span id="loan-amount-display">$40,000</span></p>
-                  <hr>
-                  <p class="mt-3">¿Te gusta este plan? Pregúntanos cómo aplicar a un crédito hipotecario en Nicaragua.</p>
-                  <a href="#" id="wa-calc-link" target="_blank" class="btn-wa-calc">
-                    <span class="mdi mdi-whatsapp"></span> Consultar ahora
-                  </a>
-                </div>
-              </div>
+      <!-- Breadcrumbs -->
+      <section class="section novi-background breadcrumbs-custom bg-image context-dark" style="background-image: url(images/guia_inversion_bluefields.png);">
+        <div class="breadcrumbs-custom-inner">
+          <div class="container breadcrumbs-custom-container">
+            <div class="breadcrumbs-custom-main">
+              <h6 class="breadcrumbs-custom-subtitle title-decorated">Estrategias y SEO</h6>
+              <h2 class="text-uppercase breadcrumbs-custom-title">Guía de Inversión: Bluefields 2026</h2>
             </div>
-          </div>
-          
-          <div class="row offset-top-3 justify-content-center text-left">
-            <div class="col-lg-10">
-              <h4 class="font-weight-bold text-uppercase">Nota Sobre los Cálculos</h4>
-              <p>Esta calculadora proporciona una estimación de cuotas niveladas. No incluye seguros de vida, seguros de daños ni comisiones bancarias. Las tasas de interés en Nicaragua suelen variar entre el 8% y el 11% dependiendo del banco y la zona.</p>
-            </div>
+            <ul class="breadcrumbs-custom-path">
+              <li><a href="index.html">Inicio</a></li>
+              <li class="active">Guía de Inversión</li>
+            </ul>
           </div>
         </div>
       </section>
 
+      <!-- Blog Article -->
+      <section class="section section-lg bg-default text-left">
+        <div class="container">
+          <div class="row row-50 justify-content-lg-between">
+            <div class="col-lg-8">
+              <div class="blog-article">
+                <div class="blog-article-image">
+                  <img src="images/guia_inversion_bluefields.png" alt="Inversión Bluefields" width="800" height="500"/>
+                </div>
+                
+                <div class="blog-content">
+                  <p class="lead">Bluefields se está posicionando como la joya oculta del Caribe nicaragüense. Con la nueva carretera que une el Pacífico con el Atlántico y el desarrollo de puertos de aguas profundas, la plusvalía de la zona está en su punto más alto.</p>
+                  
+                  <h2>1. Conectividad Sin Precedentes</h2>
+                  <p>Por décadas, Bluefields fue un destino remoto. Hoy, la infraestructura vial ha transformado la región. Esta conectividad no solo facilita el turismo, sino que reduce costos logísticos para el comercio, haciendo que los lotes industriales y comerciales dupliquen su valor en menos de 5 años.</p>
+
+                  <div class="investment-card">
+                    <h4>💡 Tip de Inversión</h4>
+                    <p>Los barrios cercanos al nuevo acceso vial están experimentando el crecimiento de precio más rápido. Lotes en estas zonas son ideales para inversión a mediano plazo.</p>
+                  </div>
+
+                  <h2>2. Auge del Eco-Turismo y Propiedades Costeras</h2>
+                  <p>Inversionistas extranjeros están buscando "el próximo paraíso" fuera de las zonas saturadas. Bluefields ofrece una cultura vibrante, playas vírgenes y un costo de vida competitivo. La demanda de alquileres temporales tipo Airbnb ha crecido un 40% en el último año.</p>
+
+                  <h2>3. Seguridad Jurídica con Bienes Raíces Zamora</h2>
+                  <p>Invertir en el Caribe requiere conocimiento local. En Bienes Raíces Zamora nos encargamos de verificar cada título de propiedad, asegurando que su inversión esté protegida por la ley nicaragüense.</p>
+                  
+                  <div class="text-center mt-5">
+                    <a class="button button-lg button-primary button-winona" href="contacts.html">Solicitar Asesoría Personalizada</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+              <div class="sidebar-blog">
+                <h5 class="text-uppercase font-weight-bold">¿Por qué Bluefields?</h5>
+                <hr>
+                <ul class="list-marked">
+                  <li>Alta Plusvalía Anual</li>
+                  <li>Ubicación Estratégica Portuaria</li>
+                  <li>Mercado Turístico en Expansión</li>
+                  <li>Propiedades a Precios Competitivos</li>
+                </ul>
+                <div class="bg-primary-darker context-dark p-4 rounded mt-4">
+                  <h6>¿Buscas Invertir?</h6>
+                  <p class="small">Tenemos una lista exclusiva de propiedades fuera del catálogo público.</p>
+                  <a class="button button-sm button-primary" href="https://wa.me/50557649920">Hablar con un Experto</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer (Minimal version) -->
       <footer class="section novi-background footer-advanced bg-gray-700">
         <div class="footer-advanced-main">
           <div class="container">
@@ -233,45 +227,10 @@
       </footer>
     </div>
 
+    <!-- Global Mailform Output-->
+    <div class="snackbars" id="form-output-global"></div>
     <script src="js/core.min.js"></script>
     <script src="js/script.js"></script>
-    <script>
-      function calculateMortgage() {
-        const price = document.getElementById('prop-price').value || 0;
-        const downPayment = document.getElementById('down-payment').value || 0;
-        const loanAmount = price - downPayment;
-        const interestRate = (document.getElementById('interest-rate').value || 0) / 100 / 12;
-        const years = document.getElementById('plazo').value || 15;
-        const payments = years * 12;
-
-        document.getElementById('loan-amount-display').innerText = '$' + loanAmount.toLocaleString();
-
-        let monthly = 0;
-        if(interestRate === 0) {
-          monthly = loanAmount / payments;
-        } else {
-          monthly = (loanAmount * interestRate) / (1 - Math.pow(1 + interestRate, -payments));
-        }
-
-        const formattedResult = '$' + (monthly.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
-        document.getElementById('monthly-payment').innerText = formattedResult;
-
-        // WA link
-        const msg = `Hola Zamora, usé la calculadora web. Por una propiedad de $${price} con prima de $${downPayment}, la cuota es de ${formattedResult}. ¿Me pueden asesorar?`;
-        document.getElementById('wa-calc-link').href = `https://wa.me/50557649920?text=${encodeURIComponent(msg)}`;
-      }
-
-      // Pre-fill from URL if coming from a property
-      window.onload = function() {
-        const params = new URLSearchParams(window.location.search);
-        if(params.has('price')) {
-          document.getElementById('prop-price').value = params.get('price');
-          // Adjust downpayment to 20%
-          document.getElementById('down-payment').value = params.get('price') * 0.2;
-        }
-        calculateMortgage();
-      };
-    </script>
       
     
     <!-- Active WhatsApp Button -->
