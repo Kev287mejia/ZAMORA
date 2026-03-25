@@ -13,36 +13,15 @@
   --gray-bg: #f8faff;
   --white: #ffffff;
 
-  /* Fuentes Personalizadas */
-  --font-heading: 'Modernoir', sans-serif;
-  --font-body: 'Komet', sans-serif;
+  /* Fuentes (Google Fonts de Respaldo) */
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
 
   --primary-gradient: linear-gradient(90deg, #ffcb2d 0%, #f7941d 50%, #e31e24 100%);
   --red-gradient: linear-gradient(135deg, #e31e24 0%, #a31e22 100%);
 }
 
-/* --- Instalación de Fuentes Locales --- */
-
-@font-face {
-    font-family: 'Modernoir';
-    src: url('../fonts/tt_modernoir/TT_Modernoir_Trial_Bold.ttf') format('truetype');
-    font-weight: 700;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Komet';
-    src: url('../fonts/fonnts.com-234118/fonts/fonnts.com-Komet_Regular.otf') format('opentype');
-    font-weight: 400;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Komet';
-    src: url('../fonts/fonnts.com-234118/fonts/fonnts.com-Komet_Bold.otf') format('opentype');
-    font-weight: 700;
-    font-style: normal;
-}
+/* Fuentes de Google Fonts Importadas en HTML */
 
 /* --- Aplicación Global --- */
 body {

@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="css/style.css" id="main-styles-link">
     <link rel="stylesheet" href="css/branding.css">
     
+    <!-- Google Fonts -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Outfit:wght@400;700&display=swap">
     <!-- Supabase SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="js/supabase-db.js"></script>
@@ -59,6 +61,11 @@
         <div style="text-align: left; margin-bottom: 30px;"><label class="form-label">Password</label><input type="password" id="login-pass" class="form-control-admin"></div>
         <button class="btn-login" onclick="handleLogin()">ACCEDER AL PANEL</button>
         <div id="login-err" style="color:red; margin-top:15px; display:none; font-size:12px;"></div>
+        
+        <div style="margin-top:25px; border-top: 1px solid #eee; padding-top:15px; font-size:11px; display:flex; justify-content:center; align-items:center; gap:8px;">
+            <div id="db-indicator-login" style="width:8px; height:8px; background:gray; border-radius:50%"></div> 
+            ESTADO SISTEMA: <span id="db-status-text-login">VERIFICANDO...</span>
+        </div>
       </div>
     </div>
 
@@ -134,8 +141,18 @@
       }
 
       function updateDBStatus(online, msg) {
-         const dot = document.getElementById('db-indicator'), txt = document.getElementById('db-status-text');
-         if(dot && txt) { dot.style.background = online ? "#22c55e" : "#ff4d4d"; txt.innerText = online ? "CONECTADA" : (msg || "ERROR"); }
+         const dot = document.getElementById('db-indicator');
+         const txt = document.getElementById('db-status-text');
+         const dotL = document.getElementById('db-indicator-login');
+         const txtL = document.getElementById('db-status-text-login');
+         
+         const color = online ? "#22c55e" : "#ff4d4d";
+         const status = online ? "CONECTADA" : (msg || "ERROR");
+
+         if(dot) dot.style.background = color;
+         if(txt) txt.innerText = status;
+         if(dotL) dotL.style.background = color;
+         if(txtL) txtL.innerText = status;
       }
 
       async function handleLogin() {
