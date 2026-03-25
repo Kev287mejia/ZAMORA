@@ -287,7 +287,10 @@
              
              alert("¡Guardado correctamente!");
              
-             // Limpiar formulario y volver al inventario sin recargar toda la página
+             // Esperamos un momento para asegurar que Supabase haya refrescado sus índices
+             await new Promise(resolve => setTimeout(resolve, 500));
+             
+             // Limpiar formulario y volver al inventario
              editMode = false;
              currentEditId = null;
              document.getElementById('title_es').value = "";
@@ -298,7 +301,7 @@
              document.getElementById('description_en').value = "";
              document.getElementById('images_files').value = "";
              
-             showSection('sec-list-prop'); // Esto ya llama a loadInventory() automáticamente
+             showSection('sec-list-prop'); 
          } catch(e) { 
              alert("Error: " + e.message); 
              btn.disabled = false; 
