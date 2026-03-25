@@ -309,6 +309,7 @@
             const isFav = favorites.some(f => f.id === prop.id);
             const mainImg = prop.images?.[0] || 'images/propiedad-placeholder.png';
             const price = prop.transaction_type === 'Renta' ? `$${prop.price_rent}/mes` : `$${prop.price_sale}`;
+            const nClean = (prop.neighborhood || "").replace(/Ã°Å¸â€œÂ/g, "").trim();
 
             grid.innerHTML += `
               <div class="col-md-6 col-lg-4">
@@ -320,7 +321,7 @@
                   <span class="badge-tipo">${prop.category}</span>
                   <div class="prop-body">
                     <h5>${prop.title_es}</h5>
-                    <p class="barrio">📍 ${prop.neighborhood}</p>
+                    <p class="barrio">📍 ${nClean}</p>
                     <div class="prop-meta">
                       ${prop.bedrooms ? `<span><span class="mdi mdi-bed-outline"></span> ${prop.bedrooms} Hab</span>` : ''}
                       ${prop.bathrooms ? `<span><span class="mdi mdi-shower"></span> ${prop.bathrooms} Baños</span>` : ''}

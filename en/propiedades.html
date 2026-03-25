@@ -217,6 +217,8 @@
             const titleDisplay = prop.title_en || prop.title_es;
             const mainImg = prop.images?.[0] || '../images/propiedad-placeholder.png';
             const price = prop.transaction_type === 'Renta' ? `$${prop.price_rent}/mo` : `$${prop.price_sale}`;
+            const nClean = (prop.neighborhood || "").replace(/Ã°Å¸â€œÂ/g, "").trim();
+
             grid.innerHTML += `
               <div class="col-md-6 col-lg-4">
                 <div class="prop-card">
@@ -224,7 +226,7 @@
                   <img src="${mainImg}" class="prop-img" onerror="this.src='../images/propiedad-placeholder.png'">
                   <span class="badge-tipo">${prop.category}</span>
                   <div class="prop-body">
-                    <h5>${titleDisplay}</h5><p class="barrio">📍 ${prop.neighborhood}</p>
+                    <h5>${titleDisplay}</h5><p class="barrio">📍 ${nClean}</p>
                     <div class="prop-meta">${prop.bedrooms ? `<span><span class="mdi mdi-bed-outline"></span> ${prop.bedrooms} Bed</span>` : ''}${prop.area_sqm ? `<span><span class="mdi mdi-vector-square"></span> ${prop.area_sqm}m²</span>` : ''}</div>
                     <div class="prop-price">${price}</div>
                     <div style="display:flex; gap:8px;">

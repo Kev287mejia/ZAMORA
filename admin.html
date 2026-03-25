@@ -559,9 +559,9 @@
               <div class="admin-col-6 form-group-admin">
                 <label class="form-label">Calificación (Estrellas)</label>
                 <select id="test_stars" class="form-control-admin">
-                  <option value="5">Ã¢Â­ÂÃ¢Â­ÂÃ¢Â­ÂÃ¢Â­ÂÃ¢Â­Â (5 Estrellas)</option>
-                  <option value="4">Ã¢Â­ÂÃ¢Â­ÂÃ¢Â­ÂÃ¢Â­Â (4 Estrellas)</option>
-                  <option value="3">Ã¢Â­ÂÃ¢Â­ÂÃ¢Â­Â (3 Estrellas)</option>
+                  <option value="5">⭐⭐⭐⭐⭐ (5 Estrellas)</option>
+                  <option value="4">⭐⭐⭐⭐ (4 Estrellas)</option>
+                  <option value="3">⭐⭐⭐ (3 Estrellas)</option>
                 </select>
               </div>
               <div class="admin-col-6 form-group-admin">
@@ -983,11 +983,12 @@
           data.forEach(p => {
             const price = p.price_sale ? `$${p.price_sale}` : `$${p.price_rent} (Renta)`;
             const img = (p.images && p.images.length > 0) ? p.images[0] : 'images/propiedad-placeholder.png';
+            const neighbor = (p.neighborhood || "").replace(/Ã°Å¸â€œÂ/g, "").trim();
             body.innerHTML += `
               <tr>
                 <td><img src="${img}" class="img-preview" onerror="this.src='images/propiedad-placeholder.png'"></td>
                 <td><strong>${p.title_es}</strong><br><small class="text-muted">${p.category}</small></td>
-                <td>📍 ${p.neighborhood}</td>
+                <td>📍 ${neighbor}</td>
                 <td><span class="text-primary font-weight-bold">${price}</span></td>
                 <td><span class="status-badge badge-success">${p.status}</span></td>
                 <td>
