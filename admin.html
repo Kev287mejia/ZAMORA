@@ -198,9 +198,28 @@
       }
 
       async function deleteProp(id) {
-        if(confirm("¿Eliminar propiedad?")) {
-           const { error } = await window.supabaseClient.from('properties').delete().eq('id', id);
-           if(error) alert(error.message); else { alert("Eliminado!"); loadInventory(); }
+        if(confirm("¿Seguro que deseas eliminar esta propiedad permanentemente?")) {
+           try {
+             console.log("Intentando eliminar ID:", id);
+             // Intentamos convertir a número por si es integer en la tabla
+             const finalId = isNaN(id) ? id : Number(id);
+             
+             const { data, error, status } = await window.supabaseClient
+               .from('properties')
+               .delete()
+               .eq('id', finalId);
+
+             if(error) {
+               console.error("Error completo:", error);
+               alert("Error de la base de datos: " + error.message + "\nDetalles: " + (error.details || "Ninguno"));
+             } else {
+               alert("¡Propiedad eliminada con éxito!");
+               loadInventory();
+             }
+           } catch(e) { 
+             console.error("Excepción al borrar:", e);
+             alert("Error inesperado: " + e.message); 
+           }
         }
       }
 
