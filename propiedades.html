@@ -311,10 +311,12 @@
 
         try {
           loader.style.display = 'block'; grid.innerHTML = ''; noRes.style.display = 'none';
+          console.log("Filtros activos:", fLoc, fType);
           let query = window.supabaseClient.from('properties').select('*');
-          if(fLoc !== 'all') query = query.ilike('neighborhood', `%${fLoc}%`);
+          if(fLoc !== 'all') query = query.eq('neighborhood', fLoc);
           if(fType !== 'all') query = query.eq('category', fType);
           const { data, error } = await query.order('created_at', { ascending: false });
+          console.log("Datos recibidos de Supabase:", data);
           if(error) throw error;
           loadedProps = data; loader.style.display = 'none';
           if(data.length === 0) { noRes.style.display = 'block'; return; }
