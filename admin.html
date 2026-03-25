@@ -343,12 +343,27 @@
       window.scrollTo(0, 0);
           // --- AUTH LOGIC ---
       async function checkUser() {
-        const { data: { session }, error } = await window.supabaseClient.auth.getSession();
-        if (session) {
-          showAdmin();
-        } else {
-          document.getElementById('login-overlay').style.display = 'flex';
+        try {
+          const { data: { session }, error } = await window.supabaseClient.auth.getSession();
+          if (session) {
+            showAdmin();
+            updateDBStatus(true);
+          } else {
+            document.getElementById('login-overlay').style.display = 'flex';
+            updateDBStatus(false, "Sesi&oacute;n inactiva");
+          }
+        } catch(e) {
+            updateDBStatus(false, "Error de conexi&oacute;n");
         }
+      }
+
+      function updateDBStatus(online, msg) {
+         const dot = document.getElementById('db-indicator');
+         const txt = document.getElementById('db-status-text');
+         if(dot && txt) {
+            dot.style.background = online ? "#22c55e" : "#ff4d4d";
+            txt.innerText = online ? "CONECTADA" : (msg || "DESCONECTADA");
+         }
       }
 
       async function handleLogin() {
@@ -381,7 +396,7 @@
       function showAdmin() {
         document.getElementById('login-overlay').style.display = 'none';
         document.getElementById('admin-content').style.display = 'flex';
-        loadDashboard(); // Function to initialize data
+        loadInventory(); 
       }
 
       async function handleLogout() {
@@ -411,6 +426,12 @@
           <a href="index.html" class="nav-link"><span class="icon mdi mdi-web"></span> Ver Sitio Web</a>
           <hr style="border-color: rgba(255,255,255,0.1);">
           <a href="#" class="nav-link" onclick="handleLogout()"><span class="icon mdi mdi-logout"></span> Salir</a>
+          <div style="margin-top:20px; padding:15px; background:rgba(255,255,255,0.05); border-radius:10px; font-size:10px;">
+            <div id="db-status-label" style="display:flex; align-items:center; gap:5px; color:#888;">
+               <div id="db-indicator" style="width:8px; height:8px; background:orange; border-radius:50%"></div> 
+               BASE DE DATOS: <span id="db-status-text">CONECTANDO...</span>
+            </div>
+          </div>
         </nav>
       </aside>
 
@@ -1007,56 +1028,17 @@
         if(confirm("¿Estás seguro de eliminar esta propiedad?")) {
           try {
             const { error } = await window.supabaseClient.from('properties').delete().eq('id', id);
-            if(error) throw error;
-            loadInventory();
+            if(error) {
+               alert("Error al eliminar: " + error.message);
+               return;
+            }
+            alert("Propiedad eliminada correctamente.");
+            location.reload(); 
           } catch (err) {
             alert("Error al eliminar: " + err.message);
           }
         }
       }
-          // --- AUTH LOGIC ---
-      async function checkUser() {
-        const { data: { session }, error } = await window.supabaseClient.auth.getSession();
-        if (session) {
-          showAdmin();
-        } else {
-          document.getElementById('login-overlay').style.display = 'flex';
-        }
-      }
-
-      async function handleLogin() {
-        const email = document.getElementById('login-email').value;
-        const pass = document.getElementById('login-pass').value;
-        const btn = document.querySelector('.btn-login');
-        const err = document.getElementById('login-err');
-
-        if(!email || !pass) return;
-
-        btn.innerText = "Verificando...";
-        btn.disabled = true;
-        err.style.display = 'none';
-
-        const { data, error } = await window.supabaseClient.auth.signInWithPassword({
-          email: email,
-          password: pass,
-        });
-
-        if (error) {
-          err.innerText = "Acceso denegado: " + error.message;
-          err.style.display = 'block';
-          btn.innerText = "ACCEDER AL PANEL";
-          btn.disabled = false;
-        } else {
-          showAdmin();
-        }
-      }
-
-      function showAdmin() {
-        document.getElementById('login-overlay').style.display = 'none';
-        document.getElementById('admin-content').style.display = 'flex';
-        loadDashboard(); // Function to initialize data
-      }
-
       async function handleLogout() {
         await window.supabaseClient.auth.signOut();
         location.reload();
