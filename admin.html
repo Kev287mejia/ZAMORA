@@ -635,7 +635,7 @@
             </div>
 
             <button class="btn-save" onclick="saveConfig()">
-              <span class="mdi mdi-content-save-outline"></span> GUARDAR CONFIGURACIÃƒâ€œN
+              <span class="mdi mdi-content-save-outline"></span> GUARDAR CONFIGURACIÓN
             </button>
             <div id="config-status" class="alert alert-info py-2 mt-2" style="display:none;"></div>
           </div>
@@ -768,7 +768,7 @@
           }
           resetTestForm();
           loadTestimonials();
-        } catch(e) { alert("Error: " + e.message + ". Ã‚¿Creaste la tabla testimonials?"); }
+        } catch(e) { alert("Error: " + e.message + ". ¿Creaste la tabla testimonials?"); }
       }
 
       async function prepareTestEdit(id) {
@@ -792,7 +792,7 @@
       }
 
       async function deleteTestimonial(id) {
-        if(confirm("Ã‚¿Borrar este testimonio?")) {
+        if(confirm("¿Borrar este testimonio?")) {
           const { error } = await window.supabaseClient.from('testimonials').delete().eq('id', id);
           if(!error) loadTestimonials();
         }
@@ -839,12 +839,12 @@
             const { error } = await window.supabaseClient.from('site_config').upsert({ key: c.key, value_es: c.es, value_en: c.en }, { onConflict: 'key' });
             if(error) throw error;
           }
-          alert("Ã‚Â¡Configuración guardada con éxito!");
+          alert("¡Configuración guardada con éxito!");
         } catch(e) {
           alert("Error al guardar: " + e.message + ". Asegúrate de crear la tabla 'site_config' en Supabase.");
         } finally {
           btn.disabled = false;
-          btn.innerHTML = '<span class="mdi mdi-content-save-outline"></span> GUARDAR CONFIGURACIÃƒâ€œN';
+          btn.innerHTML = '<span class="mdi mdi-content-save-outline"></span> GUARDAR CONFIGURACIÓN';
         }
       }
 
@@ -879,7 +879,7 @@
           uploadedUrls.push(publicUrl);
         }
         
-        status.innerHTML = "Ã‚Â¡Fotos subidas con éxito!";
+        status.innerHTML = "¡Fotos subidas con éxito!";
         return uploadedUrls;
       }
 
@@ -927,11 +927,11 @@
           if (editMode) {
               const { error } = await window.supabaseClient.from('properties').update(data).eq('id', currentEditId);
               if(error) throw error;
-              alert("Ã‚Â¡Propiedad actualizada con éxito!");
+              alert("¡Propiedad actualizada con éxito!");
           } else {
               const { error } = await window.supabaseClient.from('properties').insert([data]);
               if(error) throw error;
-              alert("Ã‚Â¡Propiedad y fotos publicadas con éxito!");
+              alert("¡Propiedad y fotos publicadas con éxito!");
           }
           location.reload(); 
         } catch (err) {
@@ -1003,7 +1003,7 @@
       }
 
       async function deleteProp(id) {
-        if(confirm("Ã‚¿Estás seguro de eliminar esta propiedad?")) {
+        if(confirm("¿Estás seguro de eliminar esta propiedad?")) {
           try {
             const { error } = await window.supabaseClient.from('properties').delete().eq('id', id);
             if(error) throw error;
