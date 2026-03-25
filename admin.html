@@ -134,10 +134,20 @@
 
       async function checkUser() {
         try {
-          const { data: { session } } = await window.supabaseClient.auth.getSession();
-          if (session) { showAdmin(); updateDBStatus(true); }
-          else { document.getElementById('login-overlay').style.display = 'flex'; }
-        } catch(e) { updateDBStatus(false, "OFFLINE"); }
+          const { data: { session }, error } = await window.supabaseClient.auth.getSession();
+          if (error) throw error;
+          
+          updateDBStatus(true); // Database is reachable
+
+          if (session) { 
+            showAdmin(); 
+          } else { 
+            document.getElementById('login-overlay').style.display = 'flex'; 
+          }
+        } catch(e) { 
+          updateDBStatus(false, "ERROR DE ENLACE"); 
+          console.error("Supabase Error:", e);
+        }
       }
 
       function updateDBStatus(online, msg) {
