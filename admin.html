@@ -284,8 +284,26 @@
              };
              if(editMode) { await window.supabaseClient.from('properties').update(data).eq('id', currentEditId); }
              else { await window.supabaseClient.from('properties').insert([data]); }
-             alert("Éxito!"); location.reload();
-         } catch(e) { alert("Error: " + e.message); btn.disabled = false; btn.innerText = "GUARDAR PROPIEDAD"; }
+             
+             alert("¡Guardado correctamente!");
+             
+             // Limpiar formulario y volver al inventario sin recargar toda la página
+             editMode = false;
+             currentEditId = null;
+             document.getElementById('title_es').value = "";
+             document.getElementById('title_en').value = "";
+             document.getElementById('price_sale').value = "";
+             document.getElementById('price_rent').value = "";
+             document.getElementById('description_es').value = "";
+             document.getElementById('description_en').value = "";
+             document.getElementById('images_files').value = "";
+             
+             showSection('sec-list-prop'); // Esto ya llama a loadInventory() automáticamente
+         } catch(e) { 
+             alert("Error: " + e.message); 
+             btn.disabled = false; 
+             btn.innerText = "GUARDAR PROPIEDAD"; 
+         }
       }
 
       async function prepareEdit(id) {
