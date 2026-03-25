@@ -204,17 +204,26 @@
              // Intentamos convertir a número por si es integer en la tabla
              const finalId = isNaN(id) ? id : Number(id);
              
-             const { data, error, status } = await window.supabaseClient
+             const { data, error, status, count } = await window.supabaseClient
                .from('properties')
                .delete()
                .eq('id', finalId);
 
+             // En Supabase, si RLS bloquea el borrado, a veces no da 'error' pero el dato sigue ahí.
              if(error) {
                console.error("Error completo:", error);
-               alert("Error de la base de datos: " + error.message + "\nDetalles: " + (error.details || "Ninguno"));
+               alert("ERROR: La base de datos rechazó el borrado.\nMensaje: " + error.message);
              } else {
-               alert("¡Propiedad eliminada con éxito!");
-               loadInventory();
+               // Verificamos si realmente se eliminó (intentando buscarlo de nuevo)
+               const { data: verify } = await window.supabaseClient.from('properties').select('id').eq('id', finalId).single();
+               
+               if(verify) {
+                 alert("AVISO: El comando se envió, pero la propiedad SIGUE en la base de datos.\n\nEsto suele pasar por POLÍTICAS DE SEGURIDAD (RLS) en Supabase que no te permiten borrar este registro específico.");
+                 console.warn("RLS bloqueó el borrado exitoso del ID:", finalId);
+               } else {
+                 alert("¡Propiedad eliminada con éxito de la base de datos!");
+                 loadInventory();
+               }
              }
            } catch(e) { 
              console.error("Excepción al borrar:", e);
