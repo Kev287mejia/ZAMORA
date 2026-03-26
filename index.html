@@ -786,10 +786,10 @@
                   phtml += `
                     <div class="col-sm-6 col-lg-4 wow-outer">
                       <article class="post-modern wow slideInUp">
-                        <a class="post-modern-media" href="propiedades"><img src="${img}" alt="" width="571" height="353"/></a>
-                        <h4 class="post-modern-title"><a class="post-modern-title" href="propiedades">${p.title_es}</a></h4>
+                        <a class="post-modern-media" href="propiedad-detalle?id=${p.id}"><img src="${img}" alt="" width="571" height="353"/></a>
+                        <h4 class="post-modern-title"><a class="post-modern-title" href="propiedad-detalle?id=${p.id}">${p.title_es}</a></h4>
                         <ul class="post-modern-meta">
-                          <li><a class="button-winona" href="propiedades">${p.neighborhood}</a></li>
+                          <li><a class="button-winona" href="propiedad-detalle?id=${p.id}">${p.neighborhood}</a></li>
                           <li><span class="text-primary font-weight-bold">${price}</span></li>
                         </ul>
                         <p>${p.category} en ${p.neighborhood}. Excelente oportunidad de inversión.</p>

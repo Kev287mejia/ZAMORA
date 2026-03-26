@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html class="wide wow-animation" lang="es">
+  <head>
+    <title>Detalle de Propiedad - Bienes Raíces Zamora</title>
+    <meta name="viewport" content="width=device-width height=device-height initial-scale=1.0 maximum-scale=1.0 user-scalable=0">
+    <meta charset="utf-8">
+    <link rel="icon" href="images/favicon-v2.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Outfit:300,400,600,700,800%7CPlayfair+Display:700,900">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/style.css" id="main-styles-link">
+    <link rel="stylesheet" href="css/branding.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-db.js"></script>
+
+    <style>
+      :root { --premium-blue: #412a1f; --accent-gold: #c5a059; --soft-bg: #f8f9fa; }
+      body { font-family: 'Outfit', sans-serif; background: #fff; color: #2c3e50; }
+      .property-gallery { position: relative; background: #000; height: 60vh; min-height: 400px; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 0 0 40px 40px; }
+      .main-photo { width: 100%; height: 100%; object-fit: cover; opacity: 0.85; filter: brightness(0.9); }
+      .gallery-overlay { position: absolute; bottom: 30px; left: 30px; z-index: 10; display: flex; gap: 10px; }
+      .thumb-btn { width: 80px; height: 60px; border-radius: 8px; border: 2px solid rgba(255,255,255,0.3); overflow: hidden; cursor: pointer; transition: 0.3s; }
+      .thumb-btn:hover, .thumb-btn.active { border-color: var(--accent-gold); transform: scale(1.05); }
+      .thumb-btn img { width: 100%; height: 100%; object-fit: cover; }
+
+      .prop-header { padding: 40px 0; border-bottom: 1px solid #eee; }
+      .badge-type { background: var(--accent-gold); color: #fff; padding: 5px 15px; border-radius: 50px; font-size: 12px; font-weight: 700; text-transform: uppercase; margin-bottom: 15px; display: inline-block; }
+      .prop-title { font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 900; color: var(--premium-blue); line-height: 1.1; }
+      .prop-price-tag { font-size: 32px; font-weight: 800; color: var(--premium-blue); margin-top: 10px; }
+      
+      .specs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; background: #fdfdfd; padding: 25px; border-radius: 15px; border: 1px solid #f0f0f0; margin: 30px 0; }
+      .spec-item { text-align: center; }
+      .spec-item .mdi { font-size: 28px; color: var(--accent-gold); display: block; margin-bottom: 5px; }
+      .spec-item span { font-size: 13px; color: #7f8c8d; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; }
+      .spec-item h5 { font-size: 18px; margin: 0; font-weight: 800; color: var(--premium-blue); }
+
+      .description-box { font-size: 17px; line-height: 1.8; color: #576574; white-space: pre-wrap; margin-bottom: 60px; }
+      
+      .sidebar-contact { position: sticky; top: 120px; background: var(--premium-blue); color: #fff; padding: 35px; border-radius: 20px; box-shadow: 0 20px 50px rgba(65, 42, 31, 0.2); }
+      .contact-avatar { width: 60px; height: 60px; border-radius: 50%; border: 3px solid var(--accent-gold); margin-bottom: 15px; }
+      .btn-action-wa { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 18px; background: #25d366; color: #fff; border-radius: 12px; font-weight: 800; text-decoration: none; transition: 0.3s; margin-bottom: 15px; border: none; }
+      .btn-action-wa:hover { background: #1ebe5a; transform: translateY(-3px); }
+      .btn-calc-link { display: block; text-align: center; color: rgba(255,255,255,0.6); font-size: 13px; text-decoration: underline; }
+      
+      @media (max-width: 768px) { .property-gallery { height: 40vh; border-radius: 0; } .prop-title { font-size: 30px; } .specs-grid { grid-template-columns: 1fr 1fr; } .sidebar-contact { position: relative; top: 0; margin-top: 40px; } }
+    </style>
+  </head>
+  <body>
+    <div class="preloader">
+      <div class="preloader-logo"><img src="images/logo-oficial-v2.png" alt="Logo" width="200"/></div>
+      <div class="preloader-body"><div id="loadingProgressG"><div class="loadingProgressG" id="loadingProgressG_1"></div></div></div>
+    </div>
+
+    <div class="page">
+      <header class="section page-header">
+        <div class="rd-navbar-wrap">
+          <nav class="rd-navbar rd-navbar-corporate" data-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static">
+            <div class="rd-navbar-aside-outer">
+              <div class="rd-navbar-aside">
+                <div class="rd-navbar-panel">
+                  <button class="rd-navbar-toggle" data-rd-navbar-toggle="#rd-navbar-nav-wrap-1"><span></span></button>
+                  <a class="rd-navbar-brand" href="index"><img src="images/logo-oficial-v2.png" alt="Zamora" width="160"/></a>
+                </div>
+                <div class="rd-navbar-collapse">
+                    <ul class="rd-navbar-nav" style="margin-right: 20px;">
+                        <li class="rd-nav-item"><a class="rd-nav-link" href="index">Inicio</a></li>
+                        <li class="rd-nav-item"><a class="rd-nav-link" href="propiedades">Catálogo</a></li>
+                    </ul>
+                    <a class="button button-sm button-primary button-winona" href="contacto">Agendar Visita</a>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </header>
+
+      <section id="prop-gallery" class="property-gallery">
+        <img id="main-frame" src="images/propiedad-placeholder.png" class="main-photo">
+        <div class="gallery-overlay" id="gallery-thumbs"></div>
+      </section>
+
+      <div class="container section-sm">
+        <div class="row row-50">
+          <div class="col-lg-8">
+            <div class="prop-header">
+              <div id="prop-label" class="badge-type">Cargando...</div>
+              <h1 id="prop-title" class="prop-title">---</h1>
+              <p id="prop-location" class="text-gray-500 mt-2">📍 Cargando ubicación...</p>
+              <div id="prop-price" class="prop-price-tag">$0.00</div>
+            </div>
+
+            <div class="specs-grid">
+              <div class="spec-item">
+                <span class="mdi mdi-bed-outline"></span>
+                <span>Habitaciones</span>
+                <h5 id="spec-beds">-</h5>
+              </div>
+              <div class="spec-item">
+                <span class="mdi mdi-shower"></span>
+                <span>Baños</span>
+                <h5 id="spec-baths">-</h5>
+              </div>
+              <div class="spec-item">
+                <span class="mdi mdi-vector-square"></span>
+                <span>Área</span>
+                <h5 id="spec-area">-</h5>
+              </div>
+            </div>
+
+            <h4 class="font-weight-bold mb-4" style="color: var(--premium-blue);">Descripción de la Propiedad</h4>
+            <div id="prop-description" class="description-box">
+              Cargando los detalles de esta excelente oportunidad...
+            </div>
+            
+            <div class="alert alert-info py-4 px-4" style="border-radius: 12px; background: #e3f2fd; border: none;">
+                <h5 class="text-primary-dark font-weight-bold mb-2">💡 Dato de Inversión</h5>
+                <p class="mb-0" style="font-size: 14px; color: #444;">Esta propiedad se encuentra en una zona de alta creciente. Ideal para proyectos residenciales o alquiler de larga estancia.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <aside class="sidebar-contact">
+              <img src="images/logo-oficial-v2.png" class="contact-avatar">
+              <h5 class="text-white mb-1">Bienes Raíces Zamora</h5>
+              <p class="text-white-50 small mb-4">Especialistas en la Costa Caribe</p>
+              
+              <p class="small text-white-50">¿Te interesa esta propiedad? Consúltame ahora para una visita inmediata.</p>
+              
+              <a href="#" id="btn-wa-action" target="_blank" class="btn-action-wa">
+                <span class="mdi mdi-whatsapp"></span> CONSULTAR INFO
+              </a>
+              
+              <a id="calc-link" href="calculadora" class="btn-calc-link">Calcular cuota hipotecaria</a>
+              
+              <hr style="opacity: 0.1; margin: 25px 0;">
+              
+              <div class="d-flex align-items-center gap-3">
+                <span class="mdi mdi-phone-in-talk text-accent" style="font-size: 24px; color: var(--accent-gold);"></span>
+                <div>
+                   <p class="small text-white-50 m-0">Llamada Directa</p>
+                   <p class="text-white font-weight-bold m-0">+505 5764 9920</p>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </div>
+
+      <footer class="section novi-background footer-advanced bg-gray-700">
+        <div class="footer-advanced-aside">
+          <div class="container text-center">
+            <p class="rights"><span>&copy;&nbsp;</span><span class="copyright-year"></span> Bienes Raíces Zamora.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script src="js/core.min.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+      const fmt = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+
+      async function loadPropertyDetail() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const pid = urlParams.get('id');
+        if(!pid) { window.location.href = 'propiedades'; return; }
+
+        try {
+          const { data: p, error } = await window.supabaseClient.from('properties').select('*').eq('id', pid).single();
+          if(error || !p) throw error;
+
+          // Hydrate UI
+          document.title = p.title_es + " | Zamora Real Estate";
+          document.getElementById('prop-title').innerText = p.title_es;
+          document.getElementById('prop-label').innerText = p.category + " - " + p.transaction_type;
+          document.getElementById('prop-location').innerText = "📍 " + p.neighborhood + ", Bluefields";
+          document.getElementById('prop-price').innerText = p.transaction_type === 'Renta' ? fmt.format(p.price_rent) + "/mes" : fmt.format(p.price_sale);
+          
+          document.getElementById('spec-beds').innerText = p.bedrooms || 'N/A';
+          document.getElementById('spec-baths').innerText = p.bathrooms || 'N/A';
+          document.getElementById('spec-area').innerText = (p.area_sqm || '---') + " m²";
+          
+          document.getElementById('prop-description').innerText = p.description_es || "Sin descripción disponible.";
+          
+          // Gallery logic
+          const images = p.images && p.images.length > 0 ? p.images : ['images/propiedad-placeholder.png'];
+          const mainFrame = document.getElementById('main-frame');
+          mainFrame.src = images[0];
+          
+          const thumbContainer = document.getElementById('gallery-thumbs');
+          images.forEach((img, idx) => {
+            const btn = document.createElement('div');
+            btn.className = 'thumb-btn' + (idx === 0 ? ' active' : '');
+            btn.innerHTML = `<img src="${img}">`;
+            btn.onclick = () => {
+               mainFrame.src = img;
+               document.querySelectorAll('.thumb-btn').forEach(b => b.classList.remove('active'));
+               btn.classList.add('active');
+            };
+            thumbContainer.appendChild(btn);
+          });
+
+          // WhatsApp & Links
+          const msg = encodeURIComponent(`Hola Zamora, me interesa la propiedad: ${p.title_es} en ${p.neighborhood}. Me gustaría recibir más fotos y detalles.`);
+          document.getElementById('btn-wa-action').href = `https://wa.me/50557649920?text=${msg}`;
+          document.getElementById('calc-link').href = `calculadora?price=${p.price_sale || 0}`;
+
+        } catch(e) {
+          console.error("Detail Error:", e);
+          document.getElementById('prop-description').innerHTML = '<p class="text-danger">No pudimos cargar esta propiedad. <a href="propiedades">Volver al catálogo</a></p>';
+        }
+      }
+      window.addEventListener('load', loadPropertyDetail);
+    </script>
+  </body>
+</html>

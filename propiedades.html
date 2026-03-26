@@ -337,10 +337,10 @@
                   <button class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFavorite('${prop.id}')" id="fav-${prop.id}">
                     <span class="mdi ${isFav ? 'mdi-heart' : 'mdi-heart-outline'}"></span>
                   </button>
-                  <img src="${mainImg}" class="prop-img" onerror="this.src='images/propiedad-placeholder.png'">
+                  <a href="propiedad-detalle?id=${prop.id}"><img src="${mainImg}" class="prop-img" onerror="this.src='images/propiedad-placeholder.png'"></a>
                   <span class="badge-tipo">${prop.category}</span>
                   <div class="prop-body">
-                    <h5>${prop.title_es}</h5>
+                    <h5><a href="propiedad-detalle?id=${prop.id}" style="color:inherit; text-decoration:none;">${prop.title_es}</a></h5>
                     <p class="barrio">📍 ${nClean}</p>
                     <div class="prop-meta">
                       ${prop.bedrooms ? `<span><span class="mdi mdi-bed-outline"></span> ${prop.bedrooms} Hab</span>` : ''}
@@ -349,11 +349,11 @@
                     </div>
                     <div class="prop-price">${price}</div>
                     <div style="display:flex; gap:8px;">
-                      <a class="btn-wa" style="flex:2.5;" href="https://wa.me/50557649920?text=Me interesa: ${encodeURIComponent(prop.title_es)}" target="_blank">
+                      <a class="btn-wa" style="flex:2.5;" href="https://wa.me/50557649920?text=Me interesa la propiedad: ${encodeURIComponent(prop.title_es)} en ${prop.neighborhood}" target="_blank">
                         <span class="mdi mdi-whatsapp"></span> CONSULTAR
                       </a>
-                      <a href="calculadora.html?price=${prop.price_sale || 0}" class="btn-calc" title="Calcular Hipoteca">
-                        <span class="mdi mdi-calculator" style="font-size:20px;"></span>
+                      <a href="propiedad-detalle?id=${prop.id}" class="btn-calc" title="Ver Detalles">
+                        <span class="mdi mdi-eye" style="font-size:20px;"></span>
                       </a>
                     </div>
                   </div>
