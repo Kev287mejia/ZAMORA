@@ -398,8 +398,18 @@
               <h3 class="wow-outer"><span id="best-offers-title" class="wow slideInDown text-uppercase">Mejores Ofertas</span></h3>
               <p id="best-offers-subtitle" class="heading-subtitle"></p>
               <p class="wow-outer offset-top-4"><span id="best-offers-desc" class="wow slideInDown" data-wow-delay=".05s"></span></p>
-              <div class="wow-outer button-outer"><a class="button button-primary-white button-winona wow slideInDown" href="#" data-wow-delay=".1s">Saber m&aacute;s</a></div>
+              <div class="wow-outer button-outer"><a class="button button-primary-white button-winona wow slideInDown" href="propiedades" data-wow-delay=".1s">Ver Todo el Cat&aacute;logo</a></div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Dynamic Featured Properties -->
+      <section class="section novi-background section-lg text-center bg-gray-100">
+        <div class="container">
+          <h3 class="text-uppercase font-weight-bold wow-outer"><span class="wow slideInDown">Propiedades Destacadas</span></h3>
+          <div id="best-offers-container" class="row row-50 offset-top-2 text-left">
+             <div class="col-12 text-center p-5">Cargando propiedades destacadas...</div>
           </div>
         </div>
       </section>
@@ -760,6 +770,35 @@
               }
             } else if (bposts && bposts.length === 0) {
               document.getElementById('recent-blog-container').innerHTML = '<div class="col-12 text-center">Nuevas noticias próximamente.</div>';
+            }
+
+            // 4. Best Offers (Properties)
+            console.log("Fetching Best Offers (Featured Properties)...");
+            const { data: bestProps, error: bpError } = await window.supabaseClient.from('properties').select('*').limit(3).order('created_at', { ascending: false });
+            if (!bpError && bestProps && bestProps.length > 0) {
+              const bpContainer = document.getElementById('best-offers-container');
+              if (bpContainer) {
+                const fmter = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+                let phtml = "";
+                bestProps.forEach(p => {
+                  const img = p.images?.[0] || 'images/propiedad-1.png';
+                  const price = p.transaction_type === 'Renta' ? `${fmter.format(p.price_rent)}/mo` : fmter.format(p.price_sale);
+                  phtml += `
+                    <div class="col-sm-6 col-lg-4 wow-outer">
+                      <article class="post-modern wow slideInUp">
+                        <a class="post-modern-media" href="propiedades"><img src="${img}" alt="" width="571" height="353"/></a>
+                        <h4 class="post-modern-title"><a class="post-modern-title" href="propiedades">${p.title_es}</a></h4>
+                        <ul class="post-modern-meta">
+                          <li><a class="button-winona" href="propiedades">${p.neighborhood}</a></li>
+                          <li><span class="text-primary font-weight-bold">${price}</span></li>
+                        </ul>
+                        <p>${p.category} en ${p.neighborhood}. Excelente oportunidad de inversión.</p>
+                      </article>
+                    </div>
+                  `;
+                });
+                bpContainer.innerHTML = phtml;
+              }
             }
         } catch (e) { console.error("CRITICAL Hydration Fault:", e); }
       }

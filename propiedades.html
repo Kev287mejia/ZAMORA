@@ -324,10 +324,11 @@
           loadedProps = data; loader.style.display = 'none';
           if(data.length === 0) { noRes.style.display = 'block'; return; }
 
+          const fmt = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
           data.forEach(prop => {
             const isFav = favorites.some(f => f.id === prop.id);
             const mainImg = prop.images?.[0] || 'images/propiedad-placeholder.png';
-            const price = prop.transaction_type === 'Renta' ? `$${prop.price_rent}/mes` : `$${prop.price_sale}`;
+            const price = prop.transaction_type === 'Renta' ? `${fmt.format(prop.price_rent)}/mes` : fmt.format(prop.price_sale);
             const nClean = (prop.neighborhood || "").replace(/Ã°Å¸â€œÂ/g, "").trim();
 
             grid.innerHTML += `
