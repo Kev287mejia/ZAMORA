@@ -302,13 +302,16 @@
 
         <script>
           async function sendListingToWA() {
+            const rawPrice = document.getElementById('prop-price-sale').value || document.getElementById('prop-price-rent').value || "0";
+            const cleanPrice = parseFloat(rawPrice.replace(/[^0-9.]/g, '')) || 0;
+
             const fields = {
               full_name: document.getElementById('owner-name').value,
               phone: document.getElementById('owner-phone').value,
               email: document.getElementById('owner-email').value,
               neighborhood: document.getElementById('prop-address').value,
               property_type: document.getElementById('prop-trans-type').value,
-              price_expectation: document.getElementById('prop-price-sale').value || document.getElementById('prop-price-rent').value || "0",
+              price_expectation: cleanPrice,
               message: "Interés en: " + document.getElementById('prop-trans-type').value
             };
 
@@ -317,19 +320,18 @@
               return;
             }
 
-            // Guardar en Supabase
+            // Guardar en Supabase y abrir WA (Lógica mejorada)
             try {
               if (window.supabaseClient) {
-                const { error } = await window.supabaseClient.from('leads').insert([fields]);
-                if (error) console.error("Error DB:", error);
-                else alert("¡Datos recibidos! Ahora le redirigiremos a WhatsApp para ultimar detalles.");
+                await window.supabaseClient.from('leads').insert([fields]);
               }
-            } catch (err) { console.error("Error conexión:", err); }
+            } catch (err) { console.warn("Fallback: No se guardó en DB pero abriendo WA igualmente.", err); }
+            finally {
+              const msg = `SOLICITUD DE ENLISTADO OFICIAL\n--------------------\n👤 PROPIETARIO:\n- Nombre: ${fields.full_name}\n- Email: ${fields.email}\n- WhatsApp: ${fields.phone}\n\n🏠 PROPIEDAD:\n- Ubicación: ${fields.neighborhood}\n- Operación: ${fields.property_type}\n- Expectativa: $${fields.price_expectation}`;
 
-            const msg = `SOLICITUD DE ENLISTADO OFICIAL\n--------------------\n👤 PROPIETARIO:\n- Nombre: ${fields.full_name}\n- Email: ${fields.email}\n- WhatsApp: ${fields.phone}\n\n🏠 PROPIEDAD:\n- Ubicación: ${fields.neighborhood}\n- Operación: ${fields.property_type}\n- Expectativa: $${fields.price_expectation}`;
-
-            const waUrl = "https://wa.me/50557649920?text=" + encodeURIComponent(msg);
-            window.open(waUrl, '_blank');
+              const waUrl = "https://wa.me/50557649920?text=" + encodeURIComponent(msg);
+              window.open(waUrl, '_blank');
+            }
           }
         </script>
       </section>
