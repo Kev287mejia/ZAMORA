@@ -272,17 +272,18 @@ input:focus, select:focus, textarea:focus {
 
 /* Fondo del panel lateral (Drawer) */
 .rd-navbar-fixed .rd-navbar-nav-wrap {
-    background: #412a1f !important; /* Fondo chocolate oscuro de la marca */
+    background: #412a1f !important; /* Fondo chocolate oscuro */
     box-shadow: 0 0 30px rgba(0,0,0,0.5) !important;
-    z-index: 20000 !important; /* Por encima de TODO */
+    z-index: 20000 !important; 
     width: 270px !important;
     height: 100vh !important;
     position: fixed !important;
     top: 0 !important;
-    left: -270px !important; /* Oculto por defecto */
+    left: -270px !important; 
     margin: 0 !important;
-    padding: 80px 0 20px 0 !important; /* Espacio para el panel superior */
+    padding: 0 !important; /* Reset padding to 0 */
     transition: all 0.3s ease !important;
+    overflow-y: auto !important; /* Permitir scroll en el menú si hay muchos links */
 }
 
 /* Forzar visualización del panel cuando el JS añade la clase 'active' */
@@ -371,6 +372,9 @@ input:focus, select:focus, textarea:focus {
 .rd-navbar-fixed .rd-navbar-nav-wrap ul {
     opacity: 1 !important;
     visibility: visible !important;
+    margin: 0 !important;
+    padding-top: 85px !important; /* Espacio para el botón X */
+    display: block !important;
 }
 
 /* Logo en modo fixed */
