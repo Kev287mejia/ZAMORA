@@ -277,6 +277,13 @@ input:focus, select:focus, textarea:focus {
     z-index: 10000 !important; /* Por encima de todo */
 }
 
+/* Forzar visualización del panel cuando el JS añade la clase 'active' */
+.rd-navbar-fixed .rd-navbar-nav-wrap.active {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
 /* Título/Header del Drawer (Pintado de blanco para el logo) */
 .rd-navbar-fixed .rd-navbar-panel {
     background: #ffffff !important;
