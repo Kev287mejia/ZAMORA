@@ -281,6 +281,11 @@ input:focus, select:focus, textarea:focus {
     color: #ffffff !important;
 }
 
+/* Forzar que el subtítulo de mejores ofertas sea siempre mayúsculas */
+#best-offers-subtitle {
+    text-transform: uppercase !important;
+}
+
 /* --- Menú Móvil (Drawer) - Rediseño Premium --- */
 
 /* Fondo del panel lateral (Drawer) */
