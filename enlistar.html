@@ -303,36 +303,30 @@
         <script>
           async function sendListingToWA() {
             const fields = {
-              owner_name: document.getElementById('owner-name').value,
-              owner_id: document.getElementById('owner-id').value,
-              email: document.getElementById('owner-email').value,
+              full_name: document.getElementById('owner-name').value,
               phone: document.getElementById('owner-phone').value,
-              property_address: document.getElementById('prop-address').value,
-              transaction_type: document.getElementById('prop-trans-type').value,
-              sale_price: document.getElementById('prop-price-sale').value,
-              rent_price: document.getElementById('prop-price-rent').value
+              email: document.getElementById('owner-email').value,
+              neighborhood: document.getElementById('prop-address').value,
+              property_type: document.getElementById('prop-trans-type').value,
+              price_expectation: document.getElementById('prop-price-sale').value || document.getElementById('prop-price-rent').value || "0",
+              message: "Interés en: " + document.getElementById('prop-trans-type').value
             };
 
-            if(!fields.owner_name || !fields.phone || !fields.property_address) {
-              alert("Por favor, complete los campos obligatorios.");
+            if(!fields.full_name || !fields.phone || !fields.neighborhood) {
+              alert("Por favor, complete los campos obligatorios (Nombre, Teléfono y Ubicación).");
               return;
             }
 
-            // Intentar guardar en Supabase (Silenciosamente o con aviso)
+            // Guardar en Supabase
             try {
               if (window.supabaseClient) {
-                const { error } = await window.supabaseClient
-                  .from('listing_requests')
-                  .insert([fields]);
-                
-                if (error) console.error("Error al guardar en base de datos:", error);
-                else console.log("Solicitud guardada en Supabase correctamente.");
+                const { error } = await window.supabaseClient.from('leads').insert([fields]);
+                if (error) console.error("Error DB:", error);
+                else alert("¡Datos recibidos! Ahora le redirigiremos a WhatsApp para ultimar detalles.");
               }
-            } catch (err) {
-              console.error("Error de conexión con Supabase:", err);
-            }
+            } catch (err) { console.error("Error conexión:", err); }
 
-            const msg = `SOLICITUD DE ENLISTADO OFICIAL\n--------------------\n👤 PROPIETARIO:\n- Nombre: ${fields.owner_name}\n- Cédula: ${fields.owner_id}\n- Email: ${fields.email}\n- WhatsApp: ${fields.phone}\n\n🏠 PROPIEDAD:\n- Ubicación: ${fields.property_address}\n- Operación: ${fields.transaction_type}\n- Precio Venta: ${fields.sale_price || 'N/A'}\n- Precio Renta: ${fields.rent_price || 'N/A'}`;
+            const msg = `SOLICITUD DE ENLISTADO OFICIAL\n--------------------\n👤 PROPIETARIO:\n- Nombre: ${fields.full_name}\n- Email: ${fields.email}\n- WhatsApp: ${fields.phone}\n\n🏠 PROPIEDAD:\n- Ubicación: ${fields.neighborhood}\n- Operación: ${fields.property_type}\n- Expectativa: $${fields.price_expectation}`;
 
             const waUrl = "https://wa.me/50557649920?text=" + encodeURIComponent(msg);
             window.open(waUrl, '_blank');
