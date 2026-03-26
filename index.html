@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width height=device-height initial-scale=1.0 maximum-scale=1.0 user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
-    <link rel="icon" href="images/favicon-zamora.png" type="image/png">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,700,800%7CPoppins:300,400,700">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/fonts.css">
@@ -409,7 +409,7 @@
       </section>
 
       <!-- Best offer-->
-      <section class="section novi-background section-1 bg-primary-darker text-center" style="background-image: url(images/promo-septiembre.png);">
+      <section class="section novi-background section-1 bg-primary-darker text-center" style="background-image: url(images/best-offers-bg.png);">
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-sm-10 col-lg-7 col-xl-6">
@@ -727,11 +727,21 @@
               // Force layout update for Wow and Owl
               if (typeof $ !== 'undefined' && $.fn.owlCarousel) {
                 const $owl = $(container);
-                if ($owl.data('owl.carousel')) $owl.trigger('destroy.owl.carousel');
-                $owl.owlCarousel({
-                    items: 1, margin: 30, dots: true, loop: tests.length > 2, autoplay: true,
-                    responsive: { 0: { items: 1 }, 768: { items: 2 }, 992: { items: 3 } }
-                });
+                // Check if already initialized and use the API to update rather than full destroy if possible
+                if ($owl.data('owl.carousel')) {
+                  try {
+                    $owl.owlCarousel('destroy');
+                    $owl.removeClass('owl-loaded owl-drag owl-refresh');
+                  } catch (err) {
+                    console.warn("Owl Carousel cleanup warning:", err);
+                  }
+                }
+                setTimeout(() => {
+                  $owl.owlCarousel({
+                      items: 1, margin: 30, dots: true, loop: tests.length > 2, autoplay: true,
+                      responsive: { 0: { items: 1 }, 768: { items: 2 }, 992: { items: 3 } }
+                  });
+                }, 100);
               }
             }
           }

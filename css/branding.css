@@ -274,7 +274,15 @@ input:focus, select:focus, textarea:focus {
 .rd-navbar-fixed .rd-navbar-nav-wrap {
     background: #412a1f !important; /* Fondo chocolate oscuro de la marca */
     box-shadow: 0 0 30px rgba(0,0,0,0.5) !important;
-    z-index: 10000 !important; /* Por encima de todo */
+    z-index: 20000 !important; /* Por encima de TODO */
+    width: 270px !important;
+    height: 100vh !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: -270px !important; /* Oculto por defecto */
+    margin: 0 !important;
+    padding: 80px 0 20px 0 !important; /* Espacio para el panel superior */
+    transition: all 0.3s ease !important;
 }
 
 /* Forzar visualización del panel cuando el JS añade la clase 'active' */
@@ -282,6 +290,15 @@ input:focus, select:focus, textarea:focus {
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
+    left: 0 !important; 
+    transform: none !important; 
+}
+
+/* Eliminar transformaciones molestas de los padres en móvil */
+.rd-navbar-fixed .rd-navbar-main-outer,
+.rd-navbar-fixed .rd-navbar-main {
+    transform: none !important;
+    position: static !important;
 }
 
 /* Título/Header del Drawer (Pintado de blanco para el logo) */
@@ -296,7 +313,7 @@ input:focus, select:focus, textarea:focus {
 .rd-navbar-fixed .rd-nav-link {
     color: rgba(255, 255, 255, 0.8) !important;
     background: transparent !important;
-    text-shadow: none !important; /* Eliminar sombras borrosas del pantallazo */
+    text-shadow: none !important;
     font-weight: 500 !important;
     padding: 18px 25px !important;
     text-transform: uppercase !important;
@@ -309,33 +326,52 @@ input:focus, select:focus, textarea:focus {
 .rd-navbar-fixed .rd-nav-link:hover {
     color: #fff !important;
     background: rgba(247, 148, 29, 0.1) !important;
-    padding-left: 35px !important; /* Efecto sutil de desplazamiento */
+    padding-left: 35px !important;
 }
 
-/* ÍTEM ACTIVO (Eliminar el azul del pantallazo) */
+/* ÍTEM ACTIVO */
 .rd-navbar-fixed .rd-nav-item.active .rd-nav-link {
-    background: var(--primary-gradient) !important; /* Degradado naranja/rojo de la marca */
+    background: var(--primary-gradient) !important;
     color: #fff !important;
     font-weight: 700 !important;
 }
 
-/* Toggle (Botón hamburguesa) en móvil - Solo Branding de color */
+/* Toggle (Botón hamburguesa) en móvil */
 .rd-navbar-fixed .rd-navbar-toggle {
-    z-index: 10002 !important; 
+    z-index: 20005 !important; /* Por encima del drawer */
     pointer-events: auto !important;
+    cursor: pointer !important;
 }
 
-/* Solo cambiar el color de las líneas si NO están en estado activo (para evitar el efecto asterisco) */
+/* Base de las líneas para evitar el efecto 'asterisco' */
 .rd-navbar-fixed .rd-navbar-toggle span,
 .rd-navbar-fixed .rd-navbar-toggle span::before,
 .rd-navbar-fixed .rd-navbar-toggle span::after {
     background-color: var(--primary-orange) !important;
+    width: 24px !important;
+    height: 2px !important;
+    display: block !important;
     transition: all 0.3s ease !important;
 }
 
-/* Permitir que la línea central desaparezca al abrir el menú (Estado Senior) */
+/* Al abrir, la línea central se oculta para formar la X */
 .rd-navbar-fixed .rd-navbar-toggle.active span {
     background-color: transparent !important;
+}
+
+/* Para evitar el efecto 'asterisco', nos aseguramos de que las líneas se muevan a su posición de X */
+/* El RD Navbar suele usar transformaciones en ::before y ::after para la X */
+.rd-navbar-fixed .rd-navbar-toggle.active span::before {
+    background-color: var(--primary-orange) !important;
+}
+.rd-navbar-fixed .rd-navbar-toggle.active span::after {
+    background-color: var(--primary-orange) !important;
+}
+
+/* Forzar visualización de los enlaces en el drawer */
+.rd-navbar-fixed .rd-navbar-nav-wrap ul {
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
 /* Logo en modo fixed */
