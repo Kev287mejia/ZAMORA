@@ -108,6 +108,9 @@
       }
       .post-card:hover .read-more-btn::after { width: 50px; background: var(--accent-gold); }
     </style>
+    <!-- Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-db.js?v=1.1"></script>
   </head>
   <body>
     <script>
@@ -160,52 +163,14 @@
 
       <section class="section section-xl bg-default">
         <div class="container">
-          <div class="row row-80">
-            <!-- Featured Post -->
-            <div class="col-md-6 col-lg-4 wow-outer">
-              <article class="post-card wow slideInUp">
-                <a href="blog-bluefields-hub-inversion" class="post-img-container">
-                  <img src="images/blog-1.png" alt="Inversión Bluefields">
-                </a>
-                <div class="post-info">
-                  <span class="post-tag">Inversión • 2026</span>
-                  <h3 class="post-title"><a href="blog-bluefields-hub-inversion">Bluefields: El Nuevo Hub de Inversión en el Caribe</a></h3>
-                  <p class="post-excerpt">La transformación de Bluefields está atrayendo capital global. Descubra los sectores con mayor potencial de crecimiento para este año.</p>
-                  <a href="blog-bluefields-hub-inversion" class="read-more-btn">Leer Artículo</a>
+            <div id="blog-posts-container" class="row row-80">
+              <!-- Los artículos se cargarán aquí desde Supabase -->
+              <div class="col-12 text-center p-5">
+                <div class="spinner-border text-primary" role="status">
+                  <span class="sr-only">Cargando...</span>
                 </div>
-              </article>
+              </div>
             </div>
-            
-            <!-- Post 2 -->
-            <div class="col-md-6 col-lg-4 wow-outer">
-              <article class="post-card wow slideInUp" data-wow-delay=".1s">
-                <div class="post-img-container">
-                  <img src="images/blog-2.png" alt="Plusvalía Caribe">
-                </div>
-                <div class="post-info">
-                  <span class="post-tag">Desarrollo • Vialidad</span>
-                  <h3 class="post-title">El Impacto de la Carretera en la Plusvalía</h3>
-                  <p class="post-excerpt">Analizamos cómo la nueva conectividad vial ha redefinido el valor de la tierra en toda la región autónoma.</p>
-                  <a href="#" class="read-more-btn">Próximamente</a>
-                </div>
-              </article>
-            </div>
-
-            <!-- Post 3 -->
-            <div class="col-md-6 col-lg-4 wow-outer">
-              <article class="post-card wow slideInUp" data-wow-delay=".2s">
-                <div class="post-img-container">
-                  <img src="images/virtual-tour.png" alt="Seguridad Jurídica">
-                </div>
-                <div class="post-info">
-                  <span class="post-tag">Consejos • Legal</span>
-                  <h3 class="post-title">Guía de Seguridad Jurídica Inmobiliaria</h3>
-                  <p class="post-excerpt">Todo lo que necesita saber sobre títulos y procesos legales para invertir con total seguridad en Nicaragua.</p>
-                  <a href="#" class="read-more-btn">Próximamente</a>
-                </div>
-              </article>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -242,10 +207,48 @@
     </div>
 
     <script>
-      function closeWAChat() {
-        document.getElementById('wa-chat-bubble').style.display = 'none';
+      async function loadBlogPosts() {
+        const container = document.getElementById('blog-posts-container');
+        try {
+          const { data: posts, error } = await window.supabaseClient.from('blog_posts').select('*').order('created_at', { ascending: false });
+          if(error) throw error;
+          
+          if(!posts || posts.length === 0) {
+            container.innerHTML = '<div class="col-12 text-center"><h5>Próximamente estaremos publicando más noticias.</h5></div>';
+            return;
+          }
+
+          let html = "";
+          posts.forEach((p, index) => {
+            const delay = (index % 3) * 0.1;
+            const img = p.image_url || 'images/blog-1.png';
+            const date = new Date(p.created_at).getFullYear();
+            const tag = p.tag_es || 'General';
+            html += `
+              <div class="col-md-6 col-lg-4 wow-outer">
+                <article class="post-card wow slideInUp" data-wow-delay="${delay}s">
+                  <div class="post-img-container">
+                    <img src="${img}" alt="${p.title_es}">
+                  </div>
+                  <div class="post-info">
+                    <span class="post-tag">${tag} • ${date}</span>
+                    <h3 class="post-title">${p.title_es}</h3>
+                    <p class="post-excerpt">${p.excerpt_es}</p>
+                    <a href="#" class="read-more-btn" onclick="alert('Próximamente: Detalle completo habilitado.'); return false;">Leer Artículo</a>
+                  </div>
+                </article>
+              </div>
+            `;
+          });
+          container.innerHTML = html;
+        } catch(e) {
+          console.error("Blog Load Error:", e);
+          container.innerHTML = '<div class="col-12 text-center text-danger">Error al cargar artículos.</div>';
+        }
       }
-      window.addEventListener('load', function() {
+
+      window.addEventListener('load', () => {
+        loadBlogPosts();
         setTimeout(function() {
           const bubble = document.getElementById('wa-chat-bubble');
           if(bubble) bubble.style.display = 'block';

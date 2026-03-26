@@ -378,28 +378,10 @@
         <div class="container">
           <h3 class="text-uppercase font-weight-bold wow-outer"><span class="wow slideInDown">Noticias & Inversi&oacute;n</span></h3>
           <p class="big wow-outer"><span class="wow slideInUp">Mant&eacute;ngase al d&iacute;a con las oportunidades y el crecimiento del Caribe Nicaragüense.</span></p>
-          <div class="row row-50 offset-top-2">
-            <div class="col-md-6 wow-outer">
-              <!-- Post Modern-->
-              <article class="post-modern wow slideInLeft"><a class="post-modern-media" href="blog"><img src="images/blog-1.png" alt="" width="571" height="353"/></a>
-                <h4 class="post-modern-title"><a class="post-modern-title" href="blog-bluefields-hub-inversion">Bluefields: El Nuevo Hub de Inversi&oacute;n</a></h4>
-                <ul class="post-modern-meta">
-                  <li><a class="button-winona" href="blog-bluefields-hub-inversion">Inversi&oacute;n</a></li>
-                  <li>Marzo 2026</li>
-                </ul>
-                <p>Descubra por qu&eacute; los inversionistas extranjeros est&aacute;n poniendo su mirada en Bluefields este a&ntilde;o.</p>
-              </article>
-            </div>
-            <div class="col-md-6 wow-outer">
-              <!-- Post Modern-->
-              <article class="post-modern wow slideInRight"><a class="post-modern-media" href="blog"><img src="images/blog-2.png" alt="" width="571" height="353"/></a>
-                <h4 class="post-modern-title"><a class="post-modern-title" href="blog">Impacto de la Conectividad Vial</a></h4>
-                <ul class="post-modern-meta">
-                  <li><a class="button-winona" href="blog">Plusval&iacute;a</a></li>
-                  <li>Marzo 2026</li>
-                </ul>
-                <p>La nueva infraestructura est&aacute; redefiniendo el valor de las propiedades en toda la costa.</p>
-              </article>
+          <div id="recent-blog-container" class="row row-50 offset-top-2 text-left">
+            <!-- Los 2 artículos más recientes se cargarán aquí -->
+            <div class="col-12 text-center p-4">
+              <p>Cargando últimas noticias...</p>
             </div>
           </div>
           <div class="wow-outer offset-top-2">
@@ -745,9 +727,40 @@
                     }
                   }, 200);
                 } catch (owlErr) { console.warn("Owl update failed but ignoring to preserve page:", owlErr); }
+               }
+             }
+           }
+
+            // 3. Recent Blog Posts
+            console.log("Fetching Recent Blog Posts...");
+            const { data: bposts, error: blogError } = await window.supabaseClient.from('blog_posts').select('*').limit(2).order('created_at', { ascending: false });
+            if (!blogError && bposts && bposts.length > 0) {
+              const bContainer = document.getElementById('recent-blog-container');
+              if (bContainer) {
+                let bHtml = "";
+                bposts.forEach((p, idx) => {
+                  const sideClass = idx === 0 ? 'slideInLeft' : 'slideInRight';
+                  const img = p.image_url || 'images/blog-1.png';
+                  const tag = p.tag_es || 'Noticia';
+                  bHtml += `
+                    <div class="col-md-6 wow-outer">
+                      <article class="post-modern wow ${sideClass}">
+                        <a class="post-modern-media" href="blog"><img src="${img}" alt="" width="571" height="353"/></a>
+                        <h4 class="post-modern-title"><a class="post-modern-title" href="blog">${p.title_es}</a></h4>
+                        <ul class="post-modern-meta">
+                          <li><a class="button-winona" href="blog">${tag}</a></li>
+                          <li>${new Date(p.created_at).toLocaleDateString('es-ES', { month: 'long', year: 'numeric' })}</li>
+                        </ul>
+                        <p>${p.excerpt_es}</p>
+                      </article>
+                    </div>
+                  `;
+                });
+                bContainer.innerHTML = bHtml;
               }
+            } else if (bposts && bposts.length === 0) {
+              document.getElementById('recent-blog-container').innerHTML = '<div class="col-12 text-center">Nuevas noticias próximamente.</div>';
             }
-          }
         } catch (e) { console.error("CRITICAL Hydration Fault:", e); }
       }
       window.addEventListener('load', hydrateSiteData);
