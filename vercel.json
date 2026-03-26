@@ -1,4 +1,12 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/about-us", "destination": "/nosotros", "permanent": true },
+    { "source": "/contacts", "destination": "/contacto", "permanent": true },
+    { "source": "/en/propiedades", "destination": "/en/properties", "permanent": true },
+    { "source": "/en/contacts", "destination": "/en/contact", "permanent": true },
+    { "source": "/en/about-us", "destination": "/en/about", "permanent": true },
+    { "source": "/(.*)\\.html", "destination": "/$1", "permanent": true }
+  ]
 }

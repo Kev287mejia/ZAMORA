@@ -235,10 +235,91 @@ a:hover {
     color: var(--primary-orange) !important;
 }
 
-/* Ajuste de la barra naranja inferior para que no choque con el texto */
-.rd-navbar-corporate .rd-navbar-main-outer {
-    border-bottom: 3px solid var(--primary-orange);
-    background: rgba(0, 0, 0, 0.1); /* Ligero fondo para ayudar al contraste */
+/* Barra del menú - Mejora de legibilidad robusta */
+.rd-navbar-corporate .rd-navbar-main-outer,
+.rd-navbar-static .rd-navbar-main-outer,
+.rd-navbar-fixed .rd-navbar-main-outer {
+    border-bottom: 3px solid var(--primary-orange) !important;
+    background: rgba(0, 0, 0, 0.5) !important; /* Un poco más oscuro para máxima claridad en texto blanco */
+    backdrop-filter: blur(10px) !important;
+    transition: all 0.3s ease;
+}
+
+/* Selector de Idiomas - Eliminación de azul en todos los estados */
+.lang-switcher a:hover:not(.active) {
+    color: var(--primary-orange) !important;
+    background: rgba(247, 148, 29, 0.1) !important;
+}
+
+.lang-switcher a.active,
+.lang-switcher a.active:hover {
+    background: var(--primary-gradient) !important;
+    color: #fff !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
+}
+
+.lang-lang-divider {
+    color: rgba(255, 255, 255, 0.4) !important;
+}
+
+/* Eliminar resplandor azul en inputs (especialmente en calculadora) */
+input:focus, select:focus, textarea:focus {
+    border-color: var(--primary-orange) !important;
+    box-shadow: 0 0 0 4px rgba(247, 148, 29, 0.15) !important;
+}
+
+/* --- Menú Móvil (Drawer) - Rediseño Premium --- */
+
+/* Fondo del panel lateral (Drawer) */
+.rd-navbar-fixed .rd-navbar-nav-wrap {
+    background: #412a1f !important; /* Fondo chocolate oscuro de la marca */
+    box-shadow: 0 0 30px rgba(0,0,0,0.5) !important;
+}
+
+/* Título/Header del Drawer si existe */
+.rd-navbar-fixed .rd-navbar-panel {
+    background: #fff !important;
+    border-bottom: 2px solid var(--primary-orange) !important;
+}
+
+/* Enlaces del menú móvil */
+.rd-navbar-fixed .rd-nav-link {
+    color: rgba(255, 255, 255, 0.8) !important;
+    background: transparent !important;
+    text-shadow: none !important; /* Eliminar sombras borrosas del pantallazo */
+    font-weight: 500 !important;
+    padding: 18px 25px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    transition: all 0.3s ease !important;
+}
+
+/* Hover en móvil */
+.rd-navbar-fixed .rd-nav-link:hover {
+    color: #fff !important;
+    background: rgba(247, 148, 29, 0.1) !important;
+    padding-left: 35px !important; /* Efecto sutil de desplazamiento */
+}
+
+/* ÍTEM ACTIVO (Eliminar el azul del pantallazo) */
+.rd-navbar-fixed .rd-nav-item.active .rd-nav-link {
+    background: var(--primary-gradient) !important; /* Degradado naranja/rojo de la marca */
+    color: #fff !important;
+    font-weight: 700 !important;
+}
+
+/* Toggle (Botón hamburguesa) en móvil */
+.rd-navbar-fixed .rd-navbar-toggle span,
+.rd-navbar-fixed .rd-navbar-toggle span::before,
+.rd-navbar-fixed .rd-navbar-toggle span::after {
+    background-color: var(--primary-orange) !important;
+}
+
+/* Botón de cierre en móvil (X) */
+.rd-navbar-fixed .rd-navbar-toggle.active span::before,
+.rd-navbar-fixed .rd-navbar-toggle.active span::after {
+    background-color: var(--primary-orange) !important;
 }
 
 /* --- Mejoras de Legibilidad en Banners (Breadcrumbs) --- */

@@ -1,23 +1,22 @@
 <!DOCTYPE html>
-<html class="wide wow-animation" lang="es">
+<html class="wide wow-animation" lang="en">
   <head>
-    <title>Calculadora Hipotecaria | Bienes Raíces Zamora</title>
-    <meta name="description" content="Calcula la cuota mensual de tu préstamo hipotecario para comprar tu casa en Bluefields con nuestra herramienta fácil de usar.">
+    <title>Mortgage Calculator | Zamora Real Estate</title>
+    <meta name="description" content="Calculate the monthly payment for your mortgage loan to buy your home in Bluefields with our easy-to-use tool.">
     <meta name="viewport" content="width=device-width height=device-height initial-scale=1.0 maximum-scale=1.0 user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
-    <link rel="icon" href="images/favicon-zamora.png" type="image/png">
+    <link rel="icon" href="../images/favicon-zamora.png" type="image/png">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,700,800%7CPoppins:300,400,700">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/fonts.css">
-    <link rel="stylesheet" href="css/style.css" id="main-styles-link">
-    <link rel="stylesheet" href="css/branding.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/fonts.css">
+    <link rel="stylesheet" href="../css/style.css" id="main-styles-link"><link rel="stylesheet" href="../css/branding.css" id="main-styles-link">
     <style>
       .calc-container { background: #fff; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); padding: 40px; margin-top: -60px; position: relative; z-index: 10; }
       .calc-input-group { margin-bottom: 25px; }
       .calc-label { font-weight: 700; color: #412a1f; font-size: 14px; text-transform: uppercase; margin-bottom: 10px; display: block; }
       .calc-input { width: 100%; padding: 15px; border: 2px solid #edf0f5; border-radius: 12px; font-size: 16px; transition: 0.3s; }
-      .calc-input:focus { outline: none; border-color: #f7941d; box-shadow: 0 0 0 4px rgba(247, 148, 29, 0.1); }
+      .calc-input:focus { outline: none; border-color: #f7941d; box-shadow: 0 0 0 4px rgba(0,123,255,0.1); }
       .result-card { background: #f8faff; border-radius: 15px; padding: 30px; text-align: center; height: 100%; display: flex; flex-direction: column; justify-content: center; border: 1px solid #e1e8f0; }
       .result-value { font-size: 42px; font-weight: 800; color: #f7941d; margin: 10px 0; }
       .result-label { color: #555; font-size: 16px; font-weight: 500; }
@@ -29,8 +28,8 @@
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://zamora-inmobiliaria.vercel.app">
-    <meta property="og:title" content="Calculadora Hipotecaria | Bienes Raíces Zamora">
-    <meta property="og:description" content="Calcula la cuota mensual de tu préstamo hipotecario para comprar tu casa en Bluefields con nuestra herramienta fácil de usar.">
+    <meta property="og:title" content="Mortgage Calculator | Zamora Real Estate">
+    <meta property="og:description" content="Calculate the monthly payment for your mortgage loan to buy your home in Bluefields with our easy-to-use tool.">
     <meta property="og:image" content="https://zamora-inmobiliaria.vercel.app/images/logo-zamora-branding.png">
     
   </head>
@@ -43,7 +42,7 @@
       window.scrollTo(0, 0);
     </script>
     <div class="preloader">
-      <div class="preloader-logo"><img src="images/logo-zamora-branding.png" alt="Logo" width="200"/></div>
+      <div class="preloader-logo"><img src="../images/logo-zamora-branding.png" alt="Logo" width="200"/></div>
       <div class="preloader-body">
         <div id="loadingProgressG"><div class="loadingProgressG" id="loadingProgressG_1"></div></div>
       </div>
@@ -58,7 +57,7 @@
               <div class="rd-navbar-aside">
                 <div class="rd-navbar-panel">
                   <button class="rd-navbar-toggle" data-rd-navbar-toggle="#rd-navbar-nav-wrap-1"><span></span></button>
-                  <a class="rd-navbar-brand" href="index"><img src="images/logo-zamora-branding.png" alt="Zamora" width="180"/></a>
+                  <a class="rd-navbar-brand" href="index"><img src="../images/logo-zamora-branding.png" alt="Zamora" width="180"/></a>
                 </div>
                 <div class="rd-navbar-collapse">
                   <button class="rd-navbar-collapse-toggle rd-navbar-fixed-element-1" data-rd-navbar-toggle="#rd-navbar-collapse-content-1"><span></span></button>
@@ -74,11 +73,11 @@
                     <article class="unit align-items-center">
                       <div class="unit-left"><span class="icon novi-icon icon-md icon-modern mdi mdi-map-marker"></span></div>
                       <div class="unit-body"><a class="link-default" href="#">Bluefields, Nicaragua <br> RACCS</a></div>
-                    </article><a class="button button-primary button-winona button-icon button-icon-left" href="https://wa.me/50557649920?text=Hola,%20me%20gustaría%20obtener%20información%20sobre%20una%20propiedad." target="_blank"><span class="icon mdi mdi-whatsapp"></span>WhatsApp</a>
+                    </article><a class="button button-primary button-winona button-icon button-icon-left" href="https://wa.me/50557649920?text=Hello,%20I%20would%20like%20to%20get%20information%20about%20a%20property." target="_blank"><span class="icon mdi mdi-whatsapp"></span>WhatsApp</a>
                     <div class="lang-switcher">
-                      <a href="calculadora" class="active">ES</a>
+                      <a href="../calculadora">ES</a>
                       <span class="lang-lang-divider">|</span>
-                      <a href="en/calculator">EN</a>
+                      <a href="calculator" class="active">EN</a>
                     </div>
                   </div>
                 </div>
@@ -88,12 +87,12 @@
               <div class="rd-navbar-main">
                 <div class="rd-navbar-nav-wrap" id="rd-navbar-nav-wrap-1">
                   <ul class="rd-navbar-nav">
-                    <li class="rd-nav-item"><a class="rd-nav-link" href="index">Inicio</a></li>
-                    <li class="rd-nav-item"><a class="rd-nav-link" href="nosotros">Nosotros</a></li>
-                    <li class="rd-nav-item"><a class="rd-nav-link" href="propiedades">Propiedades</a></li>
-                    <li class="rd-nav-item active"><a class="rd-nav-link" href="calculadora">Calculadora</a></li>
-                    <li class="rd-nav-item"><a class="rd-nav-link" href="enlistar">Vender</a></li>
-                    <li class="rd-nav-item"><a class="rd-nav-link" href="contacto">Contacto</a></li>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="index">Home</a></li>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="about">About Us</a></li>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="properties">Properties</a></li>
+                    <li class="rd-nav-item active"><a class="rd-nav-link" href="calculator">Calculator</a></li>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="enlistar">Sell</a></li>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="contact">Contacts</a></li>
                   </ul>
                 </div>
               </div>
@@ -102,10 +101,10 @@
         </div>
       </header>
 
-      <section class="calc-header novi-background bg-image" style="background-image: url(images/virtual_tour_bg_1773722039627.png);">
+      <section class="calc-header novi-background bg-image" style="background-image: url(../images/virtual_tour_bg_1773722039627.png);">
         <div class="container">
-          <h2 class="text-uppercase font-weight-bold">Calculadora de Préstamo</h2>
-          <p class="big">Planifica tu futuro y mira cuán fácil es obtener tu casa propia en Bluefields.</p>
+          <h2 class="text-uppercase font-weight-bold">Loan Calculator</h2>
+          <p class="big">Plan your future and see how easy it is to get your own home in Bluefields.</p>
         </div>
       </section>
 
@@ -115,44 +114,44 @@
             <div class="row row-50 align-items-stretch">
               <div class="col-lg-7 text-left">
                 <div class="calc-input-group">
-                  <label class="calc-label">Precio de la Propiedad (USD)</label>
+                  <label class="calc-label">Property Price (USD)</label>
                   <input type="number" id="prop-price" class="calc-input" value="50000" oninput="calculateMortgage()">
                 </div>
                 <div class="row">
                   <div class="col-md-6">
                     <div class="calc-input-group">
-                      <label class="calc-label">Prima / Enganche (20%)</label>
+                      <label class="calc-label">Down Payment (20%)</label>
                       <input type="number" id="down-payment" class="calc-input" value="10000" oninput="calculateMortgage()">
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="calc-input-group">
-                      <label class="calc-label">Plazo (Años)</label>
+                      <label class="calc-label">Term (Years)</label>
                       <select id="plazo" class="calc-input" onchange="calculateMortgage()">
-                        <option value="5">5 años</option>
-                        <option value="10">10 años</option>
-                        <option value="15" selected>15 años</option>
-                        <option value="20">20 años</option>
-                        <option value="25">25 años</option>
+                        <option value="5">5 years</option>
+                        <option value="10">10 years</option>
+                        <option value="15" selected>15 years</option>
+                        <option value="20">20 years</option>
+                        <option value="25">25 years</option>
                       </select>
                     </div>
                   </div>
                 </div>
                 <div class="calc-input-group">
-                  <label class="calc-label">Tasa de Interés Anual (%)</label>
+                  <label class="calc-label">Annual Interest Rate (%)</label>
                   <input type="number" id="interest-rate" class="calc-input" value="9.5" step="0.1" oninput="calculateMortgage()">
                 </div>
               </div>
               
               <div class="col-lg-5">
                 <div class="result-card">
-                  <div class="result-label">Tu pago mensual estimado:</div>
+                  <div class="result-label">Your estimated monthly payment:</div>
                   <div class="result-value" id="monthly-payment">$0.00</div>
-                  <p class="small text-muted mb-4">Monto del préstamo: <span id="loan-amount-display">$40,000</span></p>
+                  <p class="small text-muted mb-4">Loan amount: <span id="loan-amount-display">$40,000</span></p>
                   <hr>
-                  <p class="mt-3">¿Te gusta este plan? Pregúntanos cómo aplicar a un crédito hipotecario en Nicaragua.</p>
+                  <p class="mt-3">Do you like this plan? Ask us how to apply for a mortgage loan in Nicaragua.</p>
                   <a href="#" id="wa-calc-link" target="_blank" class="btn-wa-calc">
-                    <span class="mdi mdi-whatsapp"></span> Consultar ahora
+                    <span class="mdi mdi-whatsapp"></span> Contact us now
                   </a>
                 </div>
               </div>
@@ -161,8 +160,8 @@
           
           <div class="row offset-top-3 justify-content-center text-left">
             <div class="col-lg-10">
-              <h4 class="font-weight-bold text-uppercase">Nota Sobre los Cálculos</h4>
-              <p>Esta calculadora proporciona una estimación de cuotas niveladas. No incluye seguros de vida, seguros de daños ni comisiones bancarias. Las tasas de interés en Nicaragua suelen variar entre el 8% y el 11% dependiendo del banco y la zona.</p>
+              <h4 class="font-weight-bold text-uppercase">Note on Calculations</h4>
+              <p>This calculator provides an estimate of equal monthly payments. It does not include life insurance, property insurance, or bank commissions. Interest rates in Nicaragua typically range between 8% and 11% depending on the bank and location.</p>
             </div>
           </div>
         </div>
@@ -173,30 +172,30 @@
           <div class="container">
             <div class="row row-50">
               <div class="col-lg-4">
-                <h5 class="font-weight-bold text-uppercase text-white">Sobre Nosotros</h5>
-                <p class="footer-advanced-text">Somos una empresa orgullosamente Bluefileña. Nos especializamos en proporcionar asesoramiento confiable para la venta de su propiedad, ofreciendo asistencia integral en la compra, venta, alquiler y remodelación de inmuebles en toda la región.</p>
+                <h5 class="font-weight-bold text-uppercase text-white">About Us</h5>
+                <p class="footer-advanced-text">We are a proudly Bluefields-based company. Our specialty is providing reliable advice for the sale of your property, offering comprehensive assistance in the purchase, sale, rental, and remodeling of properties throughout the region.</p>
               </div>
               <div class="col-sm-7 col-md-5 col-lg-4">
-                <h5 class="font-weight-bold text-uppercase text-white">Nuestros Servicios</h5>
+                <h5 class="font-weight-bold text-uppercase text-white">Our Services</h5>
                 <ul style="list-style:none; padding:0; margin:0;">
-                  <li style="margin-bottom:10px;"><span class="mdi mdi-home-outline" style="color:#f7941d; margin-right:8px;"></span><a href="propiedades" style="color:#aeb1be; text-decoration:none;">Venta de Propiedades</a></li>
-                  <li style="margin-bottom:10px;"><span class="mdi mdi-key-outline" style="color:#f7941d; margin-right:8px;"></span><a href="propiedades" style="color:#aeb1be; text-decoration:none;">Alquiler de Inmuebles</a></li>
-                  <li style="margin-bottom:10px;"><span class="mdi mdi-file-document-outline" style="color:#f7941d; margin-right:8px;"></span><a href="nosotros" style="color:#aeb1be; text-decoration:none;">Asesoría Legal y Escrituras</a></li>
-                  <li style="margin-bottom:10px;"><span class="mdi mdi-wrench-outline" style="color:#f7941d; margin-right:8px;"></span><a href="nosotros" style="color:#aeb1be; text-decoration:none;">Remodelaciones</a></li>
-                  <li style="margin-bottom:10px;"><span class="mdi mdi-map-marker-outline" style="color:#f7941d; margin-right:8px;"></span><a href="propiedades" style="color:#aeb1be; text-decoration:none;">Lotes y Terrenos</a></li>
+                  <li style="margin-bottom:10px;"><span class="mdi mdi-home-outline" style="color:#f7941d; margin-right:8px;"></span><a href="properties" style="color:#aeb1be; text-decoration:none;">Property Sales</a></li>
+                  <li style="margin-bottom:10px;"><span class="mdi mdi-key-outline" style="color:#f7941d; margin-right:8px;"></span><a href="properties" style="color:#aeb1be; text-decoration:none;">Property Rentals</a></li>
+                  <li style="margin-bottom:10px;"><span class="mdi mdi-file-document-outline" style="color:#f7941d; margin-right:8px;"></span><a href="about" style="color:#aeb1be; text-decoration:none;">Legal Advice & Title Deeds</a></li>
+                  <li style="margin-bottom:10px;"><span class="mdi mdi-wrench-outline" style="color:#f7941d; margin-right:8px;"></span><a href="about" style="color:#aeb1be; text-decoration:none;">Remodeling</a></li>
+                  <li style="margin-bottom:10px;"><span class="mdi mdi-map-marker-outline" style="color:#f7941d; margin-right:8px;"></span><a href="properties" style="color:#aeb1be; text-decoration:none;">Lots & Land</a></li>
                 </ul>
               </div>
               <div class="col-sm-5 col-md-7 col-lg-4">
-                <h5 class="font-weight-bold text-uppercase text-white">Galería</h5>
+                <h5 class="font-weight-bold text-uppercase text-white">Gallery</h5>
                 <div class="row row-x-10" data-lightgallery="group">
-                  <div class="col-3 col-sm-4 col-md-3"><a class="thumbnail-minimal" href="images/footer-gallery-1.png" data-lightgallery="item"><img class="thumbnail-minimal-image" src="images/footer-gallery-1.png" alt=""/></a></div>
-                  <div class="col-3 col-sm-4 col-md-3"><a class="thumbnail-minimal" href="images/footer-gallery-2.png" data-lightgallery="item"><img class="thumbnail-minimal-image" src="images/footer-gallery-2.png" alt=""/></a></div>
-                  <div class="col-3 col-sm-4 col-md-3"><a class="thumbnail-minimal" href="images/footer-gallery-3.png" data-lightgallery="item"><img class="thumbnail-minimal-image" src="images/footer-gallery-3.png" alt=""/></a></div>
-                  <div class="col-3 col-sm-4 col-md-3"><a class="thumbnail-minimal" href="images/footer-gallery-4.png" data-lightgallery="item"><img class="thumbnail-minimal-image" src="images/footer-gallery-4.png" alt=""/></a></div>
-                  <div class="col-3 col-sm-4 col-md-3"><a class="thumbnail-minimal" href="images/footer-gallery-5.png" data-lightgallery="item"><img class="thumbnail-minimal-image" src="images/footer-gallery-5.png" alt=""/></a></div>
-                  <div class="col-3 col-sm-4 col-md-3"><a class="thumbnail-minimal" href="images/footer-gallery-6.png" data-lightgallery="item"><img class="thumbnail-minimal-image" src="images/footer-gallery-6.png" alt=""/></a></div>
-                  <div class="col-3 col-sm-4 col-md-3"><a class="thumbnail-minimal" href="images/footer-gallery-7.png" data-lightgallery="item"><img class="thumbnail-minimal-image" src="images/footer-gallery-7.png" alt=""/></a></div>
-                  <div class="col-3 col-sm-4 col-md-3"><a class="thumbnail-minimal" href="images/footer-gallery-8.png" data-lightgallery="item"><img class="thumbnail-minimal-image" src="images/footer-gallery-8.png" alt=""/></a></div>
+                  <div class="col-3 col-sm-4 col-md-3"><a class="thumbnail-minimal" href="../images/footer-gallery-1.png" data-lightgallery="item"><img class="thumbnail-minimal-image" src="../images/footer-gallery-1.png" alt=""/></a></div>
+                  <div class="col-3 col-sm-4 col-md-3"><a class="thumbnail-minimal" href="../images/footer-gallery-2.png" data-lightgallery="item"><img class="thumbnail-minimal-image" src="../images/footer-gallery-2.png" alt=""/></a></div>
+                  <div class="col-3 col-sm-4 col-md-3"><a class="thumbnail-minimal" href="../images/footer-gallery-3.png" data-lightgallery="item"><img class="thumbnail-minimal-image" src="../images/footer-gallery-3.png" alt=""/></a></div>
+                  <div class="col-3 col-sm-4 col-md-3"><a class="thumbnail-minimal" href="../images/footer-gallery-4.png" data-lightgallery="item"><img class="thumbnail-minimal-image" src="../images/footer-gallery-4.png" alt=""/></a></div>
+                  <div class="col-3 col-sm-4 col-md-3"><a class="thumbnail-minimal" href="../images/footer-gallery-5.png" data-lightgallery="item"><img class="thumbnail-minimal-image" src="../images/footer-gallery-5.png" alt=""/></a></div>
+                  <div class="col-3 col-sm-4 col-md-3"><a class="thumbnail-minimal" href="../images/footer-gallery-6.png" data-lightgallery="item"><img class="thumbnail-minimal-image" src="../images/footer-gallery-6.png" alt=""/></a></div>
+                  <div class="col-3 col-sm-4 col-md-3"><a class="thumbnail-minimal" href="../images/footer-gallery-7.png" data-lightgallery="item"><img class="thumbnail-minimal-image" src="../images/footer-gallery-7.png" alt=""/></a></div>
+                  <div class="col-3 col-sm-4 col-md-3"><a class="thumbnail-minimal" href="../images/footer-gallery-8.png" data-lightgallery="item"><img class="thumbnail-minimal-image" src="../images/footer-gallery-8.png" alt=""/></a></div>
                 </div>
               </div>
             </div>
@@ -207,12 +206,12 @@
             <div class="footer-advanced-layout">
               <div>
                 <ul class="list-nav"> 
-                  <li><a href="index">Inicio</a></li>
-                  <li><a href="nosotros">Nosotros</a></li>
-                  <li><a href="propiedades">Propiedades</a></li>
-                  <li><a href="calculadora">Calculadora</a></li>
-                  <li><a href="guia-inversion" style="color: #25d366; font-weight: bold;">Guía de Inversión 2026</a></li>
-                  <li><a href="contacto">Contacto</a></li>
+                  <li><a href="index">Home</a></li>
+                  <li><a href="about">About Us</a></li>
+                  <li><a href="properties">Properties</a></li>
+                  <li><a href="calculator">Calculator</a></li>
+                  <li><a href="investment-guide" style="color: #25d366; font-weight: bold;">Investment Guide 2026</a></li>
+                  <li><a href="contact">Contacts</a></li>
                 </ul>
               </div>
               <div>
@@ -228,14 +227,14 @@
         <div class="container"><hr/></div>
         <div class="footer-advanced-aside">
           <div class="container text-center">
-            <p class="rights"><span>&copy;&nbsp;</span><span class="copyright-year"></span> Bienes Raíces Zamora.</p>
+            <p class="rights"><span>&copy;&nbsp;</span><span class="copyright-year"></span> Zamora Real Estate.</p>
           </div>
         </div>
       </footer>
     </div>
 
-    <script src="js/core.min.js"></script>
-    <script src="js/script.js"></script>
+    <script src="../js/core.min.js"></script>
+    <script src="../js/script.js"></script>
     <script>
       function calculateMortgage() {
         const price = document.getElementById('prop-price').value || 0;
@@ -258,16 +257,14 @@
         document.getElementById('monthly-payment').innerText = formattedResult;
 
         // WA link
-        const msg = `Hola Zamora, usé la calculadora web. Por una propiedad de $${price} con prima de $${downPayment}, la cuota es de ${formattedResult}. ¿Me pueden asesorar?`;
+        const msg = `Hi Zamora, I used the web calculator. For a property of $${price} with down payment of $${downPayment}, the monthly payment is ${formattedResult}. Can you advise me?`;
         document.getElementById('wa-calc-link').href = `https://wa.me/50557649920?text=${encodeURIComponent(msg)}`;
       }
 
-      // Pre-fill from URL if coming from a property
       window.onload = function() {
         const params = new URLSearchParams(window.location.search);
         if(params.has('price')) {
           document.getElementById('prop-price').value = params.get('price');
-          // Adjust downpayment to 20%
           document.getElementById('down-payment').value = params.get('price') * 0.2;
         }
         calculateMortgage();
@@ -277,7 +274,7 @@
     
     <!-- Active WhatsApp Button -->
     <div class="wa-float-container">
-      <a href="https://wa.me/50557649920?text=Hola, tengo una consulta sobre una propiedad." class="wa-float-btn" target="_blank">
+      <a href="https://wa.me/50557649920?text=Hello, I have a question about a property." class="wa-float-btn" target="_blank">
         <span class="mdi mdi-whatsapp"></span>
       </a>
       <div id="wa-chat-bubble" class="wa-chat-bubble">
@@ -287,9 +284,9 @@
             <span class="mdi mdi-account"></span>
           </div>
           <div class="wa-chat-content">
-            <h6>Bienes Ra&iacute;ces Zamora</h6>
-            <p>&iexcl;Hola! &iquest;Buscas casa o lote en Bluefields? Escr&iacute;benos.</p>
-            <a href="https://wa.me/50557649920?text=Hola, tengo una consulta sobre una propiedad." class="wa-chat-action" target="_blank">Chatear ahora</a>
+            <h6>Zamora Real Estate</h6>
+            <p>Hi! Are you looking for a house or lot in Bluefields? Chat with us.</p>
+            <a href="https://wa.me/50557649920?text=Hello, I have a question about a property." class="wa-chat-action" target="_blank">Chat now</a>
           </div>
         </div>
       </div>
@@ -308,4 +305,3 @@
     </script>
 </body>
 </html>
-

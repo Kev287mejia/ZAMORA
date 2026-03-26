@@ -281,3 +281,34 @@ yx-axis
     justify-content: flex-start;
   }
 }
+
+
+/* Estilos para el Selector de Idiomas con degradado */
+.lang-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  vertical-align: middle;
+  margin-left: 15px;
+}
+.lang-switcher a {
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  color: #495057;
+  text-decoration: none;
+}
+.lang-switcher a.active {
+  background: linear-gradient(90deg, #ffcb2d 0%, #f7941d 50%, #e31e24 100%);
+  color: #fff !important;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+.lang-switcher a:hover:not(.active) {
+  background: rgba(0, 0, 0, 0.05);
+  color: #007bff;
+}
+.lang-lang-divider {
+  color: #ddd;
+  font-weight: 300;
+}
