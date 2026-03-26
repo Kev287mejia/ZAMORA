@@ -144,8 +144,45 @@
           </div>
         </div>
         
-        <div id="sec-testimonials" style="display:none;"><h2>Gestión de Testimonios</h2><table class="prop-table mt-4"><thead><tr><th>Nombre</th><th>Acciones</th></tr></thead><tbody id="test-table-body"></tbody></table></div>
-        <div id="sec-config" style="display:none;"><h2>Configuración Web</h2><input type="text" id="conf_title_es" class="form-control-admin" placeholder="Título Mejores Ofertas"><button class="btn-save" onclick="saveConfig()">GUARDAR</button></div>
+        <!-- Sección Testimonios -->
+        <div id="sec-testimonials" style="display:none;">
+          <div class="admin-header"><h2>Gestión de Testimonios</h2><button class="btn btn-primary" onclick="toggleTestimonialForm()">+ Nuevo Testimonio</button></div>
+          
+          <div id="test-form" class="card-form" style="display:none; margin-bottom: 20px;">
+            <h4 id="test-form-title">Agregar Testimonio</h4>
+            <div class="admin-row">
+              <div class="admin-col-6 form-group-admin"><label class="form-label">Nombre *</label><input type="text" id="test_name" class="form-control-admin"></div>
+              <div class="admin-col-6 form-group-admin"><label class="form-label">URL Foto (Opcional)</label><input type="text" id="test_photo" class="form-control-admin"></div>
+            </div>
+            <div class="admin-row">
+              <div class="admin-col-6 form-group-admin"><label class="form-label">Rol ES</label><input type="text" id="test_role_es" class="form-control-admin"></div>
+              <div class="admin-col-6 form-group-admin"><label class="form-label">Rol EN</label><input type="text" id="test_role_en" class="form-control-admin"></div>
+            </div>
+            <div class="admin-row">
+              <div class="admin-col-6 form-group-admin"><label class="form-label">Contenido ES *</label><textarea id="test_content_es" class="form-control-admin" rows="3"></textarea></div>
+              <div class="admin-col-6 form-group-admin"><label class="form-label">Content EN</label><textarea id="test_content_en" class="form-control-admin" rows="3"></textarea></div>
+            </div>
+            <button class="btn-save" id="btn-save-test" onclick="saveTestimonial()">GUARDAR TESTIMONIO</button>
+          </div>
+
+          <table class="prop-table mt-4">
+            <thead><tr><th>Nombre</th><th>Rol</th><th>Contenido</th><th>Acciones</th></tr></thead>
+            <tbody id="test-table-body"></tbody>
+          </table>
+        </div>
+
+        <!-- Sección Configuración -->
+        <div id="sec-config" style="display:none;">
+          <div class="admin-header"><h2>Configuración Web (Supabase)</h2></div>
+          <div class="card-form">
+            <h4 style="margin-bottom: 20px; color: var(--admin-primary);">Sección "Mejores Ofertas"</h4>
+            <div class="form-group-admin"><label class="form-label">Título Principal (ES)</label><input type="text" id="conf_best_offers_title" class="form-control-admin"></div>
+            <div class="form-group-admin"><label class="form-label">Subtítulo (Ej: DE ABRIL)</label><input type="text" id="conf_best_offers_subtitle" class="form-control-admin"></div>
+            <div class="form-group-admin"><label class="form-label">Descripción Informativa (ES)</label><textarea id="conf_best_offers_desc" class="form-control-admin" rows="3"></textarea></div>
+            <hr>
+            <button class="btn-save" id="btn-save-config" onclick="saveConfig()">GUARDAR CAMBIOS WEB</button>
+          </div>
+        </div>
       </main>
     </div>
 
@@ -319,8 +356,94 @@
           document.getElementById('price_sale').value = data.price_sale || '';
           document.getElementById('price_rent').value = data.price_rent || '';
           document.getElementById('description_es').value = data.description_es || '';
+          document.getElementById('description_en').value = data.description_en || '';
+          document.getElementById('category').value = data.category || 'Casa';
+          document.getElementById('transaction_type').value = data.transaction_type || 'Venta';
           document.getElementById('form-title').innerText = "Editar Propiedad";
           showSection('sec-new-prop');
+      }
+
+      // --- Gestión de Testimonios ---
+      function toggleTestimonialForm() {
+        const form = document.getElementById('test-form');
+        form.style.display = form.style.display === 'none' ? 'block' : 'none';
+        editTestId = null;
+        document.getElementById('test-form-title').innerText = "Agregar Testimonio";
+        // Clear form fields
+        document.getElementById('test_name').value = '';
+        document.getElementById('test_photo').value = '';
+        document.getElementById('test_role_es').value = '';
+        document.getElementById('test_role_en').value = '';
+        document.getElementById('test_content_es').value = '';
+        document.getElementById('test_content_en').value = '';
+      }
+
+      async function loadTestimonials() {
+        const body = document.getElementById('test-table-body');
+        body.innerHTML = '<tr><td colspan="4" class="text-center">Cargando...</td></tr>';
+        const { data, error } = await window.supabaseClient.from('testimonials').select('*').order('created_at', { ascending: false });
+        if(error) { alert(error.message); return; }
+        body.innerHTML = '';
+        data.forEach(t => {
+          body.innerHTML += `<tr><td>${t.name}</td><td>${t.role_es || ''}</td><td style="font-size:11px; max-width:200px;">${t.content_es ? t.content_es.substring(0,50)+'...' : ''}</td><td><button class="btn btn-sm btn-outline-danger" onclick="deleteTest('${t.id}')">Borrar</button></td></tr>`;
+        });
+      }
+
+      async function saveTestimonial() {
+        const data = {
+          name: document.getElementById('test_name').value,
+          photo_url: document.getElementById('test_photo').value || null,
+          role_es: document.getElementById('test_role_es').value,
+          role_en: document.getElementById('test_role_en').value,
+          content_es: document.getElementById('test_content_es').value,
+          content_en: document.getElementById('test_content_en').value
+        };
+        const { error } = await window.supabaseClient.from('testimonials').insert([data]);
+        if(error) alert(error.message);
+        else { alert("Testimonio guardado!"); toggleTestimonialForm(); loadTestimonials(); }
+      }
+
+      async function deleteTest(id) {
+        if(confirm("¿Eliminar testimonio?")) {
+          const { error } = await window.supabaseClient.from('testimonials').delete().eq('id', id);
+          if(error) alert(error.message); else loadTestimonials();
+        }
+      }
+
+      // --- Gestión de Configuración ---
+      async function loadConfig() {
+        const { data, error } = await window.supabaseClient.from('site_config').select('*');
+        if(error) { alert(error.message); return; }
+        data.forEach(c => {
+          if(c.key === 'best_offers_title') document.getElementById('conf_best_offers_title').value = c.value_es;
+          if(c.key === 'best_offers_subtitle') document.getElementById('conf_best_offers_subtitle').value = c.value_es;
+          if(c.key === 'best_offers_desc') document.getElementById('conf_best_offers_desc').value = c.value_es;
+        });
+      }
+
+      async function saveConfig() {
+        const configs = [
+          { key: 'best_offers_title', val: document.getElementById('conf_best_offers_title').value },
+          { key: 'best_offers_subtitle', val: document.getElementById('conf_best_offers_subtitle').value },
+          { key: 'best_offers_desc', val: document.getElementById('conf_best_offers_desc').value }
+        ];
+        
+        for (const c of configs) {
+          await window.supabaseClient.from('site_config').update({ value_es: c.val }).eq('key', c.key);
+        }
+        alert("Configuración actualizada correctamente!");
+      }
+
+      function showSection(id) {
+        ['sec-list-prop', 'sec-new-prop', 'sec-testimonials', 'sec-config'].forEach(s => document.getElementById(s).style.display = 'none');
+        document.getElementById(id).style.display = 'block';
+        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+        const linkId = id === 'sec-list-prop' ? 'link-list' : (id === 'sec-new-prop' ? 'link-new' : (id === 'sec-testimonials' ? 'link-test' : 'link-conf'));
+        const link = document.getElementById(linkId); if(link) link.classList.add('active');
+        
+        if(id === 'sec-list-prop') loadInventory();
+        if(id === 'sec-testimonials') loadTestimonials();
+        if(id === 'sec-config') loadConfig();
       }
 
       window.addEventListener('load', checkUser);
