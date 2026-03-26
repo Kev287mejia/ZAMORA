@@ -181,7 +181,16 @@
         <div id="sec-blog" style="display:none;">
           <div class="admin-header"><h2>Gestión del Blog</h2><button class="btn btn-primary" onclick="toggleBlogForm()">+ Nuevo Artículo</button></div>
           
-          <div id="blog-form" class="card-form" style="display:none; margin-bottom: 20px;">
+          <!-- Tabla de Artículos Primero -->
+          <div class="card-form" style="padding: 20px;">
+            <table class="prop-table mt-4">
+              <thead><tr><th>Imagen</th><th>Título</th><th>Fecha</th><th>Acciones</th></tr></thead>
+              <tbody id="blog-table-body"></tbody>
+            </table>
+          </div>
+
+          <!-- Formulario de Redacción Segundo (Aparece al presionar botón) -->
+          <div id="blog-form" class="card-form" style="display:none; margin-top: 30px;">
             <h4 id="blog-form-title">Redactar Artículo</h4>
             <div class="admin-row">
               <div class="admin-col-6 form-group-admin"><label class="form-label">Título (ES) *</label><input type="text" id="blog_title_es" class="form-control-admin"></div>
@@ -196,13 +205,11 @@
             <div class="admin-row">
               <div class="admin-col-12 form-group-admin"><label class="form-label">Contenido Completo (ES)</label><textarea id="blog_content_es" class="form-control-admin" rows="6"></textarea></div>
             </div>
-            <button class="btn-save" id="btn-save-blog" onclick="saveBlogPost()">PUBLICAR EN EL BLOG</button>
+            <div style="display:flex; gap:10px;">
+              <button class="btn-save" id="btn-save-blog" onclick="saveBlogPost()" style="flex:1;">PUBLICAR ARTÍCULO</button>
+              <button class="btn btn-outline-secondary" onclick="toggleBlogForm()" style="width:120px;">X CANCELAR</button>
+            </div>
           </div>
-
-          <table class="prop-table mt-4">
-            <thead><tr><th>Imagen</th><th>Título</th><th>Fecha</th><th>Acciones</th></tr></thead>
-            <tbody id="blog-table-body"></tbody>
-          </table>
         </div>
 
         <!-- Sección Configuración -->
