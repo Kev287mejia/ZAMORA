@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="css/branding.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-db.js"></script>
     <style>
       #leaflet-map { height: 500px; width: 100%; }
     </style>
@@ -220,7 +222,7 @@
                   </form>
 
                   <script>
-                    function sendToWhatsApp() {
+                    async function sendToWhatsApp() {
                       const name = document.getElementById('wa-name').value;
                       const phone = document.getElementById('wa-phone').value;
                       const barrio = document.getElementById('wa-barrio').value;
@@ -233,6 +235,21 @@
                         return;
                       }
 
+                      // Guardar en Supabase (Lead de Contacto)
+                      try {
+                        if (window.supabaseClient) {
+                          const cleanBudget = parseFloat(budget.replace(/[^0-9.]/g, '')) || 0;
+                          await window.supabaseClient.from('leads').insert([{
+                            full_name: name,
+                            phone: phone,
+                            neighborhood: barrio,
+                            price_expectation: cleanBudget,
+                            property_type: service,
+                            message: "CONSULTA WEB: " + details
+                          }]);
+                        }
+                      } catch (err) { console.warn("DB Save Error:", err); }
+
                       const intro = "Hola, Bienes Raíces Zamora. Mi nombre es *" + name + "* y les escribo desde la web.";
                       const body = "\n\n📌 *Interés:* " + service + 
                                    "\n📍 *Barrio:* " + barrio + 
@@ -240,10 +257,8 @@
                                    "\n📱 *Mi WhatsApp:* " + phone;
                       
                       const extra = details ? ("\n\n💬 *Mensaje:* " + details) : "";
-                      
                       const fullMsg = encodeURIComponent(intro + body + extra);
                       const waUrl = "https://wa.me/50557649920?text=" + fullMsg;
-                      
                       window.open(waUrl, '_blank');
                     }
                   </script>
