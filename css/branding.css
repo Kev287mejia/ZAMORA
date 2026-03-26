@@ -312,23 +312,13 @@ input:focus, select:focus, textarea:focus {
     font-weight: 700 !important;
 }
 
-/* Toggle (Botón hamburguesa) en móvil - Asegurar visibilidad y clicabilidad */
+/* Toggle (Botón hamburguesa) en móvil - Solo Branding de color */
 .rd-navbar-fixed .rd-navbar-toggle {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    visibility: visible !important;
     z-index: 10002 !important; 
-    cursor: pointer !important;
-    opacity: 1 !important;
-    width: 48px !important;
-    height: 48px !important;
     pointer-events: auto !important;
-    background: transparent !important;
-    border: none !important;
 }
 
-/* Solo cambiar el color de las líneas, NO el display block que puede romper la forma */
+/* Solo cambiar el color de las líneas sin tocar su posicionamiento original */
 .rd-navbar-fixed .rd-navbar-toggle span,
 .rd-navbar-fixed .rd-navbar-toggle span::before,
 .rd-navbar-fixed .rd-navbar-toggle span::after {
