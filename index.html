@@ -745,10 +745,10 @@
                   bHtml += `
                     <div class="col-md-6 wow-outer">
                       <article class="post-modern wow ${sideClass}">
-                        <a class="post-modern-media" href="blog"><img src="${img}" alt="" width="571" height="353"/></a>
-                        <h4 class="post-modern-title"><a class="post-modern-title" href="blog">${p.title_es}</a></h4>
+                        <a class="post-modern-media" href="noticia-detalle?id=${p.id}"><img src="${img}" alt="" width="571" height="353"/></a>
+                        <h4 class="post-modern-title"><a class="post-modern-title" href="noticia-detalle?id=${p.id}">${p.title_es}</a></h4>
                         <ul class="post-modern-meta">
-                          <li><a class="button-winona" href="blog">${tag}</a></li>
+                          <li><a class="button-winona" href="noticia-detalle?id=${p.id}">${tag}</a></li>
                           <li>${new Date(p.created_at).toLocaleDateString('es-ES', { month: 'long', year: 'numeric' })}</li>
                         </ul>
                         <p>${p.excerpt_es}</p>

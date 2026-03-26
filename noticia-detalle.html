@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html class="wide wow-animation" lang="es">
+  <head>
+    <title>Noticia - Bienes Raíces Zamora</title>
+    <meta name="viewport" content="width=device-width height=device-height initial-scale=1.0 maximum-scale=1.0 user-scalable=0">
+    <meta charset="utf-8">
+    <link rel="icon" href="images/favicon-v2.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Outfit:300,400,600,700,800%7CPlayfair+Display:700,900">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/style.css" id="main-styles-link">
+    <link rel="stylesheet" href="css/branding.css">
+    
+    <!-- Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-db.js?v=1.1"></script>
+
+    <style>
+      :root { --premium-blue: #412a1f; --accent-gold: #c5a059; --soft-bg: #fdfdfd; }
+      body { font-family: 'Outfit', sans-serif; background: var(--soft-bg); color: #2c3e50; }
+      .editorial-hero { position: relative; height: 75vh; min-height: 500px; display: flex; align-items: flex-end; padding-bottom: 80px; background-size: cover; background-position: center; }
+      .editorial-hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.8) 100%); }
+      .hero-content { position: relative; z-index: 2; width: 100%; }
+      .category-tag { display: inline-block; background: var(--accent-gold); color: #fff; padding: 6px 18px; border-radius: 50px; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px; }
+      .editorial-title { font-family: 'Playfair Display', serif; font-size: clamp(32px, 6vw, 64px); color: #fff; line-height: 1.1; margin-bottom: 20px; max-width: 900px; }
+      .editorial-body { max-width: 850px; margin: -50px auto 100px; background: #fff; padding: 60px 80px; position: relative; z-index: 10; box-shadow: 0 30px 100px rgba(0,0,0,0.05); border-radius: 8px; }
+      .editorial-text { font-size: 18px; line-height: 1.8; color: #4a5568; white-space: pre-wrap; }
+      .consult-section { background: var(--premium-blue); color: #fff; padding: 60px; border-radius: 20px; text-align: center; margin-top: 60px; position: relative; overflow: hidden; }
+      @media (max-width: 768px) { .editorial-body { padding: 40px 20px; margin-top: 0; } .editorial-title { font-size: 32px; } }
+    </style>
+  </head>
+  <body>
+    <div class="preloader">
+      <div class="preloader-logo"><img src="images/logo-oficial-v2.png" alt="Logo" width="200"/></div>
+      <div class="preloader-body"><div id="loadingProgressG"><div class="loadingProgressG" id="loadingProgressG_1"></div></div></div>
+    </div>
+
+    <div class="page text-left">
+      <header class="section page-header">
+        <div class="rd-navbar-wrap">
+          <nav class="rd-navbar rd-navbar-corporate" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed" data-md-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static" data-lg-device-layout="rd-navbar-static" data-lg-stick-up="true">
+            <div class="rd-navbar-aside-outer">
+              <div class="rd-navbar-aside">
+                <div class="rd-navbar-panel">
+                  <button class="rd-navbar-toggle" data-rd-navbar-toggle="#rd-navbar-nav-wrap-1"><span></span></button>
+                  <a class="rd-navbar-brand" href="index"><img src="images/logo-oficial-v2.png" alt="Zamora" width="160"/></a>
+                </div>
+                <div class="rd-navbar-collapse">
+                    <ul class="rd-navbar-nav" style="margin-right: 20px;">
+                        <li class="rd-nav-item"><a class="rd-nav-link" href="index">Inicio</a></li>
+                        <li class="rd-nav-item"><a class="rd-nav-link" href="blog">Blog</a></li>
+                    </ul>
+                    <a class="button button-sm button-primary button-winona" href="https://wa.me/50557649920" target="_blank">Contactar Asesor</a>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </header>
+
+      <section id="noticia-hero" class="editorial-hero" style="background-image: url(images/blog-1.png);">
+        <div class="container hero-content">
+          <div id="noticia-tag" class="category-tag">Cargando...</div>
+          <h1 id="noticia-title" class="editorial-title">...</h1>
+          <div style="display: flex; align-items: center; color: rgba(255,255,255,0.7); gap: 20px;">
+            <p id="noticia-date">--</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="container">
+        <article class="editorial-body">
+          <div id="noticia-content" class="editorial-text">
+            Cargando contenido del artículo...
+          </div>
+          
+          <div class="consult-section mt-5">
+            <h3 class="text-white font-weight-bold" style="font-family: 'Playfair Display', serif; margin-bottom: 15px;">¿Le interesa invertir?</h3>
+            <p class="text-white-50 mb-4">Consulte con nuestros asesores sobre las mejores oportunidades en la zona.</p>
+            <a href="https://wa.me/50557649920?text=Hola, acabo de leer su artículo en el blog y me gustaría asesoría." target="_blank" class="button button-md button-secondary">Contactar Especialista</a>
+          </div>
+        </article>
+      </div>
+
+      <footer class="section novi-background footer-advanced bg-gray-700">
+        <div class="footer-advanced-aside">
+          <div class="container text-center">
+            <p class="rights"><span>&copy;&nbsp;</span><span class="copyright-year"></span> Bienes Raíces Zamora.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script src="js/core.min.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+      async function loadPostDetail() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const postId = urlParams.get('id');
+        
+        if(!postId) { 
+          window.location.href = 'blog';
+          return; 
+        }
+
+        try {
+          const { data: p, error } = await window.supabaseClient.from('blog_posts').select('*').eq('id', postId).single();
+          if(error || !p) throw error;
+
+          document.title = p.title_es + " - Zamora Real Estate";
+          document.getElementById('noticia-title').innerText = p.title_es;
+          document.getElementById('noticia-tag').innerText = p.tag_es || 'NOTICIA';
+          document.getElementById('noticia-date').innerText = new Date(p.created_at).toLocaleDateString();
+          document.getElementById('noticia-content').innerText = p.content_es || p.excerpt_es;
+          if(p.image_url) {
+            document.getElementById('noticia-hero').style.backgroundImage = `url(${p.image_url})`;
+          }
+        } catch(e) {
+          console.error("Detail load error:", e);
+          document.getElementById('noticia-content').innerHTML = '<p class="text-danger">No pudimos cargar este artículo. <a href="blog">Volver al blog</a></p>';
+        }
+      }
+      window.addEventListener('load', loadPostDetail);
+    </script>
+  </body>
+</html>
