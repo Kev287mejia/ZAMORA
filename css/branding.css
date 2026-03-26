@@ -268,22 +268,31 @@ input:focus, select:focus, textarea:focus {
     box-shadow: 0 0 0 4px rgba(247, 148, 29, 0.15) !important;
 }
 
+/* Forzar que el Slider esté siempre detrás del menú */
+.swiper-container, 
+.swiper-slider, 
+.section-slider {
+    z-index: 1 !important;
+}
+
 /* --- Menú Móvil (Drawer) - Rediseño Premium --- */
 
 /* Fondo del panel lateral (Drawer) */
 .rd-navbar-fixed .rd-navbar-nav-wrap {
     background: #412a1f !important; /* Fondo chocolate oscuro */
     box-shadow: 0 0 30px rgba(0,0,0,0.5) !important;
-    z-index: 20000 !important; 
+    z-index: 999999 !important; /* VALOR EXTREMO para estar siempre encima */
     width: 270px !important;
     height: 100vh !important;
     position: fixed !important;
     top: 0 !important;
     left: -270px !important; 
     margin: 0 !important;
-    padding: 0 !important; /* Reset padding to 0 */
+    padding: 0 !important;
     transition: all 0.3s ease !important;
-    overflow-y: auto !important; /* Permitir scroll en el menú si hay muchos links */
+    overflow-y: auto !important;
+    transform: none !important;
+    -webkit-transform: none !important; /* Soporte Safari */
 }
 
 /* Forzar visualización del panel cuando el JS añade la clase 'active' */
@@ -297,8 +306,11 @@ input:focus, select:focus, textarea:focus {
 
 /* Eliminar transformaciones molestas en móvil */
 .rd-navbar-fixed .rd-navbar-main-outer,
-.rd-navbar-fixed .rd-navbar-main {
+.rd-navbar-fixed .rd-navbar-main,
+.rd-navbar-fixed {
     transform: none !important;
+    -webkit-transform: none !important;
+    z-index: 999998 !important;
 }
 
 /* Título/Header del Drawer (Pintado de blanco para el logo) */
