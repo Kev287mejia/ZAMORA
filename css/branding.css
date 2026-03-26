@@ -275,6 +275,12 @@ input:focus, select:focus, textarea:focus {
     z-index: 1 !important;
 }
 
+/* Forzar que el texto resaltado (strong) en el slider sea blanco */
+.swiper-slide .text-white strong,
+.swiper-slide .text-white b {
+    color: #ffffff !important;
+}
+
 /* --- Menú Móvil (Drawer) - Rediseño Premium --- */
 
 /* Fondo del panel lateral (Drawer) */
