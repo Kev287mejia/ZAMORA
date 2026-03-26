@@ -729,7 +729,12 @@
                 try {
                   const $owl = $(container);
                   if ($owl.data('owl.carousel')) {
-                    $owl.trigger('destroy.owl.carousel').removeClass('owl-loaded owl-drag owl-refresh');
+                    // Manual cleanup to avoid the buggy internal 'settings' error in core.min.js
+                    try {
+                        $owl.trigger('destroy.owl.carousel');
+                    } catch(e) {}
+                    $owl.find('.owl-stage-outer').children().unwrap();
+                    $owl.removeData('owl.carousel').removeClass('owl-loaded owl-drag owl-refresh owl-hidden');
                   }
                   setTimeout(() => {
                     if ($.fn.owlCarousel) {
