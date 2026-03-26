@@ -724,19 +724,20 @@
 
               // Force layout update for Wow and Owl
               if (typeof $ !== 'undefined' && $.fn.owlCarousel) {
-                const $owl = $(container);
-                if ($owl.data('owl.carousel')) {
-                  try {
-                    $owl.owlCarousel('destroy');
-                    $owl.removeClass('owl-loaded owl-drag owl-refresh');
-                  } catch (err) { console.warn("Owl Carousel cleanup warning:", err); }
-                }
-                setTimeout(() => {
-                  $owl.owlCarousel({
-                      items: 1, margin: 30, dots: true, loop: tests.length > 2, autoplay: true,
-                      responsive: { 0: { items: 1 }, 768: { items: 2 }, 992: { items: 3 } }
-                  });
-                }, 100);
+                try {
+                  const $owl = $(container);
+                  if ($owl.data('owl.carousel')) {
+                    $owl.trigger('destroy.owl.carousel').removeClass('owl-loaded owl-drag owl-refresh');
+                  }
+                  setTimeout(() => {
+                    if ($.fn.owlCarousel) {
+                      $owl.owlCarousel({
+                        items: 1, margin: 30, dots: true, loop: tests.length > 2, autoplay: true,
+                        responsive: { 0: { items: 1 }, 768: { items: 2 }, 992: { items: 3 } }
+                      });
+                    }
+                  }, 200);
+                } catch (owlErr) { console.warn("Owl update failed but ignoring to preserve page:", owlErr); }
               }
             }
           }

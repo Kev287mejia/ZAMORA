@@ -294,11 +294,10 @@ input:focus, select:focus, textarea:focus {
     transform: none !important; 
 }
 
-/* Eliminar transformaciones molestas de los padres en móvil */
+/* Eliminar transformaciones molestas en móvil */
 .rd-navbar-fixed .rd-navbar-main-outer,
 .rd-navbar-fixed .rd-navbar-main {
     transform: none !important;
-    position: static !important;
 }
 
 /* Título/Header del Drawer (Pintado de blanco para el logo) */
