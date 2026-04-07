@@ -612,13 +612,14 @@ input:focus, select:focus, textarea:focus {
     align-items: center;
     gap: 4px;
     position: relative;
-    top: -15px !important;           /* Desplaza el elemento hacia arriba agresivamente */
+    top: -25px !important;           /* Desplazamiento extremo para compensar aire en el PNG */
     white-space: nowrap;
     font-size: 10.2px;
     font-weight: 800;
     letter-spacing: 0.5px;
     line-height: 1;
-    margin-top: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
     text-transform: none;
     background: var(--primary-gradient);
     -webkit-background-clip: text;
@@ -626,16 +627,17 @@ input:focus, select:focus, textarea:focus {
     -webkit-text-fill-color: transparent;
 }
 
-/* Forzar que el logo no tenga espacios extra */
+/* Forzar que el logo succione lo que esté abajo */
 .rd-navbar-brand img, 
 .brand img, 
 .preloader-logo img {
     margin: 0 !important;
+    margin-bottom: -22px !important; /* Succión extrema */
     padding: 0 !important;
     display: block !important;
 }
 
-/* Específicamente para la navbar brand que suele tener altura fija */
+/* Forzar reset de alturas en contenedores de marca */
 .rd-navbar-brand, .brand {
     display: flex !important;
     flex-direction: column !important;
@@ -643,7 +645,9 @@ input:focus, select:focus, textarea:focus {
     justify-content: flex-start !important;
     height: auto !important;
     min-height: 0 !important;
-    padding-bottom: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
 }
 
 .invur-badge .mdi {
