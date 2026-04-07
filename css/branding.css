@@ -608,26 +608,41 @@ input:focus, select:focus, textarea:focus {
 
 /* --- INVUR Badge: número en una sola línea con degradado de marca --- */
 .invur-badge {
-    display: inline-flex;
+    display: inline-flex !important;
     align-items: center;
     gap: 4px;
-    margin-top: -12px !important;    /* Forzamos que suba agresivamente */
+    position: relative;
+    top: -15px !important;           /* Desplaza el elemento hacia arriba agresivamente */
     white-space: nowrap;
     font-size: 10.2px;
     font-weight: 800;
     letter-spacing: 0.5px;
     line-height: 1;
+    margin-top: 0 !important;
     text-transform: none;
-    /* Degradado en el texto */
     background: var(--primary-gradient);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-/* Evitar que el logo tenga un margen inferior que empuje el badge */
-.rd-navbar-brand img, .brand img, .preloader-logo img {
-    margin-bottom: 0 !important;
+/* Forzar que el logo no tenga espacios extra */
+.rd-navbar-brand img, 
+.brand img, 
+.preloader-logo img {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
+}
+
+/* Específicamente para la navbar brand que suele tener altura fija */
+.rd-navbar-brand, .brand {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    height: auto !important;
+    min-height: 0 !important;
     padding-bottom: 0 !important;
 }
 
